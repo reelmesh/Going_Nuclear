@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="FactionData" load_steps=3 format=3 uid="uid://b4iln1n7e6uu6"]
+
+[ext_resource type="Script" uid="uid://cb2rwvia5po7p" path="res://scripts/data/faction_data.gd" id="1_d017p"]
+[ext_resource type="Texture2D" uid="uid://3hy6dk63fenm" path="res://art/avatars/Xi.png" id="1_tmusg"]
+
+[resource]
+script = ExtResource("1_d017p")
+faction_name = "The People's Social Harmony Co."
+leader_name = "Eternal Chairman Xi"
+description = ""
+avatar = ExtResource("1_tmusg")
+starting_population = 100
+ability_name = "Belt and Loan Initiative"
+ability_description = "Steals 2M population from every other player on the board once per game."
+personality_traits = Array[int]([3, 6, 12])
+relationships = {}
+metadata/_custom_type_script = "uid://cb2rwvia5po7p"

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://qna1jwrlq4dl"]
+
+[ext_resource type="Script" uid="uid://bq1ka5qxij7wv" path="res://main.gd" id="1_ig7tw"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ig7tw")
+
+[node name="PlayerPanelContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HandContainer" type="HBoxContainer" parent="."]
+offset_left = 960.0
+offset_top = 502.0
+offset_right = 1000.0
+offset_bottom = 542.0
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0

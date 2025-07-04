@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://egyvpeemoemr"]
+
+[ext_resource type="Script" uid="uid://cflkvq05j4tjc" path="res://scripts/data/card_data.gd" id="1_p1bj0"]
+
+[resource]
+script = ExtResource("1_p1bj0")
+card_name = "50 Megaton Warhead"
+card_type = 1
+description = ""
+damage = 0
+success_chance = 1.0
+targets_to_affect = 1
+metadata/_custom_type_script = "uid://cflkvq05j4tjc"

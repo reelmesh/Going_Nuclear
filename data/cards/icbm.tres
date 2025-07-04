@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://bygdr25cx8pdl"]
+
+[ext_resource type="Script" uid="uid://cflkvq05j4tjc" path="res://scripts/data/card_data.gd" id="1_l8hnh"]
+
+[resource]
+script = ExtResource("1_l8hnh")
+card_name = "ICBM"
+card_type = 0
+description = ""
+damage = 0
+success_chance = 1.0
+targets_to_affect = 1

@@ -1,0 +1,22 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Going Nuclear"
+run/main_scene="uid://qna1jwrlq4dl"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+FactionDatabase="*res://scripts/managers/FactionDatabase.gd"
+GameManager="*res://scripts/managers/GameManager.gd"
+CardDatabase="*res://scripts/managers/CardDatabase.gd"
