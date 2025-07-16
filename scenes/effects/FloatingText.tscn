@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnxb4qo3cgvrk"]
+
+[ext_resource type="Script" uid="uid://c65ugma5tr1ma" path="res://FloatingText.gd" id="1_g5fk4"]
+
+[sub_resource type="SystemFont" id="SystemFont_30oou"]
+subpixel_positioning = 0
+
+[node name="FloatingText" type="Label"]
+offset_left = 53.0
+offset_top = 492.0
+offset_right = 475.0
+offset_bottom = 629.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_30oou")
+theme_override_font_sizes/font_size = 100
+text = "BOOOM!"
+script = ExtResource("1_g5fk4")

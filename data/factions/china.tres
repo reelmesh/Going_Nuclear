@@ -13,5 +13,11 @@ starting_population = 100
 ability_name = "Belt and Loan Initiative"
 ability_description = "Steals 2M population from every other player on the board once per game."
 personality_traits = Array[int]([3, 6, 12])
-relationships = {}
+relationships = {
+"china": 0,
+"iran": 0,
+"north_korea": 0,
+"russia": 0,
+"usa": -5
+}
 metadata/_custom_type_script = "uid://cb2rwvia5po7p"

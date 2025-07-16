@@ -1,100 +1,11 @@
-# The new, expanded FACTIONS data structure
-var FACTIONS = {
-	# --- The Americas ---
-	"usa": {
-		"name": "Freedom Inc.",
-		"leader": "President Don T. Rump",
-		"ability_name": "The Art of the Steal",
-		"ability_description": "Can attempt to force a weaker nation into a one-sided alliance once per game.",
-		"personality_traits": ["UNPREDICTABLE", "DEALMAKER", "AGGRESSIVE"],
-		"relationships": {"china": -10, "russia": 0, "iran": -10, "uk": 5, "israel": 10}
-		# TODO_ART: "art/avatars/don_t_rump.png"
-	},
-
-	# --- Europe ---
-	"russia": {
-		"name": "The Mother-lode",
-		"leader": "President-for-Life Vlad 'The Defenestrator' Pudding",
-		"ability_name": "Winter of Discontent",
-		"ability_description": "Incoming attacks have a 20% higher chance of failure during his turn.",
-		"personality_traits": ["PATIENT", "AGGRESSIVE", "RUTHLESS"],
-		"relationships": {"usa": -5, "china": 5, "iran": 5, "uk": -10}
-		# TODO_ART: "art/avatars/vlad_puttin.png"
-	},
-	"uk": {
-		"name": "The Once-and-Future Empire",
-		"leader": "Prime Minister Boris 'Bojo' Jumbling",
-		"ability_name": "Muddle Through",
-		"ability_description": "The first time his population drops below 50%, it's immediately restored to 50%.",
-		"personality_traits": ["OPPORTUNIST", "CHARISMATIC", "UNPREDICTABLE"],
-		"relationships": {"usa": 5, "russia": -10, "france": 0}
-		# TODO_ART: "art/avatars/boris_jumbling.png"
-	},
-	"france": {
-		"name": "La République Chic",
-		"leader": "Président Emmanuel 'Le Grand' Macaron",
-		"ability_name": "Vive La Résistance!",
-		"ability_description": "When attacked, has a 25% chance to inflict 5M damage back on the attacker.",
-		"personality_traits": ["DIPLOMATIC", "PROUD"],
-		"relationships": {"uk": 0, "usa": 0, "russia": -5}
-		# TODO_ART: "art/avatars/emmanuel_macaron.png"
-	},
-
-	# --- Asia ---
-	"china": {
-		"name": "The People's Social Harmony Co.",
-		"leader": "Eternal Chairman Xi",
-		"ability_name": "Belt and Loan Initiative",
-		"ability_description": "Steals 2M population from every other player on the board once per game.",
-		"personality_traits": ["PATIENT", "STRATEGIC", "EXPANSIONIST"],
-		"relationships": {"usa": -10, "russia": 5, "india": -5, "pakistan": 5}
-		# TODO_ART: "art/avatars/chairman_xi.png"
-	},
-	"north_korea": {
-		"name": "The Democratic People's Rocket Club",
-		"leader": "Supreme Leader Kim Jong Fun",
-		"ability_name": "Temper Tantrum",
-		"ability_description": "When his population is below 20%, his attacks have a 100% success rate but do 50% less damage.",
-		"personality_traits": ["ISOLATIONIST", "UNPREDICTABLE", "AGGRESSIVE"],
-		"relationships": {"usa": -10, "china": 0, "israel": -10} # Neutral with China is funnier
-		# TODO_ART: "art/avatars/kim_jong_fun.png"
-	},
-	"india": {
-		"name": "Bharat Unlimited",
-		"leader": "Prime Minister Narinder 'The Tiger' Moody",
-		"ability_name": "Demographic Boom",
-		"ability_description": "Starts the game with the highest population but has weaker defenses.",
-		"personality_traits": ["PROUD", "EXPANSIONIST"],
-		"relationships": {"china": -5, "pakistan": -10}
-		# TODO_ART: "art/avatars/narinder_moody.png"
-	},
-	"pakistan": {
-		"name": "State of Pak-istan",
-		"leader": "Generalissimo Al-Pocalypse",
-		"ability_name": "Nuclear Black Market",
-		"ability_description": "Can sell a warhead to another AI player for a population boost.",
-		"personality_traits": ["OPPORTUNIST", "TREACHEROUS"],
-		"relationships": {"india": -10, "china": 5, "usa": 0}
-		# TODO_ART: "art/avatars/general_al-pocalypse.png"
-	},
-
-	# --- Middle East ---
-	"iran": {
-		"name": "The Divine Mandate",
-		"leader": "Supreme Theocrat Ali Khameanie",
-		"ability_name": "Proxy War",
-		"ability_description": "Can secretly cause two other players to lose 5M population each.",
-		"personality_traits": ["PATIENT", "RUTHLESS", "DEFENSIVE"],
-		"relationships": {"usa": -10, "israel": -10, "russia": 5}
-		# TODO_ART: "art/avatars/ali_khameanie.png"
-	},
-	"israel": {
-		"name": "The Iron Dome Corporation",
-		"leader": "Prime Minister 'Bibi' Not-on-your-yahoo",
-		"ability_name": "Mossad Operation",
-		"ability_description": "Can reveal one of a target's cards and force them to discard it.",
-		"personality_traits": ["DEFENSIVE", "STRATEGIC", "RUTHLESS"],
-		"relationships": {"usa": 10, "iran": -10, "russia": 0}
-		# TODO_ART: "art/avatars/bibi_not-on-your-yahoo.png"
-	}
-}
+Main (Node2D)
+└─ UILayer (CanvasLayer)  <-- All UI goes inside this
+   ├─ EnemyPanel_Left (VBoxContainer)
+   ├─ EnemyPanel_Right (VBoxContainer)
+   ├─ PlayerControl_Bottom (PanelContainer)
+   │  └─ HBoxContainer
+   │     ├─ ActionButtons (HBoxContainer)  <-- Build, Missile, etc.
+   │     └─ PlayerStats (Panel)
+   ├─ GameLog_Container (PanelContainer)
+   │  └─ GameLog (RichTextLabel)
+   └─ EndTurn_Button (Button)

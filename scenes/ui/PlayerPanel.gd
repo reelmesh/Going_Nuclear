@@ -1,24 +1,47 @@
 class_name PlayerPanel
 extends Control
 
-# This version uses the full path to each node. It's less flexible
-# if you change the structure, but it's guaranteed to work if the
-# paths and names are correct.
-@onready var avatar_rect: TextureRect = $PanelContainer/MarginContainer/HBoxContainer/Avatar
-@onready var faction_name_label: Label = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/FactionNameLabel
-@onready var leader_name_label: Label = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/LeaderNameLabel
-@onready var population_label: Label = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/PopulationLabel
+signal panel_selected(player_panel_node)
 
-# The rest of the script stays exactly the same...
-func update_display(player_state: GameManager.PlayerState):
-	# Set the text of the labels from the player's data.
-	faction_name_label.text = player_state.faction_data.faction_name
+# --- BULLETPROOF NODE REFERENCES ---
+# We use the full, explicit path from the root of THIS scene.
+@onready var avatar_texture: TextureRect = $PanelContainer/MarginContainer/HBoxContainer/Avatar
+@onready var leader_name_label: Label = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/LeaderNameLabel
+@onready var faction_name_label: Label = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/FactionNameLabel
+# FIX: Corrected the typo from @onrobot to @onready
+@onready var population_label: Label = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/PopulationLabel
+@onready var panel_container: PanelContainer = $PanelContainer
+
+var player_state: PlayerState
+
+func _gui_input(event: InputEvent):
+	if not (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed()):
+		return
+		
+	if player_state and player_state.is_ai:
+		panel_selected.emit(self)
+
+func select():
+	var style = StyleBoxFlat.new()
+	style.bg_color = Color(0.8, 0.1, 0.1, 0.2)
+	style.border_width_bottom = 4
+	style.border_width_left = 4
+	style.border_width_right = 4
+	style.border_width_top = 4
+	style.border_color = Color.RED
+	panel_container.add_theme_stylebox_override("panel", style)
+
+func deselect():
+	panel_container.remove_theme_stylebox_override("panel")
+
+func update_display(p_player_state: PlayerState):
+	self.player_state = p_player_state
+	
 	leader_name_label.text = player_state.faction_data.leader_name
-	population_label.text = "Population: %sM" % player_state.current_population
-	
-	if player_state.faction_data.avatar != null:
-		avatar_rect.texture = player_state.faction_data.avatar
+	faction_name_label.text = player_state.faction_data.faction_name
+	population_label.text = "Pop: %s Million" % player_state.current_population
+
+	if player_state.faction_data.avatar:
+		avatar_texture.texture = player_state.faction_data.avatar
 	else:
-		avatar_rect.texture = null
-	
-	avatar_rect.custom_minimum_size = Vector2(150, 150)
+		avatar_texture.texture = null

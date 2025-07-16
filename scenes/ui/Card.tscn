@@ -1,18 +1,18 @@
-[gd_scene format=3 uid="uid://ceu8f5bcp3r2l"]
+[gd_scene load_steps=2 format=3 uid="uid://ceu8f5bcp3r2l"]
 
-[node name="Card" type="Control"]
+[ext_resource type="Script" uid="uid://obchkpp6xga0" path="res://scenes/ui/Card.gd" id="1_qhpua"]
+
+[node name="Card" type="PanelContainer"]
 custom_minimum_size = Vector2(240, 350)
-layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qhpua")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -27,7 +27,7 @@ layout_mode = 2
 [node name="Art" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="LabelATypeLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="TypeLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer"]

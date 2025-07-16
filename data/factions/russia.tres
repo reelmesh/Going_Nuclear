@@ -13,5 +13,11 @@ starting_population = 100
 ability_name = "Winter of Discontent"
 ability_description = "Incoming attacks have a 20% higher chance of failure during his turn."
 personality_traits = Array[int]([2, 0, 8])
-relationships = {}
+relationships = {
+"china": 0,
+"iran": 0,
+"north_korea": 0,
+"russia": 0,
+"usa": -10
+}
 metadata/_custom_type_script = "uid://cb2rwvia5po7p"

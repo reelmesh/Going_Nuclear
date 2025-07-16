@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://bygdr25cx8pdl"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://bygdr25cx8pdl"]
 
+[ext_resource type="Texture2D" uid="uid://bm148kd78ujxc" path="res://art/cards/icbm.png" id="1_l6mh2"]
 [ext_resource type="Script" uid="uid://cflkvq05j4tjc" path="res://scripts/data/card_data.gd" id="1_l8hnh"]
 
 [resource]
@@ -7,6 +8,7 @@ script = ExtResource("1_l8hnh")
 card_name = "ICBM"
 card_type = 0
 description = ""
+card_art = ExtResource("1_l6mh2")
 damage = 0
 success_chance = 1.0
 targets_to_affect = 1
