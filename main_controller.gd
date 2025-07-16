@@ -1,15 +1,18 @@
 # (This code is indented with tabs)
-# This script is now attached to the UILayer CanvasLayer.
-extends CanvasLayer
+extends Node2D
 
 const PlayerPanelScene = preload("res://scenes/ui/PlayerPanel.tscn")
 const CardChooserScene = preload("res://scenes/ui/CardChooser.tscn")
-const PlaceholderButtonScene = preload("res://scenes/ui/PlaceHolderButton.tscn")
+const PlaceholderButtonScene = preload("res://scenes/ui/PlaceholderButton.tscn")
 
-# --- UPDATED: These paths are now simple because the script and nodes are siblings ---
-# Make sure these nodes have "Access as Scene Unique Name" enabled.
-@onready var enemy_panels_left = %EnemyPanel_Left
-@onready var enemy_panels_right = %EnemyPanel_Right
+@onready var enemy_panel_tl = %EnemyPanel_TopLeft
+@onready var enemy_panel_bl = %EnemyPanel_BottomLeft
+@onready var enemy_panel_tr = %EnemyPanel_TopRight
+@onready var enemy_panel_br = %EnemyPanel_BottomRight
+@onready var avatar_panel_tl = %EnemyAvatarTopLeft
+@onready var avatar_panel_bl = %EnemyAvatarBottomLeft
+@onready var avatar_panel_tr = %EnemyAvatarTopRight
+@onready var avatar_panel_br = %EnemyAvatarBottomRight
 @onready var action_buttons_container = %ActionButtons
 @onready var game_log_label = %GameLog
 @onready var end_turn_button = %EndTurn_Button
@@ -19,14 +22,11 @@ const PlaceholderButtonScene = preload("res://scenes/ui/PlaceHolderButton.tscn")
 
 var selected_target_node: PlayerPanel = null
 
-# The _ready function is now called when the UILayer is ready.
 func _ready():
 	Logger.log_label = game_log_label
 	GameManager.game_state_changed.connect(update_all_ui)
 	GameManager.turn_started.connect(on_turn_started)
 	end_turn_button.pressed.connect(_on_end_turn_pressed)
-	
-	# We still kick off the game setup from here.
 	setup_game()
 
 func _on_end_turn_pressed():
@@ -68,21 +68,16 @@ func on_turn_started(player_state: PlayerState):
 func generate_action_buttons():
 	for child in action_buttons_container.get_children():
 		child.queue_free()
-
-	# --- The "Build" Button ---
 	var build_button = PlaceholderButtonScene.instantiate()
 	build_button.text = "Build (1 AP)"
 	action_buttons_container.add_child(build_button)
 	build_button.pressed.connect(GameManager.process_build_action)
-
-	# --- The Card Category Buttons ---
 	var card_categories = {
 		"Delivery": CardData.CardType.DELIVERY,
 		"Payload": CardData.CardType.PAYLOAD,
 		"InfoWar": CardData.CardType.INFO_WAR,
 	}
 	for category_name in card_categories:
-		# We instantiate our custom scene instead of creating a generic button.
 		var button = PlaceholderButtonScene.instantiate()
 		button.text = category_name
 		action_buttons_container.add_child(button)
@@ -99,7 +94,7 @@ func _on_action_button_pressed(card_type_to_show: CardData.CardType):
 		Logger.log("You have no cards of that type.")
 		return
 	var chooser = CardChooserScene.instantiate()
-	add_child(chooser)
+	$UILayer.add_child(chooser)
 	chooser.initialize(CardData.CardType.keys()[card_type_to_show], cards_in_category)
 	chooser.card_chosen.connect(_on_card_chosen_from_chooser)
 
@@ -108,21 +103,37 @@ func _on_card_chosen_from_chooser(card_data: CardData):
 	GameManager.player_selected_card(card_data)
 
 func generate_player_ui():
-	for child in enemy_panels_left.get_children():
-		child.queue_free()
-	for child in enemy_panels_right.get_children():
-		child.queue_free()
-	var right_col_count = 0
+	var ui_panel_containers = [enemy_panel_tr, enemy_panel_br, enemy_panel_tl, enemy_panel_bl]
+	var avatar_panels = [avatar_panel_tr, avatar_panel_br, avatar_panel_tl, avatar_panel_bl]
+	for container in ui_panel_containers:
+		for child in container.get_children():
+			child.queue_free()
+	for panel in avatar_panels:
+		panel.self_modulate = Color(1, 1, 1, 0) # Hide by default
+		# Clear old styles
+		panel.remove_theme_stylebox_override("panel")
+	var panel_index = 0
 	for player_state in GameManager.active_players:
 		if player_state.is_ai:
-			var new_panel = PlayerPanelScene.instantiate()
-			if right_col_count < (GameManager.active_players.size() - 1) / 2.0:
-				enemy_panels_right.add_child(new_panel)
-				right_col_count += 1
-			else:
-				enemy_panels_left.add_child(new_panel)
-			new_panel.update_display(player_state)
-			new_panel.panel_selected.connect(_on_target_panel_selected)
+			if panel_index >= ui_panel_containers.size():
+				break
+			var target_ui_container = ui_panel_containers[panel_index]
+			var target_avatar_panel = avatar_panels[panel_index]
+			var new_ui_panel = PlayerPanelScene.instantiate()
+			target_ui_container.add_child(new_ui_panel)
+			new_ui_panel.update_display(player_state, true)
+			new_ui_panel.panel_selected.connect(_on_target_panel_selected)
+			if player_state.faction_data.avatar:
+				var stylebox = StyleBoxTexture.new()
+				stylebox.texture = player_state.faction_data.avatar
+				# --- THIS IS THE FIX ---
+				stylebox.content_margin_left = 4.0
+				stylebox.content_margin_right = 4.0
+				stylebox.content_margin_top = 4.0
+				stylebox.content_margin_bottom = 4.0
+				target_avatar_panel.add_theme_stylebox_override("panel", stylebox)
+				target_avatar_panel.self_modulate = Color(1, 1, 1, 1) # Make visible
+			panel_index += 1
 
 func _on_target_panel_selected(panel_node: PlayerPanel):
 	var player_data = panel_node.player_state

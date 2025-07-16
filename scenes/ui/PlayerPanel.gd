@@ -15,6 +15,7 @@ signal panel_selected(player_panel_node)
 var player_state: PlayerState
 
 func _gui_input(event: InputEvent):
+	print("PlayerPanel SCRIPT received a click!") # <-- ADD THIS LINE
 	if not (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed()):
 		return
 		
@@ -34,12 +35,20 @@ func select():
 func deselect():
 	panel_container.remove_theme_stylebox_override("panel")
 
-func update_display(p_player_state: PlayerState):
+func update_display(p_player_state: PlayerState, hide_avatar: bool = false):
 	self.player_state = p_player_state
 	
 	leader_name_label.text = player_state.faction_data.leader_name
 	faction_name_label.text = player_state.faction_data.faction_name
 	population_label.text = "Pop: %s Million" % player_state.current_population
+	if hide_avatar:
+		avatar_texture.visible = false
+	else:
+		avatar_texture.visible = true
+		if player_state.faction_data.avatar:
+			avatar_texture.texture = player_state.faction_data.avatar
+		else:
+			avatar_texture.texture = null
 
 	if player_state.faction_data.avatar:
 		avatar_texture.texture = player_state.faction_data.avatar

@@ -1,17 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://qna1jwrlq4dl"]
 
-[ext_resource type="Script" uid="uid://bq1ka5qxij7wv" path="res://ui_layer.gd" id="1_glv2v"]
+[ext_resource type="Script" uid="uid://f333amgg3be3" path="res://main_controller.gd" id="1_uu6xs"]
 [ext_resource type="Texture2D" uid="uid://cssrlulr4cbj4" path="res://art/ui/UI-v01.png" id="2_uu6xs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uu6xs"]
 bg_color = Color(0.129558, 0.129559, 0.129558, 1)
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_uu6xs")
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -1
 
 [node name="EnemyAvatarTopLeft" type="Panel" parent="BackgroundLayer"]
+unique_name_in_owner = true
 offset_left = 35.0
 offset_top = 24.0
 offset_right = 335.0
@@ -19,6 +21,7 @@ offset_bottom = 246.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_uu6xs")
 
 [node name="EnemyAvatarBottomLeft" type="Panel" parent="BackgroundLayer"]
+unique_name_in_owner = true
 offset_left = 35.0
 offset_top = 419.0
 offset_right = 335.0
@@ -26,6 +29,7 @@ offset_bottom = 641.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_uu6xs")
 
 [node name="EnemyAvatarTopRight" type="Panel" parent="BackgroundLayer"]
+unique_name_in_owner = true
 offset_left = 1590.0
 offset_top = 24.0
 offset_right = 1890.0
@@ -33,6 +37,7 @@ offset_bottom = 246.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_uu6xs")
 
 [node name="EnemyAvatarBottomRight" type="Panel" parent="BackgroundLayer"]
+unique_name_in_owner = true
 offset_left = 1590.0
 offset_top = 419.0
 offset_right = 1890.0
@@ -52,9 +57,9 @@ mouse_filter = 2
 texture = ExtResource("2_uu6xs")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
-script = ExtResource("1_glv2v")
 
 [node name="MasterLayout" type="HBoxContainer" parent="UILayer"]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -62,24 +67,63 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="LeftColumn" type="VBoxContainer" parent="UILayer/MasterLayout"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="EnemyPanel_Left" type="VBoxContainer" parent="UILayer/MasterLayout/LeftColumn"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(365, 0)
+layout_mode = 2
+
+[node name="EnemyPanel_TopLeft" type="VBoxContainer" parent="UILayer/MasterLayout/LeftColumn"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+
+[node name="EnemyPanel_BottomLeft" type="VBoxContainer" parent="UILayer/MasterLayout/LeftColumn"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 
 [node name="EndTurn_Button" type="Button" parent="UILayer/MasterLayout/LeftColumn"]
 unique_name_in_owner = true
-visible = false
+custom_minimum_size = Vector2(250, 250)
 layout_mode = 2
 text = "END TURN"
 
 [node name="CenterColumn" type="VBoxContainer" parent="UILayer/MasterLayout"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="TopSpacer" type="Control" parent="UILayer/MasterLayout/CenterColumn"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="PlayerControl_Bottom" type="PanelContainer" parent="UILayer/MasterLayout/CenterColumn"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 310)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="PlayerStats" type="Panel" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/PlayerStats"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(370, 260)
+layout_mode = 0
+offset_left = 410.0
+offset_right = 760.0
+offset_bottom = 250.0
+
+[node name="PlayerTreasuryLabel" type="Label" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/PlayerStats/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PlayerMoraleLabel" type="Label" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/PlayerStats/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PlayerAPLabel" type="Label" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/PlayerStats/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -93,44 +137,35 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="PlayerStats" type="Panel" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/HBoxContainer/PlayerStats"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 390.0
-offset_right = 740.0
-offset_bottom = 250.0
-
-[node name="PlayerTreasuryLabel" type="Label" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/HBoxContainer/PlayerStats/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="PlayerMoraleLabel" type="Label" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/HBoxContainer/PlayerStats/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="PlayerAPLabel" type="Label" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/HBoxContainer/PlayerStats/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="WorldMap_Placeholder" type="Control" parent="UILayer/MasterLayout/CenterColumn"]
-layout_mode = 2
-size_flags_vertical = 3
-
 [node name="RightColumn" type="VBoxContainer" parent="UILayer/MasterLayout"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="EnemyPanel_Right" type="VBoxContainer" parent="UILayer/MasterLayout/RightColumn"]
 unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AvatarTopRight_Spacer" type="Control" parent="UILayer/MasterLayout/RightColumn"]
+custom_minimum_size = Vector2(300, 275)
+layout_mode = 2
+
+[node name="EnemyPanel_TopRight" type="VBoxContainer" parent="UILayer/MasterLayout/RightColumn"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+
+[node name="AvatarBottomRight_Spacer" type="Control" parent="UILayer/MasterLayout/RightColumn"]
+custom_minimum_size = Vector2(300, 285)
+layout_mode = 2
+
+[node name="EnemyPanel_BottomRight" type="VBoxContainer" parent="UILayer/MasterLayout/RightColumn"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+
+[node name="GameLog_Spacer" type="Control" parent="UILayer/MasterLayout/RightColumn"]
+custom_minimum_size = Vector2(300, 45)
 layout_mode = 2
 
 [node name="GameLog_Container" type="PanelContainer" parent="UILayer/MasterLayout/RightColumn"]
 unique_name_in_owner = true
-visible = false
+custom_minimum_size = Vector2(575, 220)
 layout_mode = 2
 
 [node name="GameLog" type="RichTextLabel" parent="UILayer/MasterLayout/RightColumn/GameLog_Container"]
