@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://dldutndj2bf2i"]
+
+[ext_resource type="Script" uid="uid://cflkvq05j4tjc" path="res://scripts/data/card_data.gd" id="1_kv7la"]
+
+[resource]
+script = ExtResource("1_kv7la")
+card_preset = 17
+card_name = "Hardened Bunkers"
+description = "Passive: Halves population damage from the next successful nuclear attack."
+card_type = 4
+damage = 0
+success_chance = 1.0
+metadata/_custom_type_script = "uid://cflkvq05j4tjc"

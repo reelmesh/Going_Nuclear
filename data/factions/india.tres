@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="FactionData" load_steps=3 format=3 uid="uid://dbwxfrnygptqh"]
+
+[ext_resource type="Texture2D" uid="uid://dvu7726pfhtce" path="res://art/avatars/Modi.png" id="1_l5d8m"]
+[ext_resource type="Script" uid="uid://cb2rwvia5po7p" path="res://scripts/data/faction_data.gd" id="2_5ea3e"]
+
+[resource]
+script = ExtResource("2_5ea3e")
+faction_preset = 7
+faction_name = "Bharat Unlimited"
+leader_name = "Prime Minister Narinder 'The Tiger' Moody"
+avatar = ExtResource("1_l5d8m")
+starting_population = 160
+starting_treasury = 120
+starting_morale = 0.7
+base_action_points = 3
+personality_traits = Array[int]([])
+relationships = {}

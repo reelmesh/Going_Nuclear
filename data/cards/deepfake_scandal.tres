@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://dh1st56a7q0rc"]
+
+[ext_resource type="Script" uid="uid://cflkvq05j4tjc" path="res://scripts/data/card_data.gd" id="1_ptrih"]
+
+[resource]
+script = ExtResource("1_ptrih")
+card_preset = 10
+card_name = "Deepfake Scandal"
+description = "Target's Morale plummets. Diplomatic relations with all others are damaged."
+card_type = 2
+damage = 0
+success_chance = 1.0
+metadata/_custom_type_script = "uid://cflkvq05j4tjc"

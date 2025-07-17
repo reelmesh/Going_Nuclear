@@ -5,13 +5,14 @@
 
 [resource]
 script = ExtResource("1_d017p")
+faction_preset = 3
 faction_name = "The People's Social Harmony Co."
 leader_name = "Eternal Chairman Xi"
-description = ""
 avatar = ExtResource("1_tmusg")
-starting_population = 100
-ability_name = "Belt and Loan Initiative"
-ability_description = "Steals 2M population from every other player on the board once per game."
+starting_population = null
+starting_treasury = null
+starting_morale = null
+base_action_points = null
 personality_traits = Array[int]([3, 6, 12])
 relationships = {
 "china": 0,

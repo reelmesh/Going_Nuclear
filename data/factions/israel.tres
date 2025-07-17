@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="FactionData" load_steps=2 format=3 uid="uid://co0k5mvjijg5i"]
+
+[ext_resource type="Script" uid="uid://cb2rwvia5po7p" path="res://scripts/data/faction_data.gd" id="1_qpaag"]
+
+[resource]
+script = ExtResource("1_qpaag")
+faction_preset = 9
+faction_name = "The Iron Dome Corporation"
+leader_name = "Prime Minister 'Bibi' Not-on-your-yahoo"
+starting_population = 30
+starting_treasury = 150
+starting_morale = 0.9
+base_action_points = 4
+personality_traits = Array[int]([])
+relationships = {}
+metadata/_custom_type_script = "uid://cb2rwvia5po7p"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://qd0y4gtxs13g"]
+
+[ext_resource type="Script" uid="uid://cflkvq05j4tjc" path="res://scripts/data/card_data.gd" id="1_d373x"]
+
+[resource]
+script = ExtResource("1_d373x")
+card_preset = 16
+card_name = "Counter-Propaganda"
+description = "Grants 'Firewall' for one round, stopping one InfoWar attack."
+card_type = 4
+damage = 0
+success_chance = 1.0
+metadata/_custom_type_script = "uid://cflkvq05j4tjc"

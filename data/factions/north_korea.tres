@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="FactionData" load_steps=3 format=3 uid="uid://ct1mdip4pd41j"]
+
+[ext_resource type="Texture2D" uid="uid://bcvhwt2ng7dln" path="res://art/avatars/Kim.png" id="1_2du5p"]
+[ext_resource type="Script" uid="uid://cb2rwvia5po7p" path="res://scripts/data/faction_data.gd" id="2_cv58o"]
+
+[resource]
+script = ExtResource("2_cv58o")
+faction_preset = 5
+faction_name = "The Democratic People's Rocket Club"
+leader_name = "Supreme Leader Kim Jong Fun"
+avatar = ExtResource("1_2du5p")
+starting_population = 40
+starting_treasury = 20
+starting_morale = 0.9
+base_action_points = 2
+personality_traits = Array[int]([])
+relationships = {}

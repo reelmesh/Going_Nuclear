@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://cfv2h2wi6cgc6"]
+
+[ext_resource type="Script" uid="uid://cflkvq05j4tjc" path="res://scripts/data/card_data.gd" id="1_fcrl4"]
+
+[resource]
+script = ExtResource("1_fcrl4")
+card_preset = 14
+card_name = "Diplomatic Summit"
+description = "Spend Treasury to significantly improve relations with a target."
+card_type = 3
+damage = 0
+success_chance = 1.0
+metadata/_custom_type_script = "uid://cflkvq05j4tjc"

@@ -24,13 +24,30 @@ static func take_turn(ai_player: PlayerState, all_players: Array) -> void:
 	else:
 		Logger.log("%s doesn't have the right cards to attack and ends their turn." % ai_player.faction_data.leader_name)
 
+# --- UPGRADED: This function now understands personality! ---
 static func choose_smarter_target(ai_player: PlayerState, all_players: Array) -> PlayerState:
 	var possible_targets: Array = []
 	for p in all_players:
 		if p != ai_player and p.current_population > 0:
 			possible_targets.append(p)
+	
 	if possible_targets.is_empty():
 		return null
+
+	# --- PERSONALITY CHECK ---
+	# Check if this AI has the "RUTHLESS" trait.
+	if ai_player.faction_data.personality_traits.has(FactionData.Traits.RUTHLESS):
+		Logger.log("%s is feeling RUTHLESS and looks for the weakest target..." % ai_player.faction_data.leader_name)
+		# Sort targets by who has the LEAST population.
+		possible_targets.sort_custom(func(a, b):
+			return a.current_population < b.current_population
+		)
+		var weakest_target = possible_targets[0]
+		Logger.log("The weakest target is %s." % weakest_target.faction_data.leader_name)
+		return weakest_target
+	
+	# --- DEFAULT BEHAVIOR (Relationship-based) ---
+	# If not ruthless, use the old logic.
 	possible_targets.sort_custom(func(a, b):
 		var id_a = a.faction_data.resource_path.get_file().get_basename()
 		var id_b = b.faction_data.resource_path.get_file().get_basename()
@@ -39,13 +56,9 @@ static func choose_smarter_target(ai_player: PlayerState, all_players: Array) ->
 		return score_a < score_b
 	)
 
-	# --- THE FIX IS HERE ---
-	# Create the array of names first.
-	var target_names = possible_targets.map(func(p): return p.faction_data.leader_name)
-	# Log the array by converting it to a string.
-	Logger.log("Sorted targets by relationship: " + str(target_names))
-	
-	return possible_targets[0]
+	var most_hated_target = possible_targets[0]
+	Logger.log("Sorted targets by relationship. Most hated is %s." % most_hated_target.faction_data.leader_name)
+	return most_hated_target
 
 static func find_card_of_type(hand: Array, card_type: CardData.CardType) -> String:
 	for card_id in hand:

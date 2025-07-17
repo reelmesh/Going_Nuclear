@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://bldjawb1maw2x"]
+
+[ext_resource type="Script" uid="uid://c5psp1oubaikg" path="res://scenes/ui/DeploymentScreen.gd" id="1_yl4wx"]
+
+[node name="DeploymentScreen" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_yl4wx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SecondaryOptions_Left" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="HBoxContainer/SecondaryOptions_Left"]
+layout_mode = 2
+
+[node name="CardVisualsOverlay" type="Panel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VisualizerContent" type="VBoxContainer" parent="HBoxContainer/CardVisualsOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Visualizer_Name" type="Label" parent="HBoxContainer/CardVisualsOverlay/VisualizerContent"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Visualizer_Art" type="TextureRect" parent="HBoxContainer/CardVisualsOverlay/VisualizerContent"]
+layout_mode = 2
+size_flags_vertical = 3
+stretch_mode = 5
+
+[node name="Visualizer_Description" type="Label" parent="HBoxContainer/CardVisualsOverlay/VisualizerContent"]
+layout_mode = 2
+autowrap_mode = 3
+
+[node name="SecondaryOptions_Right" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="HBoxContainer/SecondaryOptions_Right"]
+layout_mode = 2

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://2qngijrqm5"]
+
+[ext_resource type="Script" uid="uid://cflkvq05j4tjc" path="res://scripts/data/card_data.gd" id="1_4vjo0"]
+
+[resource]
+script = ExtResource("1_4vjo0")
+card_preset = 13
+card_name = "Sabotage"
+description = "Force a target to discard one random DELIVERY or DEFENSE card."
+card_type = 3
+damage = 0
+success_chance = 1.0
+metadata/_custom_type_script = "uid://cflkvq05j4tjc"

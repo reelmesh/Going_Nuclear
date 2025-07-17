@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://cydes6dxn6y3k"]
+
+[ext_resource type="Script" uid="uid://cflkvq05j4tjc" path="res://scripts/data/card_data.gd" id="1_8l57d"]
+
+[resource]
+script = ExtResource("1_8l57d")
+card_preset = 7
+card_name = "Dirty Bomb"
+description = "Deals 10 damage and applies 'Fallout' for 3 turns (loses pop/treasury)."
+card_type = 1
+damage = 10
+success_chance = 1.0
+metadata/_custom_type_script = "uid://cflkvq05j4tjc"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://bk4gxmwjtqgrw"]
+
+[ext_resource type="Script" uid="uid://cflkvq05j4tjc" path="res://scripts/data/card_data.gd" id="1_yjmxo"]
+
+[resource]
+script = ExtResource("1_yjmxo")
+card_preset = 3
+card_name = "Strategic Bomber"
+description = "Vulnerable but versatile aircraft."
+card_type = 0
+damage = 0
+success_chance = 0.75
+metadata/_custom_type_script = "uid://cflkvq05j4tjc"

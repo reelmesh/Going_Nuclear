@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://cqs6o0qe3bkm7"]
+
+[ext_resource type="Script" uid="uid://cflkvq05j4tjc" path="res://scripts/data/card_data.gd" id="1_4hv6i"]
+
+[resource]
+script = ExtResource("1_4hv6i")
+card_preset = 6
+card_name = "EMP Warhead"
+description = "Deals no population damage. Target loses 2 AP and discards 1 card."
+card_type = 1
+damage = 0
+success_chance = 1.0
+metadata/_custom_type_script = "uid://cflkvq05j4tjc"

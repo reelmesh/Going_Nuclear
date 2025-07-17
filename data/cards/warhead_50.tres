@@ -1,15 +1,13 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://egyvpeemoemr"]
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://bhmpsrbdk4t4s"]
 
-[ext_resource type="Texture2D" uid="uid://comheai271c0v" path="res://art/cards/warhead_50.png" id="1_ishkh"]
 [ext_resource type="Script" uid="uid://cflkvq05j4tjc" path="res://scripts/data/card_data.gd" id="1_p1bj0"]
 
 [resource]
 script = ExtResource("1_p1bj0")
-card_name = "50 Megaton Warhead"
+card_preset = 5
+card_name = "Standard Warhead"
+description = "50 Megaton thermonuclear payload."
 card_type = 1
-description = ""
-card_art = ExtResource("1_ishkh")
 damage = 50
 success_chance = 1.0
-targets_to_affect = 1
 metadata/_custom_type_script = "uid://cflkvq05j4tjc"

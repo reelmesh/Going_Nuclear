@@ -5,13 +5,14 @@
 
 [resource]
 script = ExtResource("1_ege00")
+faction_preset = 1
 faction_name = "Freedom Inc."
 leader_name = "President Don T. Rump"
-description = ""
 avatar = ExtResource("1_0553v")
 starting_population = 100
-ability_name = "he Art of the Steal"
-ability_description = "Can attempt to force a weaker nation into a one-sided alliance once per game."
+starting_treasury = 200
+starting_morale = 0.75
+base_action_points = 3
 personality_traits = Array[int]([3, 0, 1])
 relationships = {}
 metadata/_custom_type_script = "uid://cb2rwvia5po7p"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="FactionData" load_steps=2 format=3 uid="uid://p5vm7j5ir4d3"]
+
+[ext_resource type="Script" uid="uid://cb2rwvia5po7p" path="res://scripts/data/faction_data.gd" id="1_nyrkl"]
+
+[resource]
+script = ExtResource("1_nyrkl")
+faction_preset = 0
+faction_name = ""
+leader_name = ""
+starting_population = 100
+starting_treasury = 100
+starting_morale = 0.75
+base_action_points = 3
+personality_traits = Array[int]([])
+relationships = {}
+metadata/_custom_type_script = "uid://cb2rwvia5po7p"

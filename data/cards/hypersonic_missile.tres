@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://k6g36kcoecge"]
+
+[ext_resource type="Script" uid="uid://cflkvq05j4tjc" path="res://scripts/data/card_data.gd" id="1_aiv41"]
+
+[resource]
+script = ExtResource("1_aiv41")
+card_preset = 4
+card_name = "Hypersonic Missile"
+description = "Advanced missile that ignores standard ABM defenses."
+card_type = 0
+damage = 0
+success_chance = 0.85
+metadata/_custom_type_script = "uid://cflkvq05j4tjc"

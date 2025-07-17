@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://c2cf8g67dqwlh"]
+
+[ext_resource type="Script" uid="uid://cflkvq05j4tjc" path="res://scripts/data/card_data.gd" id="1_yl1eo"]
+
+[resource]
+script = ExtResource("1_yl1eo")
+card_preset = 9
+card_name = "Viral Disinformation"
+description = "Deals 15 damage via civil unrest and reduces Morale."
+card_type = 2
+damage = 15
+success_chance = 1.0
+metadata/_custom_type_script = "uid://cflkvq05j4tjc"
