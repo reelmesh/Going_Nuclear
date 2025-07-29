@@ -30,6 +30,7 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [node name="PlaceholderButton" type="Button"]
+custom_minimum_size = Vector2(100, 100)
 offset_right = 8.0
 offset_bottom = 8.0
 theme_override_styles/disabled = SubResource("StyleBoxFlat_ppoe3")

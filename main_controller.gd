@@ -9,10 +9,6 @@ const PlaceholderButtonScene = preload("res://scenes/ui/PlaceholderButton.tscn")
 @onready var enemy_panel_bl = %EnemyPanel_BottomLeft
 @onready var enemy_panel_tr = %EnemyPanel_TopRight
 @onready var enemy_panel_br = %EnemyPanel_BottomRight
-@onready var avatar_panel_tl = %EnemyAvatarTopLeft
-@onready var avatar_panel_bl = %EnemyAvatarBottomLeft
-@onready var avatar_panel_tr = %EnemyAvatarTopRight
-@onready var avatar_panel_br = %EnemyAvatarBottomRight
 @onready var action_buttons_container = %ActionButtons
 @onready var game_log_label = %GameLog
 @onready var end_turn_button = %EndTurn_Button
@@ -21,14 +17,54 @@ const PlaceholderButtonScene = preload("res://scenes/ui/PlaceholderButton.tscn")
 @onready var player_ap_label = %PlayerAPLabel
 @onready var deployment_screen = %DeploymentScreen # Get the screen instance
 
-var selected_avatar_button: TextureButton = null
-
 func _ready():
 	Logger.log_label = game_log_label
 	GameManager.game_state_changed.connect(update_all_ui)
 	GameManager.turn_started.connect(on_turn_started)
 	end_turn_button.pressed.connect(_on_end_turn_pressed)
 	setup_game()
+	await get_tree().create_timer(0.1).timeout
+	var interaction_controller = $SubViewportContainer/SubViewport/Console3D.get_node("Camera3D")
+	if interaction_controller:
+		interaction_controller.object_clicked.connect(_on_3d_object_clicked)
+
+# (This function goes in scripts/main_controller.gd)
+
+func _on_3d_object_clicked(object_node):
+	# The object_node is the StaticBody3D. Its parent is the mesh.
+	var mesh_name = object_node.get_parent().name# --- THIS IS OUR NEW, MORE POWERFUL DEBUG PRINT ---
+	# The '|' characters will clearly show if there are any leading/trailing spaces.
+	Logger.log("--- 3D Click Diagnostic ---")
+	Logger.log("Detected mesh name: |" + mesh_name + "|")
+	
+	# Now, we compare this name to our expected names.
+	if mesh_name == "Box_003_build_button":
+		Logger.log("Match found! Calling Build Action.")
+		GameManager.process_build_action()
+	else:
+		Logger.log("No match found for the detected name.")
+	if mesh_name == "EndTurnButton":
+		_on_end_turn_pressed()
+		
+	elif mesh_name == "BuildButton":
+		GameManager.process_build_action()
+		
+	elif mesh_name == "DeliveryButton":
+		_on_action_button_pressed(CardData.CardType.DELIVERY)
+		
+	elif mesh_name == "PayloadButton":
+		_on_action_button_pressed(CardData.CardType.PAYLOAD)
+		
+	elif mesh_name == "InfoWarButton":
+		_on_action_button_pressed(CardData.CardType.INFO_WAR)
+		
+	elif mesh_name == "UtilityButton":
+		_on_action_button_pressed(CardData.CardType.UTILITY)
+		
+	elif mesh_name == "DefenseButton":
+		_on_action_button_pressed(CardData.CardType.DEFENSE)
+	
+	# We will add logic for the avatar/target buttons later.
 
 func _on_end_turn_pressed():
 	if GameManager.is_player_action_valid():
@@ -44,21 +80,15 @@ func setup_game():
 	GameManager.start_turn()
 
 func update_all_ui():
-	var human_player_state = GameManager.get_human_player_state()
-	if human_player_state:
-			# Use the local variable "human_player_state" to update the labels.
-			player_treasury_label.text = "Treasury: $%sT" % human_player_state.current_treasury
-			player_morale_label.text = "Morale: %s%%" % int(human_player_state.current_morale * 100)
-			player_ap_label.text = "Action Points: %s" % human_player_state.current_ap
+	var human_player = GameManager.get_human_player_state()
+	if human_player:
+		player_treasury_label.text = "Treasury: $%sT" % human_player.current_treasury
+		player_morale_label.text = "Morale: %s%%" % int(human_player.current_morale * 100)
+		player_ap_label.text = "Action Points: %s" % human_player.current_ap
 		
-		# The rest of the UI updates.
-			generate_player_ui()
-			generate_action_buttons()
+	# Update the UI panels for the AI.
+	generate_player_ui()
 
-			# Reset visual selection state.
-			if selected_avatar_button and is_instance_valid(selected_avatar_button):
-				selected_avatar_button.modulate = Color.WHITE
-			selected_avatar_button = null
 
 func set_player_controls_enabled(is_enabled: bool):
 	for button in action_buttons_container.get_children():
@@ -101,53 +131,52 @@ func _on_action_button_pressed(card_type_to_show: CardData.CardType):
 		Logger.log("You have no cards of that type.")
 		return
 		
-	# --- NEW ANIMATION LOGIC ---
-	# 1. Tell the screen to populate itself with the correct cards.
+	# --- THIS IS THE FIX ---
+	# We no longer instantiate the chooser. We use the one in our scene.
+	# It's now called deployment_screen.
 	deployment_screen.show_card_choices(cards_in_category)
-	# 2. Connect to its signal. We do this here to avoid old connections.
-	deployment_screen.card_chosen.connect(_on_card_chosen_from_deployment_screen)
-	# 3. Play the slide-in animation.
-	deployment_screen.slide_in()
+	
+	# Connect to its signal.
+	if not deployment_screen.card_chosen.is_connected(_on_card_chosen_from_deployment_screen):
+		deployment_screen.card_chosen.connect(_on_card_chosen_from_deployment_screen)
+	
+	# Instead of an animation, we just make it visible for now.
+	deployment_screen.visible = true
 
+# We also need to hide it after a choice is made.
 func _on_card_chosen_from_deployment_screen(card_data: CardData):
 	Logger.log("You selected: %s" % card_data.card_name)
 	GameManager.player_selected_card(card_data)
-	# After a card is chosen, slide the screen back down.
-	deployment_screen.slide_out()
-	# Disconnect the signal to be clean.
-	deployment_screen.card_chosen.disconnect(_on_card_chosen_from_deployment_screen)
+	
+	# Hide the screen after a selection is made.
+	deployment_screen.visible = false
 
 func generate_player_ui():
+	# Define our UI containers from the scene tree.
 	var ui_panel_containers = [enemy_panel_tr, enemy_panel_br, enemy_panel_tl, enemy_panel_bl]
-	var avatar_buttons = [avatar_panel_tr, avatar_panel_br, avatar_panel_tl, avatar_panel_bl]
+	
+	# Clear out any old info panels from the UI containers.
 	for container in ui_panel_containers:
 		for child in container.get_children():
 			child.queue_free()
-	for button in avatar_buttons:
-		button.visible = false
-		if button.pressed.is_connected(_on_avatar_button_pressed):
-			button.pressed.disconnect(_on_avatar_button_pressed)
-		button.modulate = Color.WHITE
+
 	var panel_index = 0
+	# Loop through all players known by the GameManager.
 	for player_state in GameManager.active_players:
+		# We only create UI for the AI enemies.
 		if player_state.is_ai:
+			# Check if we have a slot available for this AI.
 			if panel_index >= ui_panel_containers.size():
 				break
+
+			# Get the specific UI container for this AI.
 			var target_ui_container = ui_panel_containers[panel_index]
-			var target_avatar_button = avatar_buttons[panel_index]
+			
+			# Create and populate the info panel.
 			var new_ui_panel = PlayerPanelScene.instantiate()
 			target_ui_container.add_child(new_ui_panel)
 			new_ui_panel.update_display(player_state)
-			if player_state.faction_data.avatar:
-				target_avatar_button.texture_normal = player_state.faction_data.avatar
-				target_avatar_button.visible = true
-				target_avatar_button.pressed.connect(_on_avatar_button_pressed.bind(player_state, target_avatar_button))
+			
+			# We no longer handle any button logic here. That will be done in 3D.
+			
 			panel_index += 1
-
-func _on_avatar_button_pressed(player_data: PlayerState, button_node: TextureButton):
-	Logger.log("Target selected: %s" % player_data.faction_data.leader_name)
-	GameManager.player_selected_target(player_data)
-	if selected_avatar_button and is_instance_valid(selected_avatar_button):
-		selected_avatar_button.modulate = Color.WHITE
-	selected_avatar_button = button_node
-	selected_avatar_button.modulate = Color.CRIMSON

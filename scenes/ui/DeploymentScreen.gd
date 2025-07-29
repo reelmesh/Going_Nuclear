@@ -11,16 +11,6 @@ signal card_chosen(card_data)
 @onready var visualizer_description = $HBoxContainer/CardVisualsOverlay/VisualizerContent/Visualizer_Description
 # (The old TitleLabel is no longer needed as the visualizer serves this purpose)
 
-@onready var animation_player = $AnimationPlayer
-
-func slide_in():
-	animation_player.play("slide_up")
-	await animation_player.animation_finished
-
-func slide_out():
-	animation_player.play("slide_down")
-	await animation_player.animation_finished
-
 func show_card_choices(card_ids: Array):
 	# Clear the list from the previous use.
 	for child in options_list.get_children():

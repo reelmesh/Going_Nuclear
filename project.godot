@@ -11,7 +11,6 @@ config_version=5
 [application]
 
 config/name="Going Nuclear"
-run/main_scene="uid://qna1jwrlq4dl"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -31,3 +30,7 @@ window/size/viewport_height=1080
 window/size/initial_position_type=4
 window/size/resizable=false
 window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/AutoMat/plugin.cfg", "res://addons/gltf2meshlib/plugin.cfg")

@@ -1,148 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://qna1jwrlq4dl"]
+[gd_scene load_steps=4 format=3 uid="uid://qna1jwrlq4dl"]
 
 [ext_resource type="Script" uid="uid://f333amgg3be3" path="res://main_controller.gd" id="1_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://bldjawb1maw2x" path="res://scenes/ui/DeploymentScreen.tscn" id="2_r0du0"]
-[ext_resource type="Texture2D" uid="uid://cssrlulr4cbj4" path="res://art/ui/UI-v01.png" id="2_uu6xs"]
-
-[sub_resource type="Animation" id="Animation_r0du0"]
-resource_name = "slide_up"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(380, -0.25, 0, 0.25, 0, 380, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(800, -0.25, 0, 0.25, 0, 480, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5)
-}
-
-[sub_resource type="Animation" id="Animation_cm0pq"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(800, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
-[sub_resource type="Animation" id="Animation_fos0i"]
-resource_name = "slide_down"
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(380, -0.25, 0, 0.25, 0, 380, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(480, -0.25, 0, 0.25, 0, 800, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.5)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3dxm6"]
-_data = {
-&"RESET": SubResource("Animation_cm0pq"),
-&"slide_down": SubResource("Animation_fos0i"),
-&"slide_up": SubResource("Animation_r0du0")
-}
+[ext_resource type="PackedScene" uid="uid://qrteea05u76p" path="res://scenes/3d/Console3D.tscn" id="2_uu6xs"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_uu6xs")
-
-[node name="BackgroundLayer" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="EnemyAvatarTopLeft" type="TextureButton" parent="BackgroundLayer"]
-unique_name_in_owner = true
-offset_left = 35.0
-offset_top = 24.0
-offset_right = 335.0
-offset_bottom = 246.0
-
-[node name="EnemyAvatarBottomLeft" type="TextureButton" parent="BackgroundLayer"]
-unique_name_in_owner = true
-offset_left = 35.0
-offset_top = 419.0
-offset_right = 335.0
-offset_bottom = 641.0
-
-[node name="EnemyAvatarTopRight" type="TextureButton" parent="BackgroundLayer"]
-unique_name_in_owner = true
-offset_left = 1590.0
-offset_top = 24.0
-offset_right = 1890.0
-offset_bottom = 246.0
-
-[node name="EnemyAvatarBottomRight" type="TextureButton" parent="BackgroundLayer"]
-unique_name_in_owner = true
-offset_left = 1590.0
-offset_top = 419.0
-offset_right = 1890.0
-offset_bottom = 641.0
-
-[node name="BezelLayer" type="CanvasLayer" parent="."]
-layer = 0
-
-[node name="DeploymentScreen" parent="BezelLayer" instance=ExtResource("2_r0du0")]
-unique_name_in_owner = true
-offset_left = 380.0
-offset_top = 480.0
-offset_right = 420.0
-offset_bottom = 520.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BezelLayer/DeploymentScreen"]
-libraries = {
-&"": SubResource("AnimationLibrary_3dxm6")
-}
-
-[node name="ConsoleOverlay" type="TextureRect" parent="BezelLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("2_uu6xs")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
@@ -214,30 +77,6 @@ custom_minimum_size = Vector2(0, 310)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="PlayerStats" type="Panel" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/PlayerStats"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(370, 260)
-layout_mode = 0
-offset_left = 410.0
-offset_right = 760.0
-offset_bottom = 250.0
-
-[node name="PlayerTreasuryLabel" type="Label" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/PlayerStats/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="PlayerMoraleLabel" type="Label" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/PlayerStats/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="PlayerAPLabel" type="Label" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/PlayerStats/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
 [node name="HBoxContainer" type="HBoxContainer" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -246,7 +85,31 @@ theme_override_constants/separation = 50
 [node name="ActionButtons" type="HBoxContainer" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 8
+
+[node name="PlayerStats" type="Panel" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/HBoxContainer/PlayerStats"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(370, 260)
+layout_mode = 0
+offset_right = 370.0
+offset_bottom = 260.0
+
+[node name="PlayerTreasuryLabel" type="Label" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/HBoxContainer/PlayerStats/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PlayerMoraleLabel" type="Label" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/HBoxContainer/PlayerStats/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PlayerAPLabel" type="Label" parent="UILayer/MasterLayout/CenterColumn/PlayerControl_Bottom/HBoxContainer/PlayerStats/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="RightColumn" type="VBoxContainer" parent="UILayer/MasterLayout"]
 unique_name_in_owner = true
@@ -289,3 +152,24 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
+
+[node name="DeploymentScreen" parent="UILayer" instance=ExtResource("2_r0du0")]
+unique_name_in_owner = true
+visible = false
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Console3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_uu6xs")]
