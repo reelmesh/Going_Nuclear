@@ -17,7 +17,12 @@ func load_cards_from_directory(path: String):
 		while file_name != "":
 			if file_name.ends_with(".tres"):
 				var card_id = file_name.get_basename()
-				database[card_id] = load(path + file_name)
+				var card_resource = load(path + file_name)
+				if card_resource and card_resource is CardData:
+					database[card_id] = card_resource
+					print("Loaded card: %s" % card_id)
+				else:
+					print("ERROR: Failed to load card resource: %s" % file_name)
 			file_name = dir.get_next()
 	else:
 		print("ERROR: Could not open directory at path: " + path)

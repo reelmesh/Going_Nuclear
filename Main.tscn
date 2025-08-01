@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://f333amgg3be3" path="res://main_controller.gd" id="1_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://bldjawb1maw2x" path="res://scenes/ui/DeploymentScreen.tscn" id="2_r0du0"]
-[ext_resource type="PackedScene" uid="uid://qrteea05u76p" path="res://scenes/3d/Console3D.tscn" id="2_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://c74uoaliwxt4l" path="res://scenes/3d/Console3D.tscn" id="2_uu6xs"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_uu6xs")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="MasterLayout" type="HBoxContainer" parent="UILayer"]
 unique_name_in_owner = true

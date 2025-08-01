@@ -1,0 +1,680 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Game Design Document: Project Going Nuclear</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="233974b6-c83e-807a-ac0c-da51d1005bd1" class="page sans"><header><h1 class="page-title"><strong>Game Design Document: Project Going Nuclear</strong></h1><p class="page-description"></p></header><div class="page-body"><p id="233974b6-c83e-8099-b237-e4c716313d94" class=""><strong>Version:</strong> 1.2</p><p id="233974b6-c83e-80ba-be3b-c8bb40d8779d" class=""><strong>Date:</strong> July 17, 2025</p><p id="233974b6-c83e-8043-8068-d4a2db2d10bd" class=""><strong>Project Lead / Creative Director:</strong> You</p><p id="233974b6-c83e-8029-9b75-e58ec5c60c3c" class=""><strong>Lead Programmer / Systems Designer:</strong> Me (Your AI Assistant)</p><hr id="233974b6-c83e-80c7-80f5-d23597560fd4"/><h3 id="233974b6-c83e-8055-b1f5-d6d2b01db4c7" class=""><strong>1. Vision &amp; High Concept</strong></h3><p id="233974b6-c83e-80dc-aff4-d9181ce85959" class=""><strong>Project NUCLEAR WAR</strong> is a turn-based, satirical grand strategy game for PC. It is a spiritual successor and homage to the classic 1989 card game &quot;Nuclear War,&quot; redesigned for a modern audience and adapted to reflect today&#x27;s complex geopolitical landscape.</p><p id="233974b6-c83e-80fa-8e2e-c49acf9de2c9" class="">The human player takes on the role of a world leader, confronting AI-controlled exaggerated caricatures of current global leaders. The core experience centers on resource management, building an arsenal through a card-based system, and employing diplomatic, military, economic, and information warfare tactics to become the last faction standing with a surviving population.</p><p id="233974b6-c83e-8064-a7c8-f6d6f70424f9" class="">The game&#x27;s tone is one of dark humor and satire. While the gameplay involves potentially world-ending scenarios, the presentation, character design, and event descriptions are designed to be humorous and critical. The game&#x27;s central theme is the absurdity of global power struggles, grounded in real-world dynamics but amplified to caricature levels to create a sense of fun while retaining an underlying message about real-world consequences.</p><h3 id="233974b6-c83e-800b-83c0-f8319bb4edff" class=""><strong>2. Core Gameplay Loop</strong></h3><p id="233974b6-c83e-8025-b35b-e0e1eb314a99" class="">The game progresses in turns, with each player completing their turn before the next player begins. A player&#x27;s turn is structured into three phases:</p><ol type="1" id="233974b6-c83e-8027-8c8d-f21cf4e61632" class="numbered-list" start="1"><li><strong>Start of Turn Phase (Upkeep):</strong><ul id="233974b6-c83e-8062-a67d-f03be9cc7cff" class="bulleted-list"><li style="list-style-type:disc">The player&#x27;s <strong>Action Points (AP)</strong> are reset to their faction&#x27;s base value.</li></ul><ul id="233974b6-c83e-80cf-bb58-d233579e84d5" class="bulleted-list"><li style="list-style-type:disc"><strong>Resources are generated:</strong> Treasury is calculated based on current Population and Morale.</li></ul><ul id="233974b6-c83e-80e6-9431-cff016aff696" class="bulleted-list"><li style="list-style-type:disc">Any active <strong>Status Effects</strong> (e.g., &quot;Fallout,&quot; &quot;Sanctions&quot;) are processed.</li></ul><ul id="233974b6-c83e-80be-a1e5-ce7fbc67a7f9" class="bulleted-list"><li style="list-style-type:disc">A card is drawn from the player&#x27;s deck.</li></ul></li></ol><ol type="1" id="233974b6-c83e-80c5-a1ba-d40e996adb5a" class="numbered-list" start="2"><li><strong>Action Phase:</strong><ul id="233974b6-c83e-8084-9c0b-f2582402acb1" class="bulleted-list"><li style="list-style-type:disc">The player spends their AP on a variety of actions until they have insufficient AP for any remaining moves or choose to end their turn.</li></ul><ul id="233974b6-c83e-8076-a97e-e2710d17ee67" class="bulleted-list"><li style="list-style-type:disc">The player can queue up <strong>one</strong> major offensive action per turn (a Conventional Attack or an InfoWar Attack) by selecting cards and a target.</li></ul></li></ol><ol type="1" id="233974b6-c83e-80c6-963a-c4dd5d6f2225" class="numbered-list" start="3"><li><strong>End of Turn Phase:</strong><ul id="233974b6-c83e-8055-8158-d09f0fd52e29" class="bulleted-list"><li style="list-style-type:disc">The player clicks the &quot;End Turn&quot; button.</li></ul><ul id="233974b6-c83e-8086-9c54-e4864acf2881" class="bulleted-list"><li style="list-style-type:disc">If an offensive action was queued, it is resolved, and the results are displayed.</li></ul><ul id="233974b6-c83e-803b-96fb-f8ceec6b611e" class="bulleted-list"><li style="list-style-type:disc">Control passes to the next player in the turn order. The human player&#x27;s UI is disabled, and they become an observer.</li></ul></li></ol><hr id="233974b6-c83e-80d7-889d-d2001da2737b"/><h3 id="233974b6-c83e-8054-86a4-dd72924b8e1f" class=""><strong>2.1. Game Flow: The Two-Phase System</strong></h3><p id="233974b6-c83e-8058-9d8c-fab35fcc03d5" class="">The game is divided into two major phases. The transition from Phase 1 to Phase 2 is a critical turning point in the game.</p><h3 id="233974b6-c83e-80df-a450-c7f4fe1a9af2" class=""><strong>Phase 1: Deterrence &amp; Escalation (The &quot;Cold War&quot;)</strong></h3><p id="233974b6-c83e-80ab-b0de-e9d9c2dbf497" class="">This is the default starting phase of the game. The world is tense, but full-scale kinetic warfare is not yet an option. The focus is on building power, gathering intelligence, and manipulating the global stage.</p><ul id="233974b6-c83e-8020-96b7-fd2a070349f9" class="bulleted-list"><li style="list-style-type:disc"><strong>Characteristics:</strong><ul id="233974b6-c83e-804e-89d3-f01632dce205" class="bulleted-list"><li style="list-style-type:circle">The global DEFCON level is relatively high (5, 4, or 3).</li></ul><ul id="233974b6-c83e-8065-8a52-e44915b4110b" class="bulleted-list"><li style="list-style-type:circle">Direct conventional military attacks are either impossible or heavily penalized (e.g., cost double the AP, cause a massive relationship penalty with all other factions).</li></ul></li></ul><ul id="233974b6-c83e-80ca-82ea-ee0e5b02928c" class="bulleted-list"><li style="list-style-type:disc"><strong>Primary Actions &amp; Goals:</strong><ul id="233974b6-c83e-80b3-8efd-d41b5695411a" class="bulleted-list"><li style="list-style-type:circle"><strong>Economy &amp; Technology:</strong> Use the <strong>Build</strong> action to increase your card arsenal and prepare for the future.</li></ul><ul id="233974b6-c83e-80ea-8fb9-de405386390b" class="bulleted-list"><li style="list-style-type:circle"><strong>Espionage &amp; Sabotage:</strong> Use UTILITY cards to spy on enemy hands, steal Treasury, or sabotage their Morale.</li></ul><ul id="233974b6-c83e-8058-9538-c329d236b2b0" class="bulleted-list"><li style="list-style-type:circle"><strong>Information Warfare:</strong> Use INFO_WAR cards to directly attack an enemy&#x27;s Population and Morale through non-military means.</li></ul><ul id="233974b6-c83e-805a-bccd-e4cb3a8c3f2d" class="bulleted-list"><li style="list-style-type:circle"><strong>Diplomacy &amp; Alliances:</strong> Use diplomatic actions to form alliances, which provide defensive benefits and are crucial for the Diplomatic Victory condition. Manipulate relationships through targeted aid or targeted slander.</li></ul><ul id="233974b6-c83e-8045-bf16-e0709914df64" class="bulleted-list"><li style="list-style-type:circle"><strong>Saber-Rattling:</strong> Amass a visible arsenal of powerful DELIVERY and PAYLOAD cards to deter attacks from other players.</li></ul></li></ul><ul id="233974b6-c83e-804d-8c39-e555ef03ab9c" class="bulleted-list"><li style="list-style-type:disc"><strong>Phase Transition:</strong><ul id="233974b6-c83e-80a0-8937-ff3c6455fe81" class="bulleted-list"><li style="list-style-type:circle">The game automatically transitions to <strong>Phase 2</strong> the moment any player&#x27;s action causes the global DEFCON level to drop to <strong>2</strong>.</li></ul></li></ul><h3 id="233974b6-c83e-800c-ab98-d9176547698d" class=""><strong>Phase 2: Kinetic &amp; Annihilation (The &quot;Hot War&quot;)</strong></h3><p id="233974b6-c83e-802f-adbf-f2482abd795f" class="">This phase begins when a line has been crossed and global tensions have reached a breaking point. The gloves come off, and the world descends into open conflict.</p><ul id="233974b6-c83e-80d2-9469-dc32bd9d8cbd" class="bulleted-list"><li style="list-style-type:disc"><strong>Characteristics:</strong><ul id="233974b6-c83e-8025-9618-fa45dbbf3c89" class="bulleted-list"><li style="list-style-type:circle">The global DEFCON level is critically low (2 or 1).</li></ul><ul id="233974b6-c83e-808b-a8c5-d6ff561dbe6f" class="bulleted-list"><li style="list-style-type:circle">The penalties for launching conventional military attacks are removed. It is now the primary method of conflict.</li></ul><ul id="233974b6-c83e-801f-9b6a-f4ba34b463e9" class="bulleted-list"><li style="list-style-type:circle">Negative global effects associated with low DEFCON are active (e.g., automatic morale loss each turn).</li></ul></li></ul><ul id="233974b6-c83e-80a2-bddd-cb01695d6ff6" class="bulleted-list"><li style="list-style-type:disc"><strong>Primary Actions &amp; Goals:</strong><ul id="233974b6-c83e-80cb-b025-e763bffb6c26" class="bulleted-list"><li style="list-style-type:circle"><strong>Annihilation:</strong> Use Conventional Attack actions (DELIVERY + PAYLOAD cards) to eliminate other factions&#x27; populations.</li></ul><ul id="233974b6-c83e-8062-bcc2-cecc5886e127" class="bulleted-list"><li style="list-style-type:circle"><strong>Continued Covert Ops:</strong> The tools from Phase 1 (INFO_WAR, Espionage, etc.) remain available and are crucial for softening up targets and defending against non-military threats.</li></ul><ul id="233974b6-c83e-80de-b0fe-cd5b7fced2f5" class="bulleted-list"><li style="list-style-type:circle"><strong>Survival:</strong> The game becomes a desperate fight to be the last one standing or to achieve one of the victory conditions before you are wiped out.</li></ul></li></ul><h3 id="233974b6-c83e-8023-bc65-fe6217aacdc4" class=""><strong>3. Key Systems &amp; Mechanics</strong></h3><h3 id="233974b6-c83e-806e-98c9-e8dcbed6607a" class=""><strong>3.1. Resource Management</strong></h3><ul id="233974b6-c83e-8068-af59-dc4b1cec5c06" class="bulleted-list"><li style="list-style-type:disc"><strong>Population:</strong> The core &quot;health&quot; of a faction. Victory is achieved by being the last player with Population &gt; 0. It is a primary factor in Treasury generation.</li></ul><ul id="233974b6-c83e-80e9-ad1f-c1853a777e68" class="bulleted-list"><li style="list-style-type:disc"><strong>Treasury (GDP):</strong> The main spendable currency. Used to pay for the &quot;Build&quot; action.</li></ul><ul id="233974b6-c83e-8070-b1b2-f8d0cdcbbb71" class="bulleted-list"><li style="list-style-type:disc"><strong>Morale (0-100%):</strong> A modifier that affects the efficiency of Treasury generation. High morale provides a bonus; low morale (caused by propaganda, attacks, or low DEFCON) incurs a penalty.</li></ul><ul id="233974b6-c83e-80b7-a1b8-d9936829f6b5" class="bulleted-list"><li style="list-style-type:disc"><strong>Action Points (AP):</strong> A per-turn resource used to perform actions. The base AP can vary by faction and be affected by game events, with a typical range of 2-5 AP per turn.</li></ul><h3 id="233974b6-c83e-803b-b8ac-fb552ecf37a7" class=""><strong>3.2. Primary Actions &amp; Costs</strong></h3><ul id="233974b6-c83e-8050-8bbd-ca0fb246754b" class="bulleted-list"><li style="list-style-type:disc"><strong>Build (Cost: 1 AP + Treasury):</strong> The player spends resources to &quot;build&quot; technology/intelligence, drawing a set number of cards from their deck. This is the primary method of card acquisition.</li></ul><ul id="233974b6-c83e-80e0-8707-fbd1259871f0" class="bulleted-list"><li style="list-style-type:disc"><strong>Play Conventional Attack (Cost: 2 AP):</strong> The player selects one DELIVERY card, one PAYLOAD card, and one target enemy faction.</li></ul><ul id="233974b6-c83e-801e-9cce-e3c1ae0b89c3" class="bulleted-list"><li style="list-style-type:disc"><strong>Play InfoWar Card (Cost: 1 AP):</strong> The player selects one INFO_WAR card and one target enemy faction.</li></ul><ul id="233974b6-c83e-80bf-97e9-ca1948c7df1a" class="bulleted-list"><li style="list-style-type:disc"><strong>Play Defense/Utility Card (Cost varies):</strong> Playing a defensive card or a card with a special utility effect (e.g., &quot;Offer Alliance&quot;).</li></ul><h3 id="233974b6-c83e-8048-b0f5-d20f8b5a2066" class=""><strong>3.3. Faction Asymmetry</strong></h3><p id="233974b6-c83e-802e-a291-dacd410b2853" class="">Each faction is unique, with characteristics grounded in a satirical view of their real-world counterpart. This is defined in their FactionData.tres file.</p><ul id="233974b6-c83e-806d-8eb7-d29c282923d7" class="bulleted-list"><li style="list-style-type:disc"><strong>Unique Starting Conditions:</strong> Each faction has different base values for Population, Treasury, Morale, and AP.</li></ul><ul id="233974b6-c83e-80f3-9752-f49309396e87" class="bulleted-list"><li style="list-style-type:disc"><strong>Unique Abilities:</strong> Each faction has a unique passive or active ability that defines their playstyle (e.g., USA&#x27;s economic power, China&#x27;s demographic advantage).</li></ul><ul id="233974b6-c83e-8077-9c08-f545df73ec49" class="bulleted-list"><li style="list-style-type:disc"><strong>Relationships:</strong> A numerical score (-10 to +10) defining their starting disposition towards other factions, directly influencing AI targeting priority.<ul id="233974b6-c83e-809f-8d4e-e3573d87c08e" class="bulleted-list"><li style="list-style-type:circle"><strong>3.3.1. Player Role:</strong> The human player does not represent a specific faction. They are an abstract, &quot;meta&quot; entity controlling events. The player character has no population, treasury, or morale of their own. Their goal is to ensure the survival of at least one faction that is allied with them, or simply to be the &quot;kingmaker&quot; who decides the ultimate victor. <em>(We can refine the victory condition later)</em>.</li></ul><ul id="233974b6-c83e-8087-a9ba-f09859587f9e" class="bulleted-list"><li style="list-style-type:circle"><strong>3.3.2. Faction Roles:</strong> The 5 factions on the board are AI-controlled entities. They have their own stats, abilities, and relationships with each other. Their relationship with the human player starts at neutral and is modified by the player&#x27;s direct actions against them or in their favor.</li></ul></li></ul><hr id="233974b6-c83e-80ff-9e0c-dda1f4131ed8"/><h3 id="233974b6-c83e-8076-a9f3-f5e4273e866f" class=""><strong>3.4. Global Systems</strong></h3><ul id="233974b6-c83e-806b-8490-c627274d5fa0" class="bulleted-list"><li style="list-style-type:disc"><strong>DEFCON Status (5 down to 1):</strong> A global &quot;danger meter&quot; that affects all players. It decreases with major attacks. Lower levels introduce negative global effects, such as increased costs, automatic morale loss, or the breaking of alliances at DEFCON 1.</li></ul><ul id="233974b6-c83e-8093-b3a8-f7eef100f936" class="bulleted-list"><li style="list-style-type:disc"><strong>World Events:</strong> At the start of each full round, a random event card is drawn. These events (e.g., &quot;Solar Flare,&quot; &quot;Global Pandemic,&quot; &quot;Economic Summit&quot;) introduce unpredictable challenges or boons that can affect a single player, two players, or everyone on the board.</li></ul><hr id="233974b6-c83e-8086-aa2d-e0533f7eed26"/><h3 id="233974b6-c83e-8021-a0d4-e47af67d9ec1" class=""><strong>3.5. Card &amp; Deck System</strong></h3><p id="233974b6-c83e-8093-94b0-fdb0a24eed78" class="">Cards are the primary tools through which players interact with the world and each other. Each player has their own deck and hand, drawing new cards primarily through the &quot;Build&quot; action.</p><p id="233974b6-c83e-804b-a2cd-d4c6550c8821" class=""><strong>3.5.1. Card Categories &amp; Cross-Dependencies</strong></p><ul id="233974b6-c83e-8047-abfe-c206495c941f" class="bulleted-list"><li style="list-style-type:disc"><strong>DELIVERY:</strong> Defines <em>how</em> an attack is sent. Has a <code>success_chance</code>. Useless on its own.</li></ul><ul id="233974b6-c83e-802d-8ea9-e9a1aeffea85" class="bulleted-list"><li style="list-style-type:disc"><strong>PAYLOAD:</strong> Defines <em>what</em> is being sent. Has a <code>damage</code> value and/or special effects. <strong>Requires a </strong><code><strong>DELIVERY</strong></code><strong> card to be played.</strong></li></ul><ul id="233974b6-c83e-801a-9ee7-f8262d6d3df4" class="bulleted-list"><li style="list-style-type:disc"><strong>INFO_WAR:</strong> A direct, non-kinetic attack on a faction&#x27;s internal stability.</li></ul><ul id="233974b6-c83e-8032-9602-e97b22e606b5" class="bulleted-list"><li style="list-style-type:disc"><strong>UTILITY:</strong> Covert, economic, and diplomatic actions.</li></ul><ul id="233974b6-c83e-80e2-9902-eb0706149c10" class="bulleted-list"><li style="list-style-type:disc"><strong>DEFENSE:</strong> Used to counter or mitigate opponent actions. (Implementation detail: For now, these will be played on a player&#x27;s own turn to grant a &quot;shield&quot; for one round, rather than as a reaction).</li></ul><hr id="233974b6-c83e-80ae-b773-e6ef210f07f7"/><h3 id="233974b6-c83e-8060-b282-f7eb0af5b84e" class=""><strong>Card Database - Initial Set</strong></h3><h3 id="233974b6-c83e-80f8-a37c-dbe4ed28abc1" class=""><strong>Category: DELIVERY</strong></h3><p id="233974b6-c83e-8095-b323-d687c18095e1" class=""><em>(Phase: Primarily Phase 2, but can be &quot;rattled&quot; in Phase 1)</em></p><ul id="233974b6-c83e-8052-8aeb-e3631eebf209" class="bulleted-list"><li style="list-style-type:disc"><strong>1. ICBM (Intercontinental Ballistic Missile)</strong><ul id="233974b6-c83e-80b6-8f2f-d44e10b82611" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> The workhorse of nuclear arsenals. Launched from hardened silos.</li></ul><ul id="233974b6-c83e-806b-94e8-ebcfb291f535" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> <code>success_chance: 95%</code>.</li></ul><ul id="233974b6-c83e-80ba-a134-f58f7a66d65e" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> The most reliable method for ensuring a payload hits its target.</li></ul></li></ul><ul id="233974b6-c83e-8012-ab0a-f549dd57b69a" class="bulleted-list"><li style="list-style-type:disc"><strong>2. SLBM (Submarine-Launched Ballistic Missile)</strong><ul id="233974b6-c83e-8054-8533-f80de218c5df" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> An undetectable first-strike weapon launched from a hidden nuclear submarine.</li></ul><ul id="233974b6-c83e-808c-8eff-cd0b4f5aaeca" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> <code>success_chance: 90%</code>. <strong>Special:</strong> Cannot be revealed by opponent &quot;Espionage&quot; cards.</li></ul><ul id="233974b6-c83e-8012-baf4-dd910f7e7aaa" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> Ideal for a surprise attack against a well-prepared opponent.</li></ul></li></ul><ul id="233974b6-c83e-80d0-9b77-dadb83b282b7" class="bulleted-list"><li style="list-style-type:disc"><strong>3. Strategic Bomber</strong><ul id="233974b6-c83e-809f-bfc6-cc305201ce2c" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A stealth bomber designed to penetrate deep into enemy airspace.</li></ul><ul id="233974b6-c83e-80dd-a8c5-d52000eddb0a" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> <code>success_chance: 75%</code>.</li></ul><ul id="233974b6-c83e-80dc-aece-d8dee8a8b1b2" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> A cheaper but more vulnerable delivery method. Can be effectively countered by &quot;Air Defense.&quot;</li></ul></li></ul><ul id="233974b6-c83e-80a7-a099-e32df6413222" class="bulleted-list"><li style="list-style-type:disc"><strong>4. Hypersonic Cruise Missile</strong><ul id="233974b6-c83e-8088-95a7-fd05ea56fba3" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> An advanced, ultra-fast, and maneuverable missile.</li></ul><ul id="233974b6-c83e-8010-8596-d91b8edd95b1" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> <code>success_chance: 85%</code>. <strong>Special:</strong> Ignores standard <code>ABM Silos</code> defense.</li></ul><ul id="233974b6-c83e-8054-bdfb-efec7bf62103" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> The tool for cracking open the defenses of a technologically advanced foe.</li></ul></li></ul><h3 id="233974b6-c83e-8017-8a0e-f0439a5c67dc" class=""><strong>Category: PAYLOAD</strong></h3><p id="233974b6-c83e-803a-b3ef-d6b57b1ba8d7" class=""><em>(Phase: Phase 2. Dependent on a DELIVERY card.)</em></p><ul id="233974b6-c83e-809f-91c1-ed26a000fa2d" class="bulleted-list"><li style="list-style-type:disc"><strong>1. Standard Warhead</strong><ul id="233974b6-c83e-805e-8954-e5ead4bb46fe" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A conventional thermonuclear warhead.</li></ul><ul id="233974b6-c83e-8084-9350-e797ef6f2cd9" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> <code>damage: 50</code>. Deals direct population damage.</li></ul><ul id="233974b6-c83e-8054-9950-d5bafab59800" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> Standard kinetic annihilation.</li></ul></li></ul><ul id="233974b6-c83e-80bd-a5ff-f5325e38a0ce" class="bulleted-list"><li style="list-style-type:disc"><strong>2. EMP Warhead</strong><ul id="233974b6-c83e-80d1-87d5-e9611d1c93e5" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> Detonates in the upper atmosphere to generate a powerful electromagnetic pulse, frying electronics.</li></ul><ul id="233974b6-c83e-8079-a6a6-e5e030d04065" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> <code>damage: 0</code>. <strong>Special:</strong> Target faction loses 2 AP on their next turn and must discard one random card.</li></ul><ul id="233974b6-c83e-80bd-8559-d349fb532aad" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> A crippling tempo play to disrupt a powerful opponent&#x27;s upcoming turn.</li></ul></li></ul><ul id="233974b6-c83e-80b6-bf4d-cd8a1ae56d57" class="bulleted-list"><li style="list-style-type:disc"><strong>3. Dirty Bomb</strong><ul id="233974b6-c83e-8040-b6a6-ffadebc78a95" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A radiological dispersal device that contaminates a wide area with long-lasting fallout.</li></ul><ul id="233974b6-c83e-80da-97e5-eeea01809bf0" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> <code>damage: 10</code>. <strong>Special:</strong> Applies a &quot;Fallout&quot; status effect to the target for 3 turns. While active, the target loses 5M population and 10% of their Treasury income at the start of their turn.</li></ul><ul id="233974b6-c83e-80a6-b97e-ef283163a6ec" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> A long-term economic and psychological weapon.</li></ul></li></ul><ul id="233974b6-c83e-802a-89ab-c8bf9ee4795d" class="bulleted-list"><li style="list-style-type:disc"><strong>4. Neutron Bomb</strong><ul id="233974b6-c83e-80f6-8697-cd2dc4d23b23" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> An &quot;enhanced radiation&quot; weapon that maximizes casualties while minimizing infrastructure damage.</li></ul><ul id="233974b6-c83e-80ee-b5e6-c40172687903" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> <code>damage: 75</code>. <strong>Special:</strong> The target&#x27;s <code>Morale</code> is massively reduced.</li></ul><ul id="233974b6-c83e-8057-baf4-d91a6aa97b86" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> A purely anti-personnel weapon for maximum psychological impact.</li></ul></li></ul><h3 id="233974b6-c83e-80d7-a2fe-e73480ab8faa" class=""><strong>Category: INFO_WAR</strong></h3><p id="233974b6-c83e-80b0-b08f-cf6be72388b9" class=""><em>(Phase: Primarily Phase 1, but still effective in Phase 2)</em></p><ul id="233974b6-c83e-80c2-81eb-deaf6d48e119" class="bulleted-list"><li style="list-style-type:disc"><strong>1. Viral Disinformation</strong><ul id="233974b6-c83e-80e4-8066-d8167280f1fe" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A targeted social media campaign to sow chaos and dissent among the enemy&#x27;s populace.</li></ul><ul id="233974b6-c83e-80fe-a530-fb5370fb6c13" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> <code>damage: 15</code>. This damage represents population loss from riots and civil unrest, not a direct attack. Reduces target&#x27;s <code>Morale</code>.</li></ul><ul id="233974b6-c83e-806e-90e6-fd5a26b27198" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> The primary tool for direct damage during the &quot;Cold War&quot; phase.</li></ul></li></ul><ul id="233974b6-c83e-80c7-8ad9-d6537872f5ee" class="bulleted-list"><li style="list-style-type:disc"><strong>2. Deepfake Scandal</strong><ul id="233974b6-c83e-8022-a540-db1aec74a641" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> Fabricated video evidence shows an enemy leader in a compromising and embarrassing situation.</li></ul><ul id="233974b6-c83e-8012-8cbe-cc3f457aaa89" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> Target faction&#x27;s <code>Morale</code> plummets. Their diplomatic relationships with all other factions are temporarily reduced.</li></ul><ul id="233974b6-c83e-8096-94c2-d7007ad7108e" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> A powerful tool for diplomatically isolating an opponent before a key vote or attack.</li></ul></li></ul><ul id="233974b6-c83e-80b8-998e-fab529615e89" class="bulleted-list"><li style="list-style-type:disc"><strong>3. Supply Chain Hack</strong><ul id="233974b6-c83e-8040-ab89-e10da0ae469d" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A cyber-attack on the target&#x27;s industrial and economic infrastructure.</li></ul><ul id="233974b6-c83e-8041-a921-f484bf95e47f" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> The target immediately loses a moderate amount of <code>Treasury</code>. Their &quot;Build&quot; action costs double for their next turn.</li></ul><ul id="233974b6-c83e-8035-996a-c91bf2347723" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> An economic weapon to stifle an opponent&#x27;s growth and ability to build their arsenal.</li></ul></li></ul><h3 id="233974b6-c83e-8052-8bf2-e74624068ef3" class=""><strong>Category: UTILITY</strong></h3><p id="233974b6-c83e-80a4-8ed2-d2f19a007205" class=""><em>(Phase: Primarily Phase 1, but effects can carry into Phase 2)</em></p><ul id="233974b6-c83e-80e1-964c-e28089c7b816" class="bulleted-list"><li style="list-style-type:disc"><strong>1. Intelligence Agency</strong><ul id="233974b6-c83e-8055-bd8c-fda712e9d7e2" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> Establish a network of spies and assets within a target nation.</li></ul><ul id="233974b6-c83e-80ba-afed-c9d28be00066" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> Look at a target&#x27;s hand of cards. Choose one to &quot;expose,&quot; revealing it to all players.</li></ul><ul id="233974b6-c83e-801d-9991-d559701117d8" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> Essential for gathering information and anticipating an opponent&#x27;s next move.</li></ul></li></ul><ul id="233974b6-c83e-8089-9c3f-e488f9ffa355" class="bulleted-list"><li style="list-style-type:disc"><strong>2. Sabotage</strong><ul id="233974b6-c83e-805d-8f76-f4ee52b8956e" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> Your agents carry out a covert operation to destroy a key piece of enemy hardware.</li></ul><ul id="233974b6-c83e-802a-9113-f1d5b0c82e1d" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> Target an opponent and force them to discard one random <code>DELIVERY</code> or <code>DEFENSE</code> card from their hand.</li></ul><ul id="233974b6-c83e-8026-8361-cd9ecca455bb" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> A preemptive strike to remove a threat before it can be used.</li></ul></li></ul><ul id="233974b6-c83e-8079-9c36-cd8c1ef1ad2b" class="bulleted-list"><li style="list-style-type:disc"><strong>3. Diplomatic Summit</strong><ul id="233974b6-c83e-801f-98ab-d6d5d9028a74" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> Arrange a high-level meeting with another faction to improve relations.</li></ul><ul id="233974b6-c83e-80c4-bc65-e0073abeade3" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> Target another AI faction. Your <code>relationship</code> score with them increases significantly. Costs <code>Treasury</code>.</li></ul><ul id="233974b6-c83e-806c-b6fc-f43c3a456dfe" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> The primary tool for building alliances and working towards a Diplomatic Victory.</li></ul></li></ul><h3 id="233974b6-c83e-8030-9c28-cbc7008809a6" class=""><strong>Category: DEFENSE</strong></h3><p id="233974b6-c83e-8049-9906-e0d9db0ddc8a" class=""><em>(Phase: Can be played in either phase to prepare for an opponent&#x27;s turn)</em></p><ul id="233974b6-c83e-80f1-ad17-dae53d225fa6" class="bulleted-list"><li style="list-style-type:disc"><strong>1. ABM Silos</strong><ul id="233974b6-c83e-80ee-9e84-edcc07cc00ae" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A network of anti-ballistic missile interceptors.</li></ul><ul id="233974b6-c83e-80bd-be36-cf5754f1cbbf" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> When played, grants a &quot;Missile Shield&quot; status for one round. Has a high chance to negate one incoming <code>ICBM</code> or <code>SLBM</code> attack.</li></ul><ul id="233974b6-c83e-804b-82d3-df116cd3e058" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> Standard protection against a standard nuclear strike.</li></ul></li></ul><ul id="233974b6-c83e-8083-a0b2-fbb7adb27ef9" class="bulleted-list"><li style="list-style-type:disc"><strong>2. Counter-Propaganda Campaign</strong><ul id="233974b6-c83e-80eb-9a2c-ead52fd758b5" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A domestic media campaign to bolster national unity and discredit foreign interference.</li></ul><ul id="233974b6-c83e-8070-9082-c67bac24dac2" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> When played, grants a &quot;Firewall&quot; status for one round. Has a high chance to negate one incoming <code>INFO_WAR</code> card. Boosts <code>Morale</code>.</li></ul><ul id="233974b6-c83e-8093-932a-cd808ce24ba5" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> The primary defense against non-kinetic attacks.</li></ul></li></ul><ul id="233974b6-c83e-8080-9613-d258b51f66f8" class="bulleted-list"><li style="list-style-type:disc"><strong>3. Hardened Bunkers</strong><ul id="233974b6-c83e-80c9-9c71-ec3ee2bef6d7" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A nationwide network of fallout shelters and reinforced command centers.</li></ul><ul id="233974b6-c83e-80f9-87b3-debb7957d623" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> A passive defense. When played, it remains in effect until triggered. Does not stop an attack, but reduces population damage from the next successful conventional strike by 50%.</li></ul><ul id="233974b6-c83e-8009-ba4e-fa87772b316b" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> A last-ditch effort to survive an otherwise unsurvivable blow.</li></ul></li></ul><h3 id="233974b6-c83e-8086-85e2-e9447f09b2a1" class=""><strong>3.6. Victory Conditions</strong></h3><p id="233974b6-c83e-8083-a2f6-fc1b47a1cc7e" class="">There are two paths to victory in the game.</p><ul id="233974b6-c83e-805a-b1f4-dd0b4580a63c" class="bulleted-list"><li style="list-style-type:disc"><strong>1. Annihilation Victory (Default):</strong><ul id="233974b6-c83e-805e-a5af-d705558b70e0" class="bulleted-list"><li style="list-style-type:circle">This is achieved when all other factions have been eliminated (their Population is 0).</li></ul><ul id="233974b6-c83e-80c4-b7d2-c6d08ff601ab" class="bulleted-list"><li style="list-style-type:circle">If the Player&#x27;s &quot;Null Faction&quot; is eliminated, the game ends in defeat for the player. The AI factions will continue to fight until one remains, and that faction is declared the winner.</li></ul></li></ul><ul id="233974b6-c83e-802d-8280-c75d09640449" class="bulleted-list"><li style="list-style-type:disc"><strong>2. Diplomatic Victory (Difficult):</strong><ul id="233974b6-c83e-80ba-b1ab-f2f24e5308e1" class="bulleted-list"><li style="list-style-type:circle">This victory can only be attempted during <strong>Phase 1 (Deterrence &amp; Escalation)</strong>. It becomes impossible once full-scale war breaks out.</li></ul><ul id="233974b6-c83e-808d-8e04-fe257458ce13" class="bulleted-list"><li style="list-style-type:circle"><strong>Mechanic: The &quot;Global Peace Summit&quot; Action.</strong><ul id="233974b6-c83e-80dc-8f93-f6c4f9609d55" class="bulleted-list"><li style="list-style-type:square"><strong>Cost:</strong> A very high amount of AP and Treasury (e.g., 5 AP, 500 Treasury). This represents the immense political and economic capital required to bring the world to the table.</li></ul><ul id="233974b6-c83e-80e8-9ee3-eef78d4b9169" class="bulleted-list"><li style="list-style-type:square"><strong>Condition:</strong> The player must be in a formal alliance with at least two other major factions.</li></ul><ul id="233974b6-c83e-8030-9447-f8c618786603" class="bulleted-list"><li style="list-style-type:square"><strong>Resolution:</strong> When called, every surviving AI faction votes &quot;Yes&quot; or &quot;No&quot; on the peace treaty.<ul id="233974b6-c83e-80a8-874d-e4ec82f9bf6f" class="bulleted-list"><li style="list-style-type:disc">An AI&#x27;s vote is determined by its relationship score with the player, its personality_traits (DIPLOMATIC factions are more likely to agree; AGGRESSIVE factions are less likely), and the current</li></ul></li></ul></li></ul></li></ul><h3 id="233974b6-c83e-80e1-9683-f03ffab4204b" class=""><strong>4. User Interface (UI) &amp; User Experience (UX)</strong></h3><p id="233974b6-c83e-80cb-adb4-f4c750717c8e" class="">The game is presented through a custom UI designed to look and feel like a gritty, physical military console.</p><ul id="233974b6-c83e-8047-b62a-eb0320e13b2e" class="bulleted-list"><li style="list-style-type:disc"><strong>Three-Layer System:</strong><ol type="1" id="233974b6-c83e-80c5-a137-d661fe8dc279" class="numbered-list" start="1"><li><strong>Background Layer (-1):</strong> Displays faction leader avatars and a dynamic world map, viewed as if on screens <em>behind</em> the console.</li></ol><ol type="1" id="233974b6-c83e-8077-a29b-ed5169bf9604" class="numbered-list" start="2"><li><strong>Bezel Layer (0):</strong> A static overlay image of the console itself, which frames all other elements. This layer is ignored by the mouse.</li></ol><ol type="1" id="233974b6-c83e-8064-bd57-f5e846722296" class="numbered-list" start="3"><li><strong>UI Layer (1):</strong> The top layer containing all interactive elements: player stats displays, action buttons, the game log, and pop-up menus like the CardChooser.</li></ol></li></ul><ul id="233974b6-c83e-80c7-81bb-ee96af55f8b2" class="bulleted-list"><li style="list-style-type:disc"><strong>Interaction Flow:</strong> The player uses a clear, category-based system. They click an action button (e.g., &quot;Delivery&quot;), which opens a CardChooser pop-up displaying only the relevant cards from their hand. This minimizes clutter and streamlines decision-making.</li></ul><h3 id="233974b6-c83e-806e-9eaa-ebd43c2522da" class=""><strong>4.1 - Core Interaction Flow</strong></h3><ul id="233974b6-c83e-80ed-b324-d4c22fc0892c" class="bulleted-list"><li style="list-style-type:disc"><strong>4.1.1. Player Action:</strong> When the human player clicks a primary action button (e.g., &quot;Delivery,&quot; &quot;Payload,&quot; &quot;InfoWar&quot;), the game&#x27;s state changes to &quot;Targeting Mode.&quot;</li></ul><ul id="233974b6-c83e-80b5-b33d-db3a076ea775" class="bulleted-list"><li style="list-style-type:disc"><strong>4.1.2. Deployment Screen:</strong> A dedicated UI panel, the <strong>Deployment Screen</strong>, animates into view from the bottom of the screen, appearing to slide up from under the main console bezel. This screen is the primary interface for selecting cards.</li></ul><ul id="233974b6-c83e-8043-96b4-c57f4bbf5e2f" class="bulleted-list"><li style="list-style-type:disc"><strong>4.1.3. Card Selection:</strong> The Deployment Screen displays all available cards of the chosen category (e.g., all DELIVERY cards in hand). It is composed of &quot;Secondary Option&quot; panels for lists of choices and a central &quot;Card Visuals Overlay&quot; to display a large, clear image and description of the currently hovered or selected card.</li></ul><ul id="233974b6-c83e-80a0-91be-cb30bde35f9c" class="bulleted-list"><li style="list-style-type:disc"><strong>4.1.4. Confirmation:</strong> Once a card is chosen from the Deployment Screen, the screen animates away, and the player&#x27;s selection is registered. The main view returns to the world map/animations.</li></ul><h3 id="233974b6-c83e-80bd-9af0-d305876e69bc" class=""><strong>5. Technical Overview</strong></h3><ul id="233974b6-c83e-80a4-a3c1-efc3f18cddae" class="bulleted-list"><li style="list-style-type:disc"><strong>Engine:</strong> Godot 4.x</li></ul><ul id="233974b6-c83e-804f-ad20-cd3306a1b432" class="bulleted-list"><li style="list-style-type:disc"><strong>Architecture:</strong> A highly modular, data-driven design.<ul id="233974b6-c83e-80a8-b456-febc461bbad6" class="bulleted-list"><li style="list-style-type:circle"><strong>Data Resources (.tres):</strong> All static data for factions (FactionData), cards (CardData), and players (PlayerState) are stored in custom resource files, allowing for easy editing and expansion without changing code.</li></ul><ul id="233974b6-c83e-8031-a9d4-d7c60ce8b803" class="bulleted-list"><li style="list-style-type:circle"><strong>Global Managers (Autoloads):</strong> Central singleton scripts (GameManager, CardDatabase, FactionDatabase, Logger) handle the game&#x27;s state, rules, and data loading.</li></ul><ul id="233974b6-c83e-80ee-9cb0-c1d87601da09" class="bulleted-list"><li style="list-style-type:circle"><strong>Reusable UI Scenes:</strong> UI components (PlayerPanel, CardChooser, PlaceholderButton) are built as self-contained, reusable scenes (.tscn).</li></ul></li></ul></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

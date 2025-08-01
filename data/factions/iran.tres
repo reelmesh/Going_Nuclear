@@ -4,13 +4,13 @@
 
 [resource]
 script = ExtResource("1_nyrkl")
-faction_preset = 0
-faction_name = ""
-leader_name = ""
-starting_population = 100
-starting_treasury = 100
-starting_morale = 0.75
+faction_preset = 6
+faction_name = "The Divine Mandate"
+leader_name = "Supreme Theocrat Ali Khameanie"
+starting_population = 70
+starting_treasury = 60
+starting_morale = 0.80
 base_action_points = 3
-personality_traits = Array[int]([])
+personality_traits = Array[int]([2, 0, 8])
 relationships = {}
 metadata/_custom_type_script = "uid://cb2rwvia5po7p"

@@ -11,6 +11,6 @@ starting_population = 70
 starting_treasury = 60
 starting_morale = 0.8
 base_action_points = 3
-personality_traits = Array[int]([])
+personality_traits = Array[int]([4, 9])
 relationships = {}
 metadata/_custom_type_script = "uid://cb2rwvia5po7p"

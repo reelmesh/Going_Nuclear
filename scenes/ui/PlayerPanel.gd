@@ -10,6 +10,12 @@ var player_state: PlayerState
 func update_display(p_player_state: PlayerState):
 	self.player_state = p_player_state
 	# --- THE FIX ---
-	faction_name_label.text = player_state.faction_data.faction_name
-	leader_name_label.text = player_state.faction_data.leader_name
-	population_label.text = "Pop: %s Million" % player_state.current_population
+	if player_state and player_state.faction_data:
+		faction_name_label.text = player_state.faction_data.faction_name
+		leader_name_label.text = player_state.faction_data.leader_name
+		population_label.text = "Pop: %s Million" % player_state.current_population
+	else:
+		print("ERROR: PlayerPanel received null or invalid player state")
+		faction_name_label.text = "ERROR"
+		leader_name_label.text = "Invalid Data"
+		population_label.text = "Pop: 0 Million"

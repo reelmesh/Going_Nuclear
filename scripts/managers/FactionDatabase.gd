@@ -21,7 +21,12 @@ func load_factions_from_directory(path: String):
 				# This will show us the exact ID being created for each file.
 				print("...Found file '%s', creating database entry with ID: '%s'" % [file_name, faction_id])
 
-				database[faction_id] = load(path + file_name)
+				var faction_resource = load(path + file_name)
+				if faction_resource and faction_resource is FactionData:
+					database[faction_id] = faction_resource
+					print("Loaded faction: %s" % faction_id)
+				else:
+					print("ERROR: Failed to load faction resource: %s" % file_name)
 			file_name = dir.get_next()
 	else:
 		print("Error: Could not open directory at path: " + path)

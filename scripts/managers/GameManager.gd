@@ -48,13 +48,21 @@ func start_new_game(faction_ids: Array):
 			var new_ai_player = PlayerState.new(data, true, ai_player_index)
 			active_players.append(new_ai_player)
 			ai_player_index += 1
+		else:
+			print("ERROR: Could not load faction data for ID: %s" % id)
 
 	setup_deck()
+	if main_deck.is_empty():
+		print("ERROR: Cannot start game with empty deck!")
+		return
 	deal_initial_cards(5)
 
 # --- THIS IS THE MISSING FUNCTION, RESTORED PERMANENTLY ---
 func setup_deck():
 	main_deck = CardDatabase.get_all_card_ids()
+	if main_deck.is_empty():
+		print("ERROR: No cards found in CardDatabase!")
+		return
 	# Let's add multiple copies to make the deck bigger
 	main_deck.append_array(CardDatabase.get_all_card_ids())
 	main_deck.append_array(CardDatabase.get_all_card_ids())
@@ -118,11 +126,15 @@ func next_turn():
 	current_player_index = (current_player_index + 1) % active_players.size()
 	start_turn()
 
+# This is where the AIController is called.
 func process_ai_turn(ai_player: PlayerState):
 	Logger.log("%s is thinking..." % ai_player.faction_data.faction_name)
 	game_state_changed.emit()
 	await get_tree().create_timer(2.0).timeout
+	
+	# The call to the AI brain. This will now work.
 	AIController.take_turn(ai_player, active_players)
+	
 	game_state_changed.emit()
 	next_turn()
 
@@ -206,8 +218,27 @@ func execute_conventional_attack(attacker: PlayerState, target: PlayerState, del
 
 func execute_infowar_attack(attacker: PlayerState, target: PlayerState, card: CardData):
 	Logger.log("%s uses '%s' on %s!" % [attacker.faction_data.faction_name, card.card_name, target.faction_data.faction_name])
+	
+	# Handle special effects for cards that don't deal population damage
+	if card.card_name == "Supply Chain Hack":
+		var treasury_loss = 20  # Target loses 20 Treasury
+		target.current_treasury = max(0, target.current_treasury - treasury_loss)
+		Logger.log("Supply chain compromised! %s loses %d Treasury." % [target.faction_data.faction_name, treasury_loss])
+		# TODO: Implement the "Build cost doubled next turn" effect
+		return
+	elif card.card_name == "Deepfake Scandal":
+		var morale_loss = 0.2  # Target loses 20% morale
+		target.current_morale = max(0.1, target.current_morale - morale_loss)
+		Logger.log("Scandal erupts! %s's morale drops by %.1f%%." % [target.faction_data.faction_name, morale_loss * 100])
+		# TODO: Implement the "diplomatic relations damaged" effect
+		return
+	
+	# Standard InfoWar attack with population damage
 	var damage = card.damage
-	Logger.log("It's super effective! %s loses %s million people to chaos and dissent." % [target.faction_data.faction_name, damage])
-	target.current_population -= damage
-	if target.current_population < 0:
-		target.current_population = 0
+	if damage > 0:
+		Logger.log("It's super effective! %s loses %s million people to chaos and dissent." % [target.faction_data.faction_name, damage])
+		target.current_population -= damage
+		if target.current_population < 0:
+			target.current_population = 0
+	else:
+		Logger.log("The attack had no direct population impact.")
