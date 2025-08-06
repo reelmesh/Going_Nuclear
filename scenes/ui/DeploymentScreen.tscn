@@ -1,49 +1,69 @@
-[gd_scene load_steps=2 format=3 uid="uid://bldjawb1maw2x"]
+[gd_scene load_steps=3 format=3 uid="uid://bldjawb1maw2x"]
 
 [ext_resource type="Script" uid="uid://c5psp1oubaikg" path="res://scenes/ui/DeploymentScreen.gd" id="1_yl4wx"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yl4wx"]
+bg_color = Color(2.59906e-06, 0.722226, 0.288262, 1)
+
 [node name="DeploymentScreen" type="PanelContainer"]
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("1_yl4wx")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="SecondaryOptions_Left" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="TitleLabel" type="Label" parent="HBoxContainer/SecondaryOptions_Left"]
-layout_mode = 2
-
-[node name="CardVisualsOverlay" type="Panel" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VisualizerContent" type="VBoxContainer" parent="HBoxContainer/CardVisualsOverlay"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -6.0
+offset_bottom = 121.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_yl4wx")
 
-[node name="Visualizer_Name" type="Label" parent="HBoxContainer/CardVisualsOverlay/VisualizerContent"]
+[node name="CardChooserUI" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="Visualizer_Art" type="TextureRect" parent="HBoxContainer/CardVisualsOverlay/VisualizerContent"]
+[node name="TitleBar" type="Panel" parent="CardChooserUI"]
+custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
-size_flags_vertical = 3
-stretch_mode = 5
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_yl4wx")
 
-[node name="Visualizer_Description" type="Label" parent="HBoxContainer/CardVisualsOverlay/VisualizerContent"]
+[node name="TitleLabel" type="Label" parent="CardChooserUI/TitleBar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ContentBox" type="HBoxContainer" parent="CardChooserUI"]
 layout_mode = 2
+
+[node name="OptionsList" type="VBoxContainer" parent="CardChooserUI/ContentBox"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="CardVisualsOverlay" type="PanelContainer" parent="CardChooserUI/ContentBox"]
+custom_minimum_size = Vector2(450, 600)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+
+[node name="VisualizerContent" type="VBoxContainer" parent="CardChooserUI/ContentBox/CardVisualsOverlay"]
+layout_mode = 2
+
+[node name="Visualizer_Art" type="TextureRect" parent="CardChooserUI/ContentBox/CardVisualsOverlay/VisualizerContent"]
+custom_minimum_size = Vector2(450, 450)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Visualizer_Description" type="Label" parent="CardChooserUI/ContentBox/CardVisualsOverlay/VisualizerContent"]
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Description"
+horizontal_alignment = 1
 autowrap_mode = 3
-
-[node name="SecondaryOptions_Right" type="VBoxContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="TitleLabel" type="Label" parent="HBoxContainer/SecondaryOptions_Right"]
-layout_mode = 2

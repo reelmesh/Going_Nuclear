@@ -8,6 +8,18 @@ extends Node3D
 # You will need to adjust these paths to match your exact scene structure.
 # Example: $LogViewport/GameLogLabel
 
+# --- Avatar Screens ---
+# These are the 2D scenes that act as "slide projectors"
+# --- References to the TextureRects inside each screen's SubViewport ---
+@onready var avatar_image_tr: TextureRect = $console/EnemyAvatarScreen_TopRight/SubViewport/AvatarImage_TopRight
+@onready var avatar_image_br: TextureRect = $console/EnemyAvatarScreen_BottomRight/SubViewport/AvatarImage_BottomRight
+@onready var avatar_image_tl: TextureRect = $console/EnemyAvatarScreen_TopLeft/SubViewport/AvatarImage_TopLeft
+@onready var avatar_image_bl: TextureRect = $console/EnemyAvatarScreen_BottomLeft/SubViewport/AvatarImage_BottomLeft
+@onready var deployment_screen: DeploymentScreen = $console/MainScreen/SubViewport/DeploymentScreen
+
+
+# --- Info Labels ---
+# These are the 3D TextMesh nodes that display text
 @onready var game_log_label = $console/GameLogScreen/LogViewport/Panel/GameLogLabel
 @onready var player_info_label = $console/PlayerInfoScreen/LogViewport/Panel/PlayerInfoLabel
 @onready var enemy_info_tl = $console/EnemyInfoScreen_TopLeft/LogViewport/Panel/EnemyInfoTopLeftLabel

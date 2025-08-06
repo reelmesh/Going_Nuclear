@@ -9,10 +9,10 @@ faction_preset = 3
 faction_name = "The People's Social Harmony Co."
 leader_name = "Eternal Chairman Xi"
 avatar = ExtResource("1_tmusg")
-starting_population = null
-starting_treasury = null
-starting_morale = null
-base_action_points = null
+starting_population = 150
+starting_treasury = 175
+starting_morale = 0.8
+base_action_points = 4
 personality_traits = Array[int]([3, 6, 12])
 relationships = {
 "china": 0,

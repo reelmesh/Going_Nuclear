@@ -23,6 +23,7 @@ CardDatabase="*res://scripts/managers/CardDatabase.gd"
 WinConditionManager="*res://scripts/managers/WinConditionManager.gd"
 FeedbackManager="*res://scripts/managers/FeedbackManager.gd"
 Logger="*res://scripts/managers/Logger.gd"
+EventBus="*res://scripts/managers/EventBus.gd"
 
 [display]
 

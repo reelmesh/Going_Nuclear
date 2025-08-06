@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1ag46gyrunbv"]
+
+[ext_resource type="Script" uid="uid://c1gbi4khta052" path="res://scripts/ui/AvatarScreen2D.gd" id="1_8qs58"]
+
+[node name="AvatarScreen2D" type="SubViewportContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_8qs58")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="AvatarImage" type="TextureRect" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 5

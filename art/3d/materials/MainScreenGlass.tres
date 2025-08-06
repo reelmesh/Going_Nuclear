@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://b7lv2ufiikwa6"]
+
+[ext_resource type="Texture2D" uid="uid://b48esdxe3bk7p" path="res://art/3d/textures/console_MainScreenGlass_Color_4096.png" id="1_65xyb"]
+[ext_resource type="Texture2D" uid="uid://begr0crnsj2k" path="res://art/3d/textures/console_MainScreenGlass_Roughness_4096.png" id="2_w5wuk"]
+
+[resource]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+depth_draw_mode = 2
+albedo_texture = ExtResource("1_65xyb")
+albedo_texture_force_srgb = true
+clearcoat_enabled = true
+clearcoat_roughness = 0.05
+clearcoat_texture = ExtResource("2_w5wuk")
+refraction_enabled = true
+refraction_scale = 1.0
+refraction_texture = ExtResource("1_65xyb")
+refraction_texture_channel = 3

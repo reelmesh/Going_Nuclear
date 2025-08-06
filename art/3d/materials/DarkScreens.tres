@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cg5vfkh3o024l"]
+
+[resource]
+resource_local_to_scene = true
+resource_name = "DarkScreens"
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+roughness = 0.15

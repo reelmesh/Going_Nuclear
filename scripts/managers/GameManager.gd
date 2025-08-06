@@ -13,6 +13,13 @@ var build_cost: int = 25
 const AP_COST_BUILD = 1
 const AP_COST_INFOWAR = 1
 const AP_COST_CONVENTIONAL = 2
+const INVESTMENT_SECTORS = [
+	{"id": 0, "name": "Nuclear Program", "ap_cost": 2, "treasury_cost": 100, "type": CardData.CardType.PAYLOAD},
+	{"id": 1, "name": "Aerospace & Ballistics", "ap_cost": 2, "treasury_cost": 80, "type": CardData.CardType.DELIVERY},
+	{"id": 2, "name": "Cyber Warfare Division", "ap_cost": 1, "treasury_cost": 50, "type": CardData.CardType.INFO_WAR},
+	{"id": 3, "name": "Intelligence Agency", "ap_cost": 1, "treasury_cost": 40, "type": CardData.CardType.UTILITY},
+	{"id": 4, "name": "Civil Defense Initiative", "ap_cost": 1, "treasury_cost": 30, "type": CardData.CardType.DEFENSE}
+]
 
 var selected_delivery_card: CardData = null
 var selected_payload_card: CardData = null
@@ -138,22 +145,36 @@ func process_ai_turn(ai_player: PlayerState):
 	game_state_changed.emit()
 	next_turn()
 
-func process_build_action():
+func process_build_action(sector_id: int):
 	var player = get_human_player_state()
-	if not player: return
-	if player.current_ap < AP_COST_BUILD:
-		Logger.log("Not enough Action Points! (Needs %d)" % AP_COST_BUILD)
+	var sector = INVESTMENT_SECTORS[sector_id]
+	
+	if player.current_ap < sector.ap_cost:
+		Logger.log("Not enough AP!")
 		return
-	if player.current_treasury < build_cost:
-		Logger.log("Not enough Treasury! (Needs %d)" % build_cost)
+	if player.current_treasury < sector.treasury_cost:
+		Logger.log("Not enough Treasury!")
 		return
-	player.current_ap -= AP_COST_BUILD
-	player.current_treasury -= build_cost
-	draw_card(player)
-	draw_card(player)
-	Logger.log("Build successful! Gained 2 new assets. (%d AP remaining)" % player.current_ap)
+		
+	player.current_ap -= sector.ap_cost
+	player.current_treasury -= sector.treasury_cost
+	
+	# Draw one card of the chosen type.
+	var card_to_draw = find_random_card_of_type(sector.type)
+	if card_to_draw:
+		player.hand.append(card_to_draw)
+		Logger.log("Build successful! Acquired: %s" % card_to_draw)
+	else:
+		Logger.log("Build failed: No cards of that type available to draw.")
+	
 	game_state_changed.emit()
 
+func find_random_card_of_type(card_type: CardData.CardType) -> String:
+	var card_pool = CardDatabase.get_card_ids_by_type(card_type)
+	if not card_pool.is_empty():
+		return card_pool.pick_random()
+	return ""
+	
 func is_player_action_valid() -> bool:
 	if selected_infowar_card and selected_target:
 		return true
