@@ -1,0 +1,683 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Card Database</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="247974b6-c83e-80f2-889a-d5147773c35e" class="page sans"><header><h1 class="page-title">Card Database</h1><p class="page-description"></p></header><div class="page-body"><h3 id="247974b6-c83e-800a-ac34-dd3b1d136bcd" class=""><strong>Category: DELIVERY</strong></h3><p id="247974b6-c83e-806f-995e-c63092a095cf" class=""><em>(Phase: Primarily Phase 2, but can be &quot;rattled&quot; in Phase 1)</em></p><ul id="247974b6-c83e-809f-b748-cac6932ef566" class="bulleted-list"><li style="list-style-type:disc"><strong>1. ICBM (Intercontinental Ballistic Missile)</strong><ul id="247974b6-c83e-8053-aebe-df018ad5d7da" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> The workhorse of nuclear arsenals. Launched from hardened silos.</li></ul><ul id="247974b6-c83e-8040-aa86-fe794a1d4b36" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> <code>success_chance: 95%</code>.</li></ul><ul id="247974b6-c83e-8097-8581-c5be6c86c16f" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> The most reliable method for ensuring a payload hits its target.</li></ul></li></ul><ul id="247974b6-c83e-80ef-b81f-c346d142f3bc" class="bulleted-list"><li style="list-style-type:disc"><strong>2. SLBM (Submarine-Launched Ballistic Missile)</strong><ul id="247974b6-c83e-80e9-bae1-de7cec2632ed" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> An undetectable first-strike weapon launched from a hidden nuclear submarine.</li></ul><ul id="247974b6-c83e-8056-98f2-cc6199827451" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> <code>success_chance: 90%</code>. <strong>Special:</strong> Cannot be revealed by opponent &quot;Espionage&quot; cards.</li></ul><ul id="247974b6-c83e-801c-b5bf-d9e18a7ca7ec" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> Ideal for a surprise attack against a well-prepared opponent.</li></ul></li></ul><ul id="247974b6-c83e-8075-a5d6-d48c1ddccbab" class="bulleted-list"><li style="list-style-type:disc"><strong>3. Strategic Bomber</strong><ul id="247974b6-c83e-8000-8e64-eca97f60b5bc" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A stealth bomber designed to penetrate deep into enemy airspace.</li></ul><ul id="247974b6-c83e-8038-98eb-cfbbd3aaf9d3" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> <code>success_chance: 75%</code>.</li></ul><ul id="247974b6-c83e-801b-be1f-efbafe26500a" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> A cheaper but more vulnerable delivery method. Can be effectively countered by &quot;Air Defense.&quot;</li></ul></li></ul><ul id="247974b6-c83e-8099-b53b-e4cea880a0b7" class="bulleted-list"><li style="list-style-type:disc"><strong>4. Hypersonic Cruise Missile</strong><ul id="247974b6-c83e-802c-b66d-cd4daebef478" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> An advanced, ultra-fast, and maneuverable missile.</li></ul><ul id="247974b6-c83e-8068-a64d-ded6c279bd42" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> <code>success_chance: 85%</code>. <strong>Special:</strong> Ignores standard <code>ABM Silos</code> defense.</li></ul><ul id="247974b6-c83e-80fa-8742-c1acff822221" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> The tool for cracking open the defenses of a technologically advanced foe.</li></ul></li></ul><h3 id="247974b6-c83e-80af-baa0-e924e3e44bb3" class=""><strong>Category: PAYLOAD</strong></h3><p id="247974b6-c83e-8011-89e8-cfc666488392" class=""><em>(Phase: Phase 2. Dependent on a DELIVERY card.)</em></p><h3 id="248974b6-c83e-80d6-9842-c20ef3be8ed8" class=""><strong>1. Weapon Diversification (Payloads)</strong></h3><p id="248974b6-c83e-8083-b4ca-f6e6701c9e8f" class="">To make the &quot;Nuclear Program&quot; investment meaningful, we will diversify warhead types as you suggested. Warheads will now have a <strong>Size</strong> (affecting damage) and a <strong>Scarcity</strong> (affecting build cost and probability).</p><ul id="248974b6-c83e-8009-a45a-cbb1502ea0bf" class="bulleted-list"><li style="list-style-type:disc"><strong>Tactical Warhead (1-10 MT):</strong><ul id="248974b6-c83e-8009-b8c8-ceb93301fd7e" class="bulleted-list"><li style="list-style-type:circle"><strong>Damage:</strong> 1-10 Population.</li></ul><ul id="248974b6-c83e-80c0-9b7d-f5dac646d897" class="bulleted-list"><li style="list-style-type:circle"><strong>Scarcity:</strong> Common. Cheap to build.</li></ul><ul id="248974b6-c83e-8099-adbe-ebae66941ede" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> For small, precise strikes or for finishing off a weakened opponent.</li></ul></li></ul><ul id="248974b6-c83e-801c-9cf7-d5f12320adec" class="bulleted-list"><li style="list-style-type:disc"><strong>Strategic Warhead (20-50 MT):</strong><ul id="248974b6-c83e-800e-b4ee-d1b64ca4e91a" class="bulleted-list"><li style="list-style-type:circle"><strong>Damage:</strong> 20-50 Population.</li></ul><ul id="248974b6-c83e-80bd-a706-ea354eaa17a0" class="bulleted-list"><li style="list-style-type:circle"><strong>Scarcity:</strong> Uncommon. The standard workhorse warhead.</li></ul></li></ul><ul id="248974b6-c83e-804f-9734-cdbbe1fae4df" class="bulleted-list"><li style="list-style-type:disc"><strong>Multi-Megaton Warhead (100+ MT):</strong><ul id="248974b6-c83e-80bc-9590-dd2e8fb98ea8" class="bulleted-list"><li style="list-style-type:circle"><strong>Damage:</strong> 100+ Population.</li></ul><ul id="248974b6-c83e-8019-a2f9-c21b50299565" class="bulleted-list"><li style="list-style-type:circle"><strong>Scarcity:</strong> Rare. Very expensive and time-consuming to build (may cost more AP or require a special &quot;Research&quot; project first).</li></ul><ul id="248974b6-c83e-800d-8601-e9832650d809" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> A game-changing superweapon, designed to annihilate a major faction in a single blow. Its use would have severe diplomatic and DEFCON penalties.</li></ul></li></ul><ul id="247974b6-c83e-802c-9b27-fbc184c0a752" class="bulleted-list"><li style="list-style-type:disc"><strong>2. EMP Warhead</strong><ul id="247974b6-c83e-8029-9148-e834b09235a6" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> Detonates in the upper atmosphere to generate a powerful electromagnetic pulse, frying electronics.</li></ul><ul id="247974b6-c83e-802b-81e2-cf03287b6561" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> <code>damage: 0</code>. <strong>Special:</strong> Target faction loses 2 AP on their next turn and must discard one random card.</li></ul><ul id="247974b6-c83e-8091-a5ba-eb837099c95a" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> A crippling tempo play to disrupt a powerful opponent&#x27;s upcoming turn.</li></ul></li></ul><ul id="247974b6-c83e-8045-b749-d6f72bc1e7df" class="bulleted-list"><li style="list-style-type:disc"><strong>3. Dirty Bomb</strong><ul id="247974b6-c83e-80c6-979d-e99f51188ba8" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A radiological dispersal device that contaminates a wide area with long-lasting fallout.</li></ul><ul id="247974b6-c83e-803d-a82b-db9ec2649584" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> <code>damage: 10</code>. <strong>Special:</strong> Applies a &quot;Fallout&quot; status effect to the target for 3 turns. While active, the target loses 5M population and 10% of their Treasury income at the start of their turn.</li></ul><ul id="247974b6-c83e-80ef-8c30-f64185137e25" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> A long-term economic and psychological weapon.</li></ul></li></ul><ul id="247974b6-c83e-80cf-b8cb-d344f945bd79" class="bulleted-list"><li style="list-style-type:disc"><strong>4. Neutron Bomb</strong><ul id="247974b6-c83e-80e6-9202-d2478aa1468e" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> An &quot;enhanced radiation&quot; weapon that maximizes casualties while minimizing infrastructure damage.</li></ul><ul id="247974b6-c83e-8068-ab72-d7eabad06dac" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> <code>damage: 75</code>. <strong>Special:</strong> The target&#x27;s <code>Morale</code> is massively reduced.</li></ul><ul id="247974b6-c83e-80ed-a9aa-d0998d89be46" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> A purely anti-personnel weapon for maximum psychological impact.</li></ul></li></ul><h3 id="247974b6-c83e-80c2-b116-ce795ca9b86a" class=""><strong>Category: INFO_WAR</strong></h3><p id="247974b6-c83e-80ff-8ea5-cf396b895845" class=""><em>(Phase: Primarily Phase 1, but still effective in Phase 2)</em></p><ul id="247974b6-c83e-804f-9c86-f81f102d694a" class="bulleted-list"><li style="list-style-type:disc"><strong>1. Viral Disinformation</strong><ul id="247974b6-c83e-8006-b132-ee5d638647a1" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A targeted social media campaign to sow chaos and dissent among the enemy&#x27;s populace.</li></ul><ul id="247974b6-c83e-808f-ac83-edab199d54b2" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> <code>damage: 15</code>. This damage represents population loss from riots and civil unrest, not a direct attack. Reduces target&#x27;s <code>Morale</code>.</li></ul><ul id="247974b6-c83e-804f-8ca9-dc3f77d80b44" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> The primary tool for direct damage during the &quot;Cold War&quot; phase.</li></ul></li></ul><ul id="247974b6-c83e-80a5-a80e-c7622fa2c0d5" class="bulleted-list"><li style="list-style-type:disc"><strong>2. Deepfake Scandal</strong><ul id="247974b6-c83e-80dc-a354-ff33b1c0a5f3" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> Fabricated video evidence shows an enemy leader in a compromising and embarrassing situation.</li></ul><ul id="247974b6-c83e-807c-82fb-e04d226ca68c" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> Target faction&#x27;s <code>Morale</code> plummets. Their diplomatic relationships with all other factions are temporarily reduced.</li></ul><ul id="247974b6-c83e-80b2-be61-f4a6e083d9c7" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> A powerful tool for diplomatically isolating an opponent before a key vote or attack.</li></ul></li></ul><ul id="247974b6-c83e-80af-a7b7-f24e824cbf6d" class="bulleted-list"><li style="list-style-type:disc"><strong>3. Supply Chain Hack</strong><ul id="247974b6-c83e-80b5-b7d5-f2aaad133597" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A cyber-attack on the target&#x27;s industrial and economic infrastructure.</li></ul><ul id="247974b6-c83e-806d-b456-eb5326566e63" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> The target immediately loses a moderate amount of <code>Treasury</code>. Their &quot;Build&quot; action costs double for their next turn.</li></ul><ul id="247974b6-c83e-80b6-bea1-df81fdd05027" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> An economic weapon to stifle an opponent&#x27;s growth and ability to build their arsenal.</li></ul></li></ul><ul id="247974b6-c83e-809e-a160-d47399714089" class="bulleted-list"><li style="list-style-type:disc"><strong>4. (NEW) GPS Spoofing:</strong><ul id="247974b6-c83e-802b-b8e8-f08f02da683f" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A sophisticated cyber-attack that falsifies GPS signals, causing chaos in the enemy&#x27;s navigation and targeting systems.</li></ul><ul id="247974b6-c83e-80a0-a078-fac4b6a6db92" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> For the next turn, the target faction&#x27;s DELIVERY cards have their success_chance massively reduced (e.g., -50%).</li></ul><ul id="247974b6-c83e-8093-b740-d7a055dcda37" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> A preemptive electronic attack to neuter an opponent&#x27;s upcoming offensive turn.</li></ul></li></ul><h3 id="247974b6-c83e-8088-a5a7-df964fc8b0d8" class=""><strong>Category: UTILITY</strong></h3><p id="247974b6-c83e-80c4-8537-d3fd1627730b" class=""><em>(Phase: Primarily Phase 1, but effects can carry into Phase 2)</em></p><ul id="247974b6-c83e-8006-89d8-f78dc0d39b29" class="bulleted-list"><li style="list-style-type:disc"><strong>1. Intelligence Agency</strong><ul id="247974b6-c83e-8000-a531-cc571f334f3a" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> Establish a network of spies and assets within a target nation.</li></ul><ul id="247974b6-c83e-808e-8c2e-c58bb785bd69" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> Look at a target&#x27;s hand of cards. Choose one to &quot;expose,&quot; revealing it to all players.</li></ul><ul id="247974b6-c83e-804c-8148-dea8db5fbf35" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> Essential for gathering information and anticipating an opponent&#x27;s next move.</li></ul></li></ul><ul id="247974b6-c83e-8040-9d61-c6506b261069" class="bulleted-list"><li style="list-style-type:disc"><strong>2. Sabotage</strong><ul id="247974b6-c83e-8079-8f90-d8c4340b1b79" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> Your agents carry out a covert operation to destroy a key piece of enemy hardware.</li></ul><ul id="247974b6-c83e-8027-a235-e3e6e5b80fdc" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> Target an opponent and force them to discard one random <code>DELIVERY</code> or <code>DEFENSE</code> card from their hand.</li></ul><ul id="247974b6-c83e-800b-b3e8-cb75bae04afb" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> A preemptive strike to remove a threat before it can be used.</li></ul></li></ul><ul id="247974b6-c83e-8009-8e49-cf61570ad2c8" class="bulleted-list"><li style="list-style-type:disc"><strong>3. Diplomatic Summit</strong><ul id="247974b6-c83e-8091-829c-d714429d9b3c" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> Arrange a high-level meeting with another faction to improve relations.</li></ul><ul id="247974b6-c83e-80b5-b15f-fb1d4e8d3751" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> Target another AI faction. Your <code>relationship</code> score with them increases significantly. Costs <code>Treasury</code>.</li></ul><ul id="247974b6-c83e-808f-844c-ee59adb0cf4d" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> The primary tool for building alliances and working towards a Diplomatic Victory.</li></ul></li></ul><ul id="247974b6-c83e-8037-8584-f235be88202a" class="bulleted-list"><li style="list-style-type:disc"><strong>4. Assassinate Scientist:</strong><ul id="247974b6-c83e-8082-9e17-c3d0cf36e53a" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A covert operation to eliminate a key figure in the enemy&#x27;s weapons program.</li></ul><ul id="247974b6-c83e-8046-907c-d141b76bcda8" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> The target must discard all copies of one specific, high-tech card from their hand and deck (e.g., all &quot;Hypersonic Missile&quot; cards).</li></ul><ul id="247974b6-c83e-8098-b226-f4c5369870ec" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> A high-risk, high-reward mission to permanently remove an opponent&#x27;s most dangerous technological advantage.</li></ul></li></ul><ul id="247974b6-c83e-80d4-8a7a-d76e501a3799" class="bulleted-list"><li style="list-style-type:disc"><strong>5. Coup d&#x27;état:</strong><ul id="247974b6-c83e-80dd-830c-c49f0e509c71" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> Foment a political coup to destabilize the enemy government from within.</li></ul><ul id="247974b6-c83e-80b2-91bb-f4423947c36e" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> A very expensive, high-impact UTILITY card. The target faction immediately loses their next turn and suffers a massive, permanent Morale penalty.</li></ul><ul id="247974b6-c83e-8009-9810-ebc1bf6dccf5" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> The ultimate &quot;soft power&quot; weapon to completely paralyze an opponent without firing a shot.</li></ul></li></ul><h3 id="247974b6-c83e-80dd-9b9a-ca47216ded41" class=""><strong>Category: DEFENSE</strong></h3><p id="247974b6-c83e-8015-a030-f065e00e9984" class=""><em>(Phase: Can be played in either phase to prepare for an opponent&#x27;s turn)</em></p><ul id="247974b6-c83e-8097-a504-e30c7330f2bf" class="bulleted-list"><li style="list-style-type:disc"><strong>1. ABM Silos</strong><ul id="247974b6-c83e-806e-ba41-d266ec97f647" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A network of anti-ballistic missile interceptors.</li></ul><ul id="247974b6-c83e-80de-875a-c138be7a54c9" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> When played, grants a &quot;Missile Shield&quot; status for one round. Has a high chance to negate one incoming <code>ICBM</code> or <code>SLBM</code> attack.</li></ul><ul id="247974b6-c83e-80ec-81b3-f58ded919fe4" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> Standard protection against a standard nuclear strike.</li></ul></li></ul><ul id="247974b6-c83e-80f7-8221-c8f8c11f9c27" class="bulleted-list"><li style="list-style-type:disc"><strong>2. Counter-Propaganda Campaign</strong><ul id="247974b6-c83e-804a-8f43-d9c80cf72a44" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A domestic media campaign to bolster national unity and discredit foreign interference.</li></ul><ul id="247974b6-c83e-802f-a4f1-ffd047659d08" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> When played, grants a &quot;Firewall&quot; status for one round. Has a high chance to negate one incoming <code>INFO_WAR</code> card. Boosts <code>Morale</code>.</li></ul><ul id="247974b6-c83e-805e-aa98-d70942fedbcd" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> The primary defense against non-kinetic attacks.</li></ul></li></ul><ul id="247974b6-c83e-8011-a445-e2676a6ae86e" class="bulleted-list"><li style="list-style-type:disc"><strong>3. Hardened Bunkers</strong><ul id="247974b6-c83e-8080-80fa-edc48ca289bf" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A nationwide network of fallout shelters and reinforced command centers.</li></ul><ul id="247974b6-c83e-8057-8a9f-dbaf00ebdd93" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> A passive defense. When played, it remains in effect until triggered. Does not stop an attack, but reduces population damage from the next successful conventional strike by 50%.</li></ul><ul id="247974b6-c83e-80c6-bd91-ca4de617ff94" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> A last-ditch effort to survive an otherwise unsurvivable blow.</li></ul></li></ul><ul id="247974b6-c83e-8051-9643-c3660b65c3e7" class="bulleted-list"><li style="list-style-type:disc"><strong>4. Military-Grade Firewall:</strong><ul id="247974b6-c83e-8058-b0fc-f2f7c7fb29c6" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A hardened national cyber-defense network.</li></ul><ul id="247974b6-c83e-80e6-9fda-fdfc9749eb31" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> When played, grants &quot;Cyber Shield&quot; status for one round. Negates one incoming Supply Chain Hack or GPS Spoofing attack.</li></ul><ul id="247974b6-c83e-80ce-b356-c9e40d0a121d" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> The direct counter to electronic warfare.</li></ul></li></ul><ul id="247974b6-c83e-8004-a3eb-cc7765ca537a" class="bulleted-list"><li style="list-style-type:disc"><strong>5. Counter-Intelligence Network:</strong><ul id="247974b6-c83e-80e0-a5ac-fb67b65992e0" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> A network of loyal agents and sleeper cells (the old &quot;Counter-Intelligence Agency&quot; card, now a pure defensive tool).</li></ul><ul id="247974b6-c83e-800e-8aeb-fda9b8913e0e" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> When played, grants &quot;Sleeper Agents&quot; status for one round. Negates one incoming Sabotage or Assassinate Scientist action. Also the only counter to the &quot;Suitcase Nuke.&quot;</li></ul><ul id="247974b6-c83e-8034-af3b-f3a7e559a50b" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> The direct counter to enemy covert operations.</li></ul></li></ul><ul id="247974b6-c83e-80ae-9203-c592757bd4dd" class="bulleted-list"><li style="list-style-type:disc"><strong>6. Palace Guard:</strong><ul id="247974b6-c83e-8003-ac99-ead55b74bfc9" class="bulleted-list"><li style="list-style-type:circle"><strong>Description:</strong> An elite, fanatically loyal guard unit that protects the nation&#x27;s leader and government institutions.</li></ul><ul id="247974b6-c83e-80ab-b696-f79198fee861" class="bulleted-list"><li style="list-style-type:circle"><strong>Effect:</strong> The only defense that can foil a Coup d&#x27;état attempt.</li></ul><ul id="247974b6-c83e-80a3-8e4f-d9d842e52006" class="bulleted-list"><li style="list-style-type:circle"><strong>Use Case:</strong> Essential for unstable regimes or leaders with many enemies.</li></ul></li></ul><p id="247974b6-c83e-80e0-8f88-ec1974bdea87" class="">
+</p><p id="247974b6-c83e-80dc-a4a1-e1b70e75f05b" class="">
+</p><h3 id="247974b6-c83e-8065-9e8a-e6c1fb97356a" class="">The New Strategic Triangle</h3><p id="247974b6-c83e-801a-b33e-f69c7e14e90b" class="">This expanded list creates a much more interesting &quot;rock-paper-scissors&quot; dynamic:</p><ul id="247974b6-c83e-809e-ab80-fe5a041c2fad" class="bulleted-list"><li style="list-style-type:disc">To cripple an enemy&#x27;s economy, you use <strong>Supply Chain Hack</strong>. They must have a <strong>Military-Grade Firewall</strong> to stop it.</li></ul><ul id="247974b6-c83e-8077-9a58-e60e9eb5c0a9" class="bulleted-list"><li style="list-style-type:disc">To remove a dangerous weapon, you use <strong>Sabotage</strong>. They need a <strong>Counter-Intelligence Network</strong> to stop it.</li></ul><ul id="247974b6-c83e-80d6-908f-f8a7ba9bd3cc" class="bulleted-list"><li style="list-style-type:disc">To paralyze a government, you use <strong>Coup d&#x27;état</strong>. They need the rare <strong>Palace Guard</strong> card to survive.</li></ul><p id="247974b6-c83e-804f-89cf-e2c3733bb604" class="">This is a much more dynamic and strategically rich game.</p><p id="247974b6-c83e-80ab-8105-d17756e73120" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

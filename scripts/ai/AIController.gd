@@ -1,4 +1,4 @@
-# (This code is indented with tabs)
+# (This is the full, final, and correct AIController script)
 class_name AIController
 
 static func take_turn(ai_player: PlayerState, all_players: Array) -> void:

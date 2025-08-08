@@ -1,0 +1,35 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cb4i1wge32enb"]
+
+[ext_resource type="FontFile" uid="uid://cddxnbkp6fhb4" path="res://art/fonts/AcPlus_IBM_BIOS.ttf" id="1_7hhxj"]
+[ext_resource type="StyleBox" uid="uid://c88dwifq04es6" path="res://art/ui/bright_green_style_box.tres" id="2_e72hk"]
+[ext_resource type="StyleBox" uid="uid://dvqvj7mmylnnp" path="res://dark_green_box_flat.tres" id="3_okwhi"]
+[ext_resource type="FontFile" uid="uid://dxlhw6waffypr" path="res://art/fonts/AcPlus_IBM_VGA_9x14-2x.ttf" id="4_po0g3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kd1s"]
+bg_color = Color(0.0405, 0.81, 0.335475, 1)
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/fonts/font = ExtResource("1_7hhxj")
+CheckButton/colors/font_color = Color(1, 1, 1, 0.705882)
+CheckButton/colors/font_pressed_color = Color(0, 0, 0, 1)
+Label/fonts/font = ExtResource("1_7hhxj")
+LineEdit/fonts/font = ExtResource("1_7hhxj")
+MarginContainer/constants/margin_bottom = 2
+MarginContainer/constants/margin_left = 2
+MarginContainer/constants/margin_right = 2
+MarginContainer/constants/margin_top = 2
+OptionButton/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+OptionButton/fonts/font = ExtResource("1_7hhxj")
+Panel/styles/panel = ExtResource("2_e72hk")
+ProgressBar/fonts/font = ExtResource("1_7hhxj")
+ProgressBar/styles/background = ExtResource("3_okwhi")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_1kd1s")
+TabBar/font_sizes/font_size = 16
+TabBar/fonts/font = ExtResource("1_7hhxj")
+TextEdit/font_sizes/font_size = 14
+TextEdit/fonts/font = ExtResource("1_7hhxj")
+Tree/font_sizes/font_size = 16
+Tree/font_sizes/title_button_font_size = 16
+Tree/fonts/font = ExtResource("4_po0g3")
+Tree/fonts/title_button_font = ExtResource("1_7hhxj")
