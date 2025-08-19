@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_pktqr")
-card_preset = 12
+card_preset = 15
 card_name = "Intelligence Agency"
 description = "View a target's hand and expose one card to all players."
 card_type = 3

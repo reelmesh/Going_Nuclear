@@ -58,7 +58,7 @@ viewport_path = NodePath("console/MainScreen/SubViewport")
 
 [resource]
 resource_local_to_scene = true
-resource_name = "DarkScreens"
+resource_name = "MainScreen"
 render_priority = 0
 shader = SubResource("Shader_f127i")
 shader_parameter/albedo = Color(0, 0, 0, 1)

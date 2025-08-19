@@ -15,7 +15,7 @@ extends Node3D
 @onready var avatar_image_br: TextureRect = $console/EnemyAvatarScreen_BottomRight/SubViewport/AvatarImage_BottomRight
 @onready var avatar_image_tl: TextureRect = $console/EnemyAvatarScreen_TopLeft/SubViewport/AvatarImage_TopLeft
 @onready var avatar_image_bl: TextureRect = $console/EnemyAvatarScreen_BottomLeft/SubViewport/AvatarImage_BottomLeft
-@onready var deployment_screen: DeploymentUI = $console/MainScreen/SubViewport/DeploymentScreen
+#@onready var deployment_screen: DeploymentUI = $console/MainScreen/SubViewport/DeploymentScreen
 
 
 # --- Info Labels ---

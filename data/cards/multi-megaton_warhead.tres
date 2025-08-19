@@ -4,10 +4,10 @@
 
 [resource]
 script = ExtResource("1_j3ck2")
-card_preset = 0
-card_name = ""
-description = ""
-card_type = 0
-damage = 0
+card_preset = 7
+card_name = "Multi-Megaton Warhead"
+description = "A massive 100+ Megaton city-killer. Use has severe consequences."
+card_type = 1
+damage = 100
 success_chance = 1.0
 metadata/_custom_type_script = "uid://cflkvq05j4tjc"

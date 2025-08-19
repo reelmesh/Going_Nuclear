@@ -10,13 +10,13 @@ enum CardPreset {
 	# Delivery
 	ICBM, SLBM, STRATEGIC_BOMBER, HYPERSONIC_MISSILE,
 	# Payload
-	STANDARD_WARHEAD, EMP_WARHEAD, DIRTY_BOMB, NEUTRON_BOMB,
+	TACTICAL_WARHEAD, STRATEGIC_WARHEAD, MULTI_MEGATON_WARHEAD, EMP_WARHEAD, DIRTY_BOMB, NEUTRON_BOMB,
 	# InfoWar
-	VIRAL_DISINFORMATION, DEEPFAKE_SCANDAL, SUPPLY_CHAIN_HACK,
+	VIRAL_DISINFORMATION, DEEPFAKE_SCANDAL, SUPPLY_CHAIN_HACK, GPS_SPOOFING,
 	# Utility
-	INTELLIGENCE_AGENCY, SABOTAGE, DIPLOMATIC_SUMMIT,
+	INTELLIGENCE_AGENCY, SABOTAGE, DIPLOMATIC_SUMMIT, ASSASSINATE_SCIENTIST, COUP_DETAT,
 	# Defense
-	ABM_SILOS, COUNTER_PROPAGANDA, HARDENED_BUNKERS
+	ABM_SILOS, COUNTER_PROPAGANDA, HARDENED_BUNKERS, MILITARY_GRADE_FIREWALL, COUNTER_INTELLIGENCE_NETWORK, PALACE_GUARD
 }
 
 # --- 2. The Central Database (The GDD, in code form) ---
@@ -28,22 +28,30 @@ const PRESET_DATA = {
 	3:  { "name": "Strategic Bomber", "type": 0, "desc": "Vulnerable but versatile aircraft.", "chance": 0.75 },
 	4:  { "name": "Hypersonic Missile", "type": 0, "desc": "Advanced missile that ignores standard ABM defenses.", "chance": 0.85 },
 	# Payload
-	5:  { "name": "Standard Warhead", "type": 1, "desc": "50 Megaton thermonuclear payload.", "damage": 50 },
-	6:  { "name": "EMP Warhead", "type": 1, "desc": "Deals no population damage. Target loses 2 AP and discards 1 card.", "damage": 0 },
-	7:  { "name": "Dirty Bomb", "type": 1, "desc": "Deals 10 damage and applies 'Fallout' for 3 turns (loses pop/treasury).", "damage": 10 },
-	8:  { "name": "Neutron Bomb", "type": 1, "desc": "Deals 75 damage and massively reduces Morale.", "damage": 75 },
+	5:  { "name": "Tactical Warhead", "type": 1, "desc": "A small, 1-10 Megaton payload for precise strikes.", "damage": 10 },
+	6:  { "name": "Strategic Warhead", "type": 1, "desc": "A standard 20-50 Megaton thermonuclear payload.", "damage": 50 },
+	7:  { "name": "Multi-Megaton Warhead", "type": 1, "desc": "A massive 100+ Megaton city-killer. Use has severe consequences.", "damage": 100 },
+	8:  { "name": "EMP Warhead", "type": 1, "desc": "Deals no population damage. Target loses 2 AP and discards 1 card.", "damage": 0 },
+	9:  { "name": "Dirty Bomb", "type": 1, "desc": "Deals 10 damage and applies 'Fallout' for 3 turns (loses pop/treasury).", "damage": 10 },
+	10: { "name": "Neutron Bomb", "type": 1, "desc": "Deals 75 damage and massively reduces Morale.", "damage": 75 },
 	# InfoWar
-	9:  { "name": "Viral Disinformation", "type": 2, "desc": "Deals 15 damage via civil unrest and reduces Morale.", "damage": 15 },
-	10: { "name": "Deepfake Scandal", "type": 2, "desc": "Target's Morale plummets. Diplomatic relations with all others are damaged." },
-	11: { "name": "Supply Chain Hack", "type": 2, "desc": "Target loses Treasury. 'Build' action cost is doubled next turn." },
+	11: { "name": "Viral Disinformation", "type": 2, "desc": "Deals 15 damage via civil unrest and reduces Morale.", "damage": 15 },
+	12: { "name": "Deepfake Scandal", "type": 2, "desc": "Target's Morale plummets. Diplomatic relations with all others are damaged." },
+	13: { "name": "Supply Chain Hack", "type": 2, "desc": "Target loses Treasury. 'Build' action cost is doubled next turn." },
+	14: { "name": "GPS Spoofing", "type": 2, "desc": "For the next turn, the target's DELIVERY cards have their success_chance massively reduced." },
 	# Utility
-	12: { "name": "Intelligence Agency", "type": 3, "desc": "View a target's hand and expose one card to all players." },
-	13: { "name": "Sabotage", "type": 3, "desc": "Force a target to discard one random DELIVERY or DEFENSE card." },
-	14: { "name": "Diplomatic Summit", "type": 3, "desc": "Spend Treasury to significantly improve relations with a target." },
+	15: { "name": "Intelligence Agency", "type": 3, "desc": "View a target's hand and expose one card to all players." },
+	16: { "name": "Sabotage", "type": 3, "desc": "Force a target to discard one random DELIVERY or DEFENSE card." },
+	17: { "name": "Diplomatic Summit", "type": 3, "desc": "Spend Treasury to significantly improve relations with a target." },
+	18: { "name": "Assassinate Scientist", "type": 3, "desc": "Permanently remove an opponent's most dangerous technological advantage." },
+	19: { "name": "Coup d'état", "type": 3, "desc": "The ultimate soft power weapon. Target loses their next turn and suffers a massive Morale penalty." },
 	# Defense
-	15: { "name": "ABM Silos", "type": 4, "desc": "Grants 'Missile Shield' for one round, stopping one ICBM or SLBM." },
-	16: { "name": "Counter-Propaganda", "type": 4, "desc": "Grants 'Firewall' for one round, stopping one InfoWar attack." },
-	17: { "name": "Hardened Bunkers", "type": 4, "desc": "Passive: Halves population damage from the next successful nuclear attack." }
+	20: { "name": "ABM Silos", "type": 4, "desc": "Grants 'Missile Shield' for one round, stopping one ICBM or SLBM." },
+	21: { "name": "Counter-Propaganda", "type": 4, "desc": "Grants 'Firewall' for one round, stopping one InfoWar attack." },
+	22: { "name": "Hardened Bunkers", "type": 4, "desc": "Passive: Halves population damage from the next successful nuclear attack." },
+	23: { "name": "Military-Grade Firewall", "type": 4, "desc": "Negates one incoming Supply Chain Hack or GPS Spoofing attack." },
+	24: { "name": "Counter-Intelligence Network", "type": 4, "desc": "Negates one incoming Sabotage or Assassinate Scientist action." },
+	25: { "name": "Palace Guard", "type": 4, "desc": "The only defense that can foil a Coup d'état attempt." }
 }
 
 # --- 3. The "Trigger" Variable ---

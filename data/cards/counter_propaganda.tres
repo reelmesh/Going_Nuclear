@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_d373x")
-card_preset = 16
+card_preset = 21
 card_name = "Counter-Propaganda"
 description = "Grants 'Firewall' for one round, stopping one InfoWar attack."
 card_type = 4

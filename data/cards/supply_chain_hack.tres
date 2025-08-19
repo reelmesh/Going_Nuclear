@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_j5lob")
-card_preset = 11
+card_preset = 13
 card_name = "Supply Chain Hack"
-description = "Target loses Treasury. 'Build' action cost is doubled next turn. (Special: Economic damage, not population damage)"
+description = "Target loses Treasury. 'Build' action cost is doubled next turn."
 card_type = 2
 damage = 0
 success_chance = 1.0

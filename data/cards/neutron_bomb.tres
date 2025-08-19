@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_2cpgv")
-card_preset = 8
+card_preset = 10
 card_name = "Neutron Bomb"
 description = "Deals 75 damage and massively reduces Morale."
 card_type = 1

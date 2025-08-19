@@ -1,13 +1,12 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://bhmpsrbdk4t4s"]
 
-[ext_resource type="Script" uid="uid://cflkvq05j4tjc" path="res://scripts/data/card_data.gd" id="1_p1bj0"]
+[ext_resource type="Script" uid="uid://cflkvq05j4tjc" path="res://scripts/data/card_data.gd" id="1_carddata"]
 
 [resource]
-script = ExtResource("1_p1bj0")
+script = ExtResource("1_carddata")
 card_preset = 5
-card_name = "Standard Warhead"
-description = "50 Megaton thermonuclear payload."
+card_name = "Tactical Warhead"
+description = "A small, 1-10 Megaton payload for precise strikes."
 card_type = 1
-damage = 50
+damage = 10
 success_chance = 1.0
-metadata/_custom_type_script = "uid://cflkvq05j4tjc"

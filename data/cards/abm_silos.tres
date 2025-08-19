@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_u117e")
-card_preset = 15
+card_preset = 20
 card_name = "ABM Silos"
 description = "Grants 'Missile Shield' for one round, stopping one ICBM or SLBM."
 card_type = 4

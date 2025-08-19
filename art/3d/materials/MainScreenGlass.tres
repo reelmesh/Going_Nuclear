@@ -13,7 +13,6 @@ albedo_texture_force_srgb = true
 clearcoat_enabled = true
 clearcoat_roughness = 0.05
 clearcoat_texture = ExtResource("2_w5wuk")
-refraction_enabled = true
 refraction_scale = 1.0
 refraction_texture = ExtResource("1_65xyb")
 refraction_texture_channel = 3

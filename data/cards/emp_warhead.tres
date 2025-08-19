@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_4hv6i")
-card_preset = 6
+card_preset = 8
 card_name = "EMP Warhead"
 description = "Deals no population damage. Target loses 2 AP and discards 1 card."
 card_type = 1

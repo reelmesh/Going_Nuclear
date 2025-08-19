@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://ch6e4kpdnqppa"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://ch6e4kpdnqppa"]
 
+[ext_resource type="Texture2D" uid="uid://bm148kd78ujxc" path="res://art/cards/icbm.png" id="1_l6mh2"]
 [ext_resource type="Script" uid="uid://cflkvq05j4tjc" path="res://scripts/data/card_data.gd" id="1_l8hnh"]
 
 [resource]
 script = ExtResource("1_l8hnh")
 card_preset = 1
 card_name = "ICBM"
+card_art = ExtResource("1_l6mh2")
 description = "Reliable silo-launched missile."
 card_type = 0
 damage = 0

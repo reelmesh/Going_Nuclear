@@ -144,6 +144,10 @@ func process_build_action(sector_id: int):
 		Logger.log("Build failed: No cards of that type available to draw.")
 	game_state_changed.emit()
 
+# Additional function to get sector information for UI display
+func get_investment_sector(sector_id: int) -> Dictionary:
+	return INVESTMENT_SECTORS[sector_id]
+
 func is_player_action_valid() -> bool:
 	if selected_infowar_card and selected_target:
 		return true

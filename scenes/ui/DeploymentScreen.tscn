@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://cb4i1wge32enb" path="res://art/ui/card_menu-theme.tres" id="1_iepys"]
 [ext_resource type="Script" uid="uid://c5psp1oubaikg" path="res://scenes/ui/DeploymentUI.gd" id="1_yl4wx"]
 [ext_resource type="FontFile" uid="uid://dv53yqmw43ccs" path="res://art/fonts/AcPlus_IBM_VGA_8x14.ttf" id="2_xb3tu"]
-[ext_resource type="StyleBox" uid="uid://dvqvj7mmylnnp" path="res://dark_green_box_flat.tres" id="4_r2dwx"]
+[ext_resource type="StyleBox" uid="uid://dvqvj7mmylnnp" path="res://art/ui/dark_green_box_flat.tres" id="4_r2dwx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nt86h"]
 bg_color = Color(0, 0.25, 0.075, 1)
@@ -24,7 +24,6 @@ offset_right = -710.0
 offset_bottom = -330.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme = ExtResource("1_iepys")
 script = ExtResource("1_yl4wx")
 
@@ -33,6 +32,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -250.0
+offset_bottom = -145.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_iepys")
@@ -42,19 +43,17 @@ color = Color(1, 0, 0.0166664, 0)
 layout_mode = 2
 offset_right = 954.0
 offset_bottom = 604.0
-mouse_filter = 2
 theme = ExtResource("1_iepys")
 
 [node name="CardChooserUI" type="VBoxContainer" parent="ContentBox"]
 layout_mode = 2
-mouse_filter = 2
 theme = ExtResource("1_iepys")
 
 [node name="TitleBar" type="Panel" parent="ContentBox/CardChooserUI"]
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 2
 size_flags_vertical = 0
-mouse_filter = 2
+mouse_filter = 1
 theme = ExtResource("1_iepys")
 
 [node name="TitleLabel" type="Label" parent="ContentBox/CardChooserUI/TitleBar"]
@@ -76,7 +75,7 @@ autowrap_mode = 3
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_vertical = 3
-mouse_filter = 2
+theme = ExtResource("1_iepys")
 
 [node name="Panel" type="Panel" parent="ContentBox/CardChooserUI/OptionsList"]
 layout_mode = 2
@@ -88,19 +87,17 @@ custom_minimum_size = Vector2(450, 600)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
-mouse_filter = 2
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("4_r2dwx")
 
 [node name="VisualizerContent" type="VBoxContainer" parent="ContentBox/CardVisualsOverlay"]
 layout_mode = 2
-mouse_filter = 2
 
 [node name="Visualizer_Art" type="TextureRect" parent="ContentBox/CardVisualsOverlay/VisualizerContent"]
 custom_minimum_size = Vector2(450, 450)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-mouse_filter = 2
 
 [node name="Visualizer_Description" type="Label" parent="ContentBox/CardVisualsOverlay/VisualizerContent"]
 custom_minimum_size = Vector2(0, 150)
@@ -112,4 +109,5 @@ theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_0trnx")
 text = "Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Descriptio"
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3

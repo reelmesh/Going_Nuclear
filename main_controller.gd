@@ -3,22 +3,25 @@ extends Node2D
 
 @onready var console_anim_player = $SubViewportContainer/SubViewport/Console3D/AnimationPlayer
 @onready var interaction_controller: InteractionController = $SubViewportContainer/SubViewport/Console3D/Camera3D
+@onready var deployment_screen: Control = $SubViewportContainer/SubViewport/Console3D/console/MainScreen/SubViewport/DeploymentScreen
+
+const CardChooserScene = preload("res://scenes/ui/CardChooser.tscn")
 
 var selected_enemy_button: PhysicalButton3D = null
-var enemy_buttons: Array[PhysicalButton3D] = []
+var enemy_buttons: Array = []
 
 func _ready():
+	await get_tree().create_timer(0.1).timeout
+	var console: ConsoleController = $SubViewportContainer/SubViewport/Console3D
+	deployment_screen = console.get_node("console/MainScreen/SubViewport/DeploymentScreen")
+	
 	GameManager.game_state_changed.connect(update_all_ui)
 	GameManager.turn_started.connect(on_turn_started)
 	
-	# --- THIS IS THE FIX ---
-	# We listen to the global EventBus. We no longer try to connect to the screen directly.
 	EventBus.deployment_choice_made.connect(_on_deployment_choice_made)
 	
-	await get_tree().create_timer(0.1).timeout
 	connect_3d_buttons()
 	
-	var console: ConsoleController = $SubViewportContainer/SubViewport/Console3D
 	if console and console.game_log_label:
 		Logger.log_label = console.game_log_label
 		Logger.log("--- GAME LOG CONNECTION ESTABLISHED ---")
@@ -40,8 +43,11 @@ func connect_3d_buttons():
 					enemy_buttons.append(node)
 
 func _on_3d_button_pressed(mesh_name: String):
+	Logger.log("--- 3D Button Pressed: %s ---" % mesh_name)
 	var button_node: PhysicalButton3D = find_button_by_mesh_name(mesh_name)
-	if not button_node: return
+	if not button_node:
+		Logger.log("ERROR: PhysicalButton3D node not found for mesh: %s" % mesh_name)
+		return
 	
 	var is_enemy_button = mesh_name.begins_with("EnemyButton")
 	
@@ -67,95 +73,93 @@ func _on_3d_button_pressed(mesh_name: String):
 			if player_map.has(mesh_name) and player_map[mesh_name] < ai_players.size():
 				var target_player = ai_players[player_map[mesh_name]]
 				GameManager.player_selected_target(target_player)
-		return
+			return
 
 	button_node.play_animation()
 	
-	var console: ConsoleController = $SubViewportContainer/SubViewport/Console3D
-	if not console or not console.deployment_screen: return
-	var dep_screen = console.deployment_screen
+	if not deployment_screen:
+		Logger.log("ERROR: DeploymentScreen node reference is not set.")
+		return
+
+	# Disable interaction controller input when showing deployment screen
+	if interaction_controller:
+		interaction_controller.process_input = false
 
 	if mesh_name == "EndTurnButton":
-		dep_screen.hide() # Close the menu if it's open
+		deployment_screen.hide_screen() # Close the menu if it's open
+		# Re-enable interaction controller input
+		if interaction_controller:
+			interaction_controller.process_input = true
 		_on_end_turn_pressed()
 	elif mesh_name == "BuildButton":
-		dep_screen.show_choices("Invest in a Sector:", GameManager.INVESTMENT_SECTORS, "INVESTMENT")
+		deployment_screen.show_choices("Invest in a Sector:", GameManager.INVESTMENT_SECTORS, "INVESTMENT")
 	elif mesh_name == "DeliveryButton":
-		show_cards_of_type(CardData.CardType.DELIVERY)
+		show_cards_on_deployment_screen(CardData.CardType.DELIVERY)
 	elif mesh_name == "PayloadButton":
-		show_cards_of_type(CardData.CardType.PAYLOAD)
+		show_cards_on_deployment_screen(CardData.CardType.PAYLOAD)
 	elif mesh_name == "InfoWarButton":
-		show_cards_of_type(CardData.CardType.INFO_WAR)
+		show_cards_on_deployment_screen(CardData.CardType.INFO_WAR)
 	elif mesh_name == "UtilityButton":
-		show_cards_of_type(CardData.CardType.UTILITY)
+		show_cards_on_deployment_screen(CardData.CardType.UTILITY)
 	elif mesh_name == "DefenseButton":
-		show_cards_of_type(CardData.CardType.DEFENSE)
-		
-func show_cards_of_type(card_type: int):
-	var console: ConsoleController = $SubViewportContainer/SubViewport/Console3D
-	if not console or not console.deployment_screen: return
-	
-	var title = CardData.CardType.keys()[card_type]
+		show_cards_on_deployment_screen(CardData.CardType.DEFENSE)
+
+func show_cards_on_deployment_screen(card_type: int):
+	Logger.log("Attempting to show deployment screen for card type: %s" % CardData.CardType.keys()[card_type])
+	if not deployment_screen:
+		Logger.log("ERROR: DeploymentScreen node reference is not set.")
+		return
+
+	var title = CardData.CardType.keys()[card_type].capitalize()
 	var human_hand = GameManager.get_human_player_state().hand
-	var choices = []
+	Logger.log("Player hand contains: %s" % str(human_hand))
+	
+	var card_ids_of_type = []
 	for card_id in human_hand:
 		var card_data = CardDatabase.get_card_data(card_id)
 		if card_data and card_data.card_type == card_type:
-			choices.append(card_data)
-	
-	if choices.is_empty():
-		Logger.log("You have no cards of type: %s" % title)
+			card_ids_of_type.append(card_id)
+
+	Logger.log("Found %d cards of type %s in hand." % [card_ids_of_type.size(), title])
+
+	if card_ids_of_type.is_empty():
+		Logger.log("Result: You have no cards of type: %s" % title)
 		return
-		
-	console.deployment_screen.show_choices(title, choices, "CARD")
-	
-# --- THIS FUNCTION IS NOW "VERBOSE" ---
-func _show_deployment_screen(choice_type: String, card_filter = -1):
-	Logger.log("--- UI: Attempting to show deployment screen for type: %s ---" % choice_type)
-	
-	var console: ConsoleController = $SubViewportContainer/SubViewport/Console3D
-	if not console:
-		Logger.log("ERROR: Could not find ConsoleController node.")
-		return
-	
-	if not console.deployment_screen:
-		Logger.log("ERROR: ConsoleController does not have a valid reference to the deployment screen.")
-		return
-	
-	Logger.log("SUCCESS: Found ConsoleController and DeploymentScreen instance.")
-	
-	var choices = []
-	var title = ""
-	
-	if choice_type == "INVESTMENT":
-		title = "Invest in a Sector:"
-		choices = GameManager.INVESTMENT_SECTORS
-	elif choice_type == "CARD":
-		title = CardData.CardType.keys()[card_filter]
-		var human_hand = GameManager.get_human_player_state().hand
-		for card_id in human_hand:
-			var card_data = CardDatabase.get_card_data(card_id)
-			if card_data and card_data.card_type == card_filter:
-				choices.append(card_data)
-	
-	if choices.is_empty():
-		Logger.log("No options of this type to show.")
-		return
-	
-	Logger.log("Found %d choices. Calling show_choices() on DeploymentScreen." % choices.size())
-	console.deployment_screen.show_choices(title, choices, choice_type)
+
+	var card_objects = []
+	for id in card_ids_of_type:
+		card_objects.append(CardDatabase.get_card_data(id))
+
+	Logger.log("Instructing DeploymentScreen to show %d choices." % card_objects.size())
+	deployment_screen.show_choices("Select a %s Card:" % title, card_objects, "CARD")
 
 func _on_deployment_choice_made(choice_data):
-	var console: ConsoleController = $SubViewportContainer/SubViewport/Console3D
-	if not console or not console.deployment_screen: return
+	Logger.log("--- Deployment Choice Received by Main Controller ---")
+	if not deployment_screen:
+		Logger.log("ERROR: DeploymentScreen node reference is not set in _on_deployment_choice_made.")
+		return
 	
 	if choice_data is int:
+		Logger.log("Choice is an INVESTMENT (ID: %d). Processing build action." % choice_data)
 		GameManager.process_build_action(choice_data)
 	elif choice_data is CardData:
-		Logger.log("You selected: %s" % choice_data.card_name)
+		Logger.log("Choice is a CARD ('%s'). Processing card selection." % choice_data.card_name)
 		GameManager.player_selected_card(choice_data)
+	else:
+		Logger.log("ERROR: Received unknown choice data type: %s" % typeof(choice_data))
+	
+	# Hide the deployment screen after a choice is made
+	deployment_screen.hide_screen()
+	
+	# Re-enable interaction controller input
+	if interaction_controller:
+		interaction_controller.process_input = true
 	
 func _on_end_turn_pressed():
+	# Re-enable interaction controller input
+	if interaction_controller:
+		interaction_controller.process_input = true
+		
 	if GameManager.is_player_action_valid():
 		GameManager.process_player_attack()
 	else:
@@ -223,10 +227,11 @@ func generate_player_ui():
 	
 	var enemy_labels = [
 		console.enemy_info_tr, console.enemy_info_br,
-		console.enemy_info_tl, console.enemy_info_bl
-	]
-	var avatar_images = [console.avatar_image_tr, console.avatar_image_br, console.avatar_image_tl, console.avatar_image_bl]
+		console.enemy_info_tl, console.enemy_info_bl]
 	
+	var avatar_images = [
+		console.avatar_image_tr, console.avatar_image_br,
+		console.avatar_image_tl, console.avatar_image_bl]
 	var ai_players = []
 	for p in GameManager.active_players:
 		if p.is_ai: ai_players.append(p)

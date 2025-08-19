@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_fcrl4")
-card_preset = 14
+card_preset = 17
 card_name = "Diplomatic Summit"
 description = "Spend Treasury to significantly improve relations with a target."
 card_type = 3

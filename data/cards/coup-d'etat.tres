@@ -4,10 +4,10 @@
 
 [resource]
 script = ExtResource("1_4mros")
-card_preset = 0
-card_name = ""
-description = ""
-card_type = 0
+card_preset = 19
+card_name = "Coup d'état"
+description = "The ultimate soft power weapon. Target loses their next turn and suffers a massive Morale penalty."
+card_type = 3
 damage = 0
 success_chance = 1.0
 metadata/_custom_type_script = "uid://cflkvq05j4tjc"

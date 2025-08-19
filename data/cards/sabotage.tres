@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_4vjo0")
-card_preset = 13
+card_preset = 16
 card_name = "Sabotage"
 description = "Force a target to discard one random DELIVERY or DEFENSE card."
 card_type = 3

@@ -1,11 +1,13 @@
-[gd_scene load_steps=176 format=4 uid="uid://c74uoaliwxt4l"]
+[gd_scene load_steps=180 format=4 uid="uid://c74uoaliwxt4l"]
 
 [ext_resource type="Script" uid="uid://u8hoin4pnesp" path="res://scenes/3d/ConsoleController.gd" id="1_3drjo"]
 [ext_resource type="Texture2D" uid="uid://bealtbcwntk5o" path="res://art/3d/textures/console_ConsoleBasePlate_BSDF_B_4096.png" id="1_cr3t5"]
 [ext_resource type="Texture2D" uid="uid://ce5lgxbmlaca1" path="res://art/3d/textures/console_BuildButton_Color-Dirt_1024.png" id="2_iixb3"]
 [ext_resource type="Script" uid="uid://cn5xmmkhwb3dj" path="res://scripts/3d/InteractionController.gd" id="2_u1dr3"]
-[ext_resource type="Texture2D" uid="uid://c7mhtnv2l7mr6" path="res://art/3d/textures/console_BuildButton_RoughnessBake_512.png" id="3_bouml"]
+[ext_resource type="Texture2D" uid="uid://bh7dl48so0n6a" path="res://art/3d/textures/console_ConsoleBasePlate_Metallic_4096.png" id="3_3yr6o"]
+[ext_resource type="Texture2D" uid="uid://cjhowd1dwhye2" path="res://art/3d/textures/console_ConsoleBasePlate_Normal_4096.png" id="4_on3bj"]
 [ext_resource type="Texture2D" uid="uid://oh6r0wkf6q0p" path="res://art/3d/textures/console_BuildButton_Bump_512.png" id="4_sqqf1"]
+[ext_resource type="Texture2D" uid="uid://djk16yixmpvws" path="res://art/3d/textures/console_ConsoleBasePlate_Roughness_4096.png" id="5_3drjo"]
 [ext_resource type="Texture2D" uid="uid://j6lan7o68ktk" path="res://art/3d/textures/console_DefenseButton_Color-Dirt_512.png" id="5_gq6r3"]
 [ext_resource type="Texture2D" uid="uid://dk8dnemjux1p5" path="res://art/3d/textures/console_DefenseButton_RoughnessBake_512.png" id="6_3o28w"]
 [ext_resource type="Texture2D" uid="uid://ctk6ticv4ni0a" path="res://art/3d/textures/console_DefenseButton_Bump_512.png" id="7_e7c38"]
@@ -45,6 +47,7 @@
 [ext_resource type="Texture2D" uid="uid://p4pgbsoaax4n" path="res://art/3d/textures/console_EnemyButtonRim_BottomLeft_BaseColor.png" id="36_yesth"]
 [ext_resource type="Texture2D" uid="uid://ctpy1qmkud38b" path="res://art/3d/textures/console_EnemyButtonRim_BottomLeft_Metallic-EnemyButtonRim_BottomLeft_Roughness.png" id="37_rd05i"]
 [ext_resource type="Material" uid="uid://cg5vfkh3o024l" path="res://art/3d/materials/DarkScreens.tres" id="38_ar3b6"]
+[ext_resource type="PackedScene" uid="uid://csnkdx2uy54nd" path="res://scenes/3d/MainScreen.tscn" id="38_f127i"]
 [ext_resource type="Texture2D" uid="uid://d1pkfq3inra2m" path="res://art/3d/textures/console_EnemyButtonRim_BottomLeft_Normal.png" id="38_hm3qx"]
 [ext_resource type="Material" uid="uid://c3vb3an7mufm6" path="res://art/3d/materials/MainScreen.tres" id="38_picoh"]
 [ext_resource type="PackedScene" uid="uid://bldjawb1maw2x" path="res://scenes/ui/DeploymentScreen.tscn" id="39_ar3b6"]
@@ -57,9 +60,17 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0if53"]
 resource_name = "ConsoleBasePlateBaked"
 cull_mode = 2
-shading_mode = 0
-albedo_color = Color(0.720467, 0.720468, 0.720467, 1)
 albedo_texture = ExtResource("1_cr3t5")
+metallic = 1.0
+metallic_specular = 0.35
+metallic_texture = ExtResource("3_3yr6o")
+metallic_texture_channel = 4
+roughness = 0.9
+roughness_texture = ExtResource("5_3drjo")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_scale = 0.4
+normal_texture = ExtResource("4_on3bj")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_5ol5b"]
 _surfaces = [{
@@ -99,10 +110,8 @@ shadow_mesh = SubResource("ArrayMesh_5ol5b")
 resource_name = "BuildButtonBake-Letters"
 cull_mode = 2
 albedo_texture = ExtResource("2_iixb3")
-metallic_texture = ExtResource("3_bouml")
-metallic_texture_channel = 2
-roughness_texture = ExtResource("3_bouml")
-roughness_texture_channel = 1
+roughness_texture = ExtResource("2_iixb3")
+roughness_texture_channel = 4
 normal_enabled = true
 normal_scale = 0.25
 normal_texture = ExtResource("4_sqqf1")
@@ -249,7 +258,7 @@ albedo_texture = ExtResource("11_ar3b6")
 metallic_texture = ExtResource("12_picoh")
 metallic_texture_channel = 2
 roughness_texture = ExtResource("12_picoh")
-roughness_texture_channel = 1
+roughness_texture_channel = 4
 normal_enabled = true
 normal_scale = 0.25
 normal_texture = ExtResource("13_f127i")
@@ -1392,6 +1401,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_s22nr")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_picoh"]
+size = Vector3(0.0977631, 0.693604, 0.0975647)
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_r2txv"]
 _surfaces = [{
 "aabb": AABB(-0.328131, 0.0164946, -0.279279, 0.656261, 0.0179949, 0.40093),
@@ -1407,7 +1419,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_fufox"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_f127i"]
 resource_name = "console_Cube_015"
 _surfaces = [{
 "aabb": AABB(-0.328131, 0.0164946, -0.279279, 0.656261, 0.0179949, 0.40093),
@@ -2241,8 +2253,11 @@ transform = Transform3D(0.47008, 0, 0, 0, -5.60379e-08, -0.47008, 0, 0.47008, -5
 mesh = SubResource("ArrayMesh_0if53")
 skeleton = NodePath("")
 
+[node name="MainScreen3D" parent="console" instance=ExtResource("38_f127i")]
+
 [node name="MainScreen" type="MeshInstance3D" parent="console"]
 transform = Transform3D(6.78057, 0, 0, 0, -0.0969523, 0, 0, 0, 4.20753, 0, 0.012929, -0.0777986)
+visible = false
 mesh = SubResource("ArrayMesh_picoh")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("38_picoh")
@@ -2252,16 +2267,24 @@ transparent_bg = true
 size = Vector2i(750, 1210)
 
 [node name="DeploymentScreen" parent="console/MainScreen/SubViewport" instance=ExtResource("39_ar3b6")]
+visible = false
 offset_left = 80.0
 offset_top = 160.0
 offset_right = 540.0
 offset_bottom = -300.0
 rotation = 1.5708
 scale = Vector2(1, -0.7)
+mouse_default_cursor_shape = 2
+
+[node name="StaticBody3D" type="StaticBody3D" parent="console/MainScreen"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="console/MainScreen/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04506e-05, 0.153198, -0.00029669)
+shape = SubResource("BoxShape3D_picoh")
 
 [node name="MainScreenGlass" type="MeshInstance3D" parent="console"]
 visible = false
-mesh = SubResource("ArrayMesh_fufox")
+mesh = SubResource("ArrayMesh_f127i")
 skeleton = NodePath("")
 
 [node name="EnemyAvatarScreen_BottomLeft" type="MeshInstance3D" parent="console"]
@@ -2408,20 +2431,25 @@ libraries = {
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.911576, 0.411132, 0, -0.411132, -0.911576, 0, 1.21806, -2.4237)
-light_color = Color(1, 0.856667, 0.57, 1)
-light_energy = 20.0
-light_size = 0.2
+light_color = Color(1, 0.946512, 0.842581, 1)
+light_energy = 5.0
+light_indirect_energy = 0.0
+light_size = 0.791
+light_specular = 1.864
 shadow_enabled = true
-spot_range = 3.12736
+spot_range = 4.564
+spot_attenuation = 1.34
 spot_angle = 15.0823
+spot_angle_attenuation = 0.659754
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19595, 0.509674, -0.00191259)
-light_energy = 0.2
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12277, 0.350142, -0.118711)
+omni_range = 1.4
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09184, 0.509674, -0.00191259)
-light_energy = 0.2
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09184, 0.350142, -0.118711)
+omni_range = 1.4
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.73397e-05, 0.810835, 1.08393)
+light_energy = 0.5

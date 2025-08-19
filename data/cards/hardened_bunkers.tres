@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_kv7la")
-card_preset = 17
+card_preset = 22
 card_name = "Hardened Bunkers"
 description = "Passive: Halves population damage from the next successful nuclear attack."
 card_type = 4
