@@ -67,6 +67,8 @@ func _update_visualizer(card_data: CardData):
 func _input(event):
 	# Handle input events for this control
 	if event is InputEventMouseButton and event.pressed:
+		# --- DEBUG ---
+		Logger.log("--- DeploymentUI _input received MOUSE BUTTON PRESS ---")
 		# If we're showing the deployment screen, we might want to handle clicks outside
 		# to close the menu, but let's not interfere with button presses
 		pass
@@ -74,6 +76,8 @@ func _input(event):
 # Ensure that this UI can properly process mouse events
 func _gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
+		# --- DEBUG ---
+		Logger.log("--- DeploymentUI _gui_input received MOUSE BUTTON PRESS ---")
 		# This will be called when mouse is pressed on this control or its children
 		# We don't need to do anything special here, but we want to make sure 
 		# the control properly accepts input events

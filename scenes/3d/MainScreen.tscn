@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=4 uid="uid://csnkdx2uy54nd"]
+[gd_scene load_steps=10 format=4 uid="uid://csnkdx2uy54nd"]
 
+[ext_resource type="Script" uid="uid://cjpsbocv01qj0" path="res://scripts/3d/MainScreen3DController.gd" id="2_sq16v"]
 [ext_resource type="Material" uid="uid://c3vb3an7mufm6" path="res://art/3d/materials/MainScreen.tres" id="38_2h6vd"]
 [ext_resource type="PackedScene" uid="uid://bldjawb1maw2x" path="res://scenes/ui/DeploymentScreen.tscn" id="39_ivjp4"]
 [ext_resource type="Material" uid="uid://b7lv2ufiikwa6" path="res://art/3d/materials/MainScreenGlass.tres" id="40_qgnwv"]
@@ -83,6 +84,7 @@ transform = Transform3D(6.78057, 0, 0, 0, -0.0969523, 0, 0, 0, 4.20753, 0, 0.012
 mesh = SubResource("ArrayMesh_picoh")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("38_2h6vd")
+script = ExtResource("2_sq16v")
 
 [node name="SubViewport" type="SubViewport" parent="console/MainScreen"]
 transparent_bg = true
@@ -97,10 +99,10 @@ rotation = 1.5708
 scale = Vector2(1, -0.7)
 mouse_default_cursor_shape = 2
 
-[node name="StaticBody3D" type="StaticBody3D" parent="console/MainScreen"]
+[node name="InputShield_StaticBody" type="StaticBody3D" parent="console/MainScreen"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="console/MainScreen/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04506e-05, 0.153198, -0.00029669)
+[node name="InputShield_CollisionShape" type="CollisionShape3D" parent="console/MainScreen/InputShield_StaticBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04506e-05, 0.0747126, -0.00029669)
 shape = SubResource("BoxShape3D_picoh")
 
 [node name="MainScreenGlass" type="MeshInstance3D" parent="console"]

@@ -4,11 +4,19 @@ extends Node2D
 @onready var console_anim_player = $SubViewportContainer/SubViewport/Console3D/console/Physical3DButtons/AnimationPlayer
 @onready var interaction_controller: InteractionController = $SubViewportContainer/SubViewport/Console3D/Camera3D
 @onready var deployment_screen: Control = $SubViewportContainer/SubViewport/Console3D/console/MainScreen3D/console/MainScreen/SubViewport/DeploymentScreen
+# --- MODIFICATION ---
+# Added a reference to the Input Shield's CollisionShape3D.
+# Adjust the path if the actual node structure differs.
+@onready var input_shield_collision_shape: CollisionShape3D = $SubViewportContainer/SubViewport/Console3D/console/MainScreen3D/console/MainScreen/InputShield_StaticBody/InputShield_CollisionShape
 
 const CardChooserScene = preload("res://scenes/ui/CardChooser.tscn")
 
 var selected_enemy_button: PhysicalButton3D = null
 var enemy_buttons: Array = []
+
+# --- MODIFICATION ---
+# Added a flag to control verbose shield state logging in _process
+var _log_shield_state_verbose = false
 
 func _ready():
 	await get_tree().create_timer(0.1).timeout
@@ -26,7 +34,39 @@ func _ready():
 		Logger.log_label = console.game_log_label
 		Logger.log("--- GAME LOG CONNECTION ESTABLISHED ---")
 	
+	# --- MODIFICATION ---
+	# Definitive check for Input Shield Collision Shape reference
+	if input_shield_collision_shape:
+		Logger.log("--- INPUT SHIELD COLLISION SHAPE SUCCESSFULLY ACQUIRED ---")
+		Logger.log("--- PATH: %s ---" % input_shield_collision_shape.get_path())
+		# Connect directly to the StaticBody3D parent, which should have the input_event signal
+		var shield_static_body = input_shield_collision_shape.get_parent()
+		if shield_static_body:
+			Logger.log("--- SHIELD STATIC BODY FOUND: %s ---" % shield_static_body.name)
+			# Attempt connection and check result
+			var connection_result = shield_static_body.input_event.connect(_on_input_shield_clicked)
+			if connection_result == OK:
+				Logger.log("--- INPUT SHIELD SIGNAL CONNECTED SUCCESSFULLY ---")
+			else:
+				Logger.logerr("ERROR: Failed to connect input shield signal. Error code: %d" % connection_result)
+		else:
+			Logger.logerr("ERROR: Shield Static Body NOT found!")
+		# Initially disable the shield's collision shape
+		input_shield_collision_shape.disabled = true
+		Logger.log("--- INPUT SHIELD INITIALLY DISABLED (State: %s) ---" % input_shield_collision_shape.disabled)
+	else:
+		Logger.logerr("ERROR: Input Shield Collision Shape NOT found! Check the node path in the script.")
+		Logger.logerr("--- ATTEMPTED PATH WAS: $SubViewportContainer/SubViewport/Console3D/console/MainScreen3D/console/MainScreen/InputShield_StaticBody/InputShield_CollisionShape ---")
+	
 	setup_game()
+
+
+# --- MODIFICATION ---
+# Added _process to log shield state if _log_shield_state_verbose is true
+func _process(_delta):
+	if _log_shield_state_verbose and input_shield_collision_shape:
+		if not input_shield_collision_shape.disabled:
+			Logger.log("--- SHIELD STATE (VERBOSE): ENABLED ---")
 
 func _unhandled_input(event: InputEvent):
 	if interaction_controller:
@@ -95,17 +135,65 @@ func _on_3d_button_pressed(mesh_name: String):
 		# Do not re-enable `process_input` here as it's no longer managed for this flow.
 		_on_end_turn_pressed()
 	elif mesh_name == "BuildButton":
+		Logger.log("--- BUILD BUTTON PRESSED ---")
 		deployment_screen.show_choices("Invest in a Sector:", GameManager.INVESTMENT_SECTORS, "INVESTMENT")
+		# --- MODIFICATION ---
+		# Enable the input shield's collision shape after showing choices
+		if input_shield_collision_shape:
+			input_shield_collision_shape.disabled = false
+			Logger.log("--- INPUT SHIELD ENABLED for BuildButton (New State: %s) ---" % input_shield_collision_shape.disabled)
+		else:
+			Logger.logerr("ERROR: Cannot enable input shield, reference is null!")
 	elif mesh_name == "DeliveryButton":
+		Logger.log("--- DELIVERY BUTTON PRESSED ---")
 		show_cards_on_deployment_screen(CardData.CardType.DELIVERY)
+		# --- MODIFICATION ---
+		# Enable the input shield's collision shape after showing choices
+		if input_shield_collision_shape:
+			input_shield_collision_shape.disabled = false
+			Logger.log("--- INPUT SHIELD ENABLED for DeliveryButton (New State: %s) ---" % input_shield_collision_shape.disabled)
+		else:
+			Logger.logerr("ERROR: Cannot enable input shield, reference is null!")
 	elif mesh_name == "PayloadButton":
+		Logger.log("--- PAYLOAD BUTTON PRESSED ---")
 		show_cards_on_deployment_screen(CardData.CardType.PAYLOAD)
+		# --- MODIFICATION ---
+		# Enable the input shield's collision shape after showing choices
+		if input_shield_collision_shape:
+			input_shield_collision_shape.disabled = false
+			Logger.log("--- INPUT SHIELD ENABLED for PayloadButton (New State: %s) ---" % input_shield_collision_shape.disabled)
+		else:
+			Logger.logerr("ERROR: Cannot enable input shield, reference is null!")
 	elif mesh_name == "InfoWarButton":
+		Logger.log("--- INFOWAR BUTTON PRESSED ---")
 		show_cards_on_deployment_screen(CardData.CardType.INFO_WAR)
+		# --- MODIFICATION ---
+		# Enable the input shield's collision shape after showing choices
+		if input_shield_collision_shape:
+			input_shield_collision_shape.disabled = false
+			Logger.log("--- INPUT SHIELD ENABLED for InfoWarButton (New State: %s) ---" % input_shield_collision_shape.disabled)
+		else:
+			Logger.logerr("ERROR: Cannot enable input shield, reference is null!")
 	elif mesh_name == "UtilityButton":
+		Logger.log("--- UTILITY BUTTON PRESSED ---")
 		show_cards_on_deployment_screen(CardData.CardType.UTILITY)
+		# --- MODIFICATION ---
+		# Enable the input shield's collision shape after showing choices
+		if input_shield_collision_shape:
+			input_shield_collision_shape.disabled = false
+			Logger.log("--- INPUT SHIELD ENABLED for UtilityButton (New State: %s) ---" % input_shield_collision_shape.disabled)
+		else:
+			Logger.logerr("ERROR: Cannot enable input shield, reference is null!")
 	elif mesh_name == "DefenseButton":
+		Logger.log("--- DEFENSE BUTTON PRESSED ---")
 		show_cards_on_deployment_screen(CardData.CardType.DEFENSE)
+		# --- MODIFICATION ---
+		# Enable the input shield's collision shape after showing choices
+		if input_shield_collision_shape:
+			input_shield_collision_shape.disabled = false
+			Logger.log("--- INPUT SHIELD ENABLED for DefenseButton (New State: %s) ---" % input_shield_collision_shape.disabled)
+		else:
+			Logger.logerr("ERROR: Cannot enable input shield, reference is null!")
 
 func show_cards_on_deployment_screen(card_type: int):
 	Logger.log("Attempting to show deployment screen for card type: %s" % CardData.CardType.keys()[card_type])
@@ -161,6 +249,15 @@ func _on_deployment_choice_made(choice_data):
 	# If specific temporary disabling were needed for other reasons (e.g., animations),
 	# it would be handled locally or by the shield mechanism.
 	
+	# --- MODIFICATION ---
+	# Disable the input shield's collision shape when a choice is made
+	if input_shield_collision_shape:
+		input_shield_collision_shape.disabled = true
+		# --- DEBUG ---
+		Logger.log("--- INPUT SHIELD DISABLED after choice made ---")
+	else:
+		Logger.logerr("ERROR: Cannot disable input shield, reference is null!")
+	
 func _on_end_turn_pressed():
 	# --- MODIFICATION ---
 	# According to the design principles, `interaction_controller.process_input`
@@ -168,12 +265,49 @@ func _on_end_turn_pressed():
 	# It should remain true to keep 3D buttons active.
 	# If specific temporary disabling were needed for other reasons (e.g., animations),
 	# it would be handled locally or by the shield mechanism.
+	
+	# --- MODIFICATION ---
+	# Disable the input shield's collision shape when the turn ends
+	if input_shield_collision_shape:
+		input_shield_collision_shape.disabled = true
+		# --- DEBUG ---
+		Logger.log("--- INPUT SHIELD DISABLED at end of turn ---")
+	else:
+		Logger.logerr("ERROR: Cannot disable input shield, reference is null!")
 		
 	if GameManager.is_player_action_valid():
 		GameManager.process_player_attack()
 	else:
 		Logger.log("No action selected. Ending turn.")
 		GameManager.pass_turn()
+
+
+# --- MODIFICATION ---
+# Added a new function to handle clicks on the input shield.
+# This function will hide the deployment screen and disable the shield's collision shape.
+func _on_input_shield_clicked(_camera: Camera3D, event: InputEvent, _click_position: Vector3, _click_normal: Vector3, _shape_idx: int):
+	# --- DEBUG ---
+	Logger.log("--- _on_input_shield_clicked SIGNAL RECEIVED ---")
+	# Check if the event is a mouse button press
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		# --- DEBUG ---
+		Logger.log("--- _on_input_shield_clicked MOUSE EVENT PROCESSED ---")
+		Logger.log("--- Input Shield Clicked ---")
+		
+		# Hide the deployment screen
+		if deployment_screen:
+			deployment_screen.hide_screen()
+			Logger.log("--- DEPLOYMENT SCREEN HIDDEN ---")
+		else:
+			Logger.logerr("ERROR: Deployment screen reference is null in _on_input_shield_clicked!")
+		
+		# Disable the input shield's collision shape
+		if input_shield_collision_shape:
+			input_shield_collision_shape.disabled = true
+			# --- DEBUG ---
+			Logger.log("--- INPUT SHIELD DISABLED after click (New State: %s) ---" % input_shield_collision_shape.disabled)
+		else:
+			Logger.logerr("ERROR: Cannot disable input shield in _on_input_shield_clicked, reference is null!")
 
 func find_button_by_mesh_name(mesh_name: String) -> PhysicalButton3D:
 	var console_model_root = $SubViewportContainer/SubViewport/Console3D/console
