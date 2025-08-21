@@ -81,15 +81,18 @@ func _on_3d_button_pressed(mesh_name: String):
 		Logger.log("ERROR: DeploymentScreen node reference is not set.")
 		return
 
-	# Disable interaction controller input when showing deployment screen
-	if interaction_controller:
-		interaction_controller.process_input = false
+	# --- MODIFICATION ---
+	# According to the design principles:
+	# 1. 3D buttons should ALWAYS remain active/interactable.
+	# 2. The DeploymentScreen should not block general 3D input.
+	# Therefore, we DO NOT disable `interaction_controller.process_input` here.
+	# The responsibility for closing the menu (and potentially managing specific states)
+	# now lies with the DeploymentScreen itself or a dedicated "click-off" shield.
 
 	if mesh_name == "EndTurnButton":
 		deployment_screen.hide_screen() # Close the menu if it's open
-		# Re-enable interaction controller input
-		if interaction_controller:
-			interaction_controller.process_input = true
+		# --- MODIFICATION ---
+		# Do not re-enable `process_input` here as it's no longer managed for this flow.
 		_on_end_turn_pressed()
 	elif mesh_name == "BuildButton":
 		deployment_screen.show_choices("Invest in a Sector:", GameManager.INVESTMENT_SECTORS, "INVESTMENT")
@@ -151,14 +154,20 @@ func _on_deployment_choice_made(choice_data):
 	# Hide the deployment screen after a choice is made
 	deployment_screen.hide_screen()
 	
-	# Re-enable interaction controller input
-	if interaction_controller:
-		interaction_controller.process_input = true
+	# --- MODIFICATION ---
+	# According to the design principles, `interaction_controller.process_input`
+	# is no longer managed by this function for the Deployment Screen flow.
+	# It remains true to keep 3D buttons active.
+	# If specific temporary disabling were needed for other reasons (e.g., animations),
+	# it would be handled locally or by the shield mechanism.
 	
 func _on_end_turn_pressed():
-	# Re-enable interaction controller input
-	if interaction_controller:
-		interaction_controller.process_input = true
+	# --- MODIFICATION ---
+	# According to the design principles, `interaction_controller.process_input`
+	# is no longer managed by this function for the Deployment Screen flow.
+	# It should remain true to keep 3D buttons active.
+	# If specific temporary disabling were needed for other reasons (e.g., animations),
+	# it would be handled locally or by the shield mechanism.
 		
 	if GameManager.is_player_action_valid():
 		GameManager.process_player_attack()
