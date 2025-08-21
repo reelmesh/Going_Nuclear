@@ -11,21 +11,21 @@ extends Node3D
 # --- Avatar Screens ---
 # These are the 2D scenes that act as "slide projectors"
 # --- References to the TextureRects inside each screen's SubViewport ---
-@onready var avatar_image_tr: TextureRect = $console/EnemyAvatarScreen_TopRight/SubViewport/AvatarImage_TopRight
-@onready var avatar_image_br: TextureRect = $console/EnemyAvatarScreen_BottomRight/SubViewport/AvatarImage_BottomRight
-@onready var avatar_image_tl: TextureRect = $console/EnemyAvatarScreen_TopLeft/SubViewport/AvatarImage_TopLeft
-@onready var avatar_image_bl: TextureRect = $console/EnemyAvatarScreen_BottomLeft/SubViewport/AvatarImage_BottomLeft
+@onready var avatar_image_tr: TextureRect = $console/AvatarScreens/console/EnemyAvatarScreen_TopRight/SubViewport/AvatarImage_TopRight
+@onready var avatar_image_br: TextureRect = $console/AvatarScreens/console/EnemyAvatarScreen_BottomRight/SubViewport/AvatarImage_BottomRight
+@onready var avatar_image_tl: TextureRect = $console/AvatarScreens/console/EnemyAvatarScreen_TopLeft/SubViewport/AvatarImage_TopLeft
+@onready var avatar_image_bl: TextureRect = $console/AvatarScreens/console/EnemyAvatarScreen_BottomLeft/SubViewport/AvatarImage_BottomLeft
 #@onready var deployment_screen: DeploymentUI = $console/MainScreen/SubViewport/DeploymentScreen
 
 
 # --- Info Labels ---
 # These are the 3D TextMesh nodes that display text
-@onready var game_log_label = $console/GameLogScreen/LogViewport/Panel/GameLogLabel
-@onready var player_info_label = $console/PlayerInfoScreen/LogViewport/Panel/PlayerInfoLabel
-@onready var enemy_info_tl = $console/EnemyInfoScreen_TopLeft/LogViewport/Panel/EnemyInfoTopLeftLabel
-@onready var enemy_info_bl = $console/EnemyInfoScreen_BottomLeft/LogViewport/Panel/EnemyInfoBottomLeftLabel
-@onready var enemy_info_tr = $console/EnemyInfoScreen_TopRight/LogViewport/Panel/EnemyInfoTopRightLabel
-@onready var enemy_info_br = $console/EnemyInfoScreen_BottomRight/LogViewport/Panel/EnemyInfoBottomRightLabel
+@onready var game_log_label = $console/InfoScreens/console/GameLogScreen/LogViewport/Panel/GameLogLabel
+@onready var player_info_label = $console/InfoScreens/console/PlayerInfoScreen/LogViewport/Panel/PlayerInfoLabel
+@onready var enemy_info_tl = $console/InfoScreens/console/EnemyInfoScreen_TopLeft/LogViewport/Panel/EnemyInfoTopLeftLabel
+@onready var enemy_info_bl = $console/InfoScreens/console/EnemyInfoScreen_BottomLeft/LogViewport/Panel/EnemyInfoBottomLeftLabel
+@onready var enemy_info_tr = $console/InfoScreens/console/EnemyInfoScreen_TopRight/LogViewport/Panel/EnemyInfoTopRightLabel
+@onready var enemy_info_br = $console/InfoScreens/console/EnemyInfoScreen_BottomRight/LogViewport/Panel/EnemyInfoBottomRightLabel
 
 # This function runs when the node is ready.
 func _ready():

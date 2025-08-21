@@ -1,9 +1,9 @@
 # (This is the full, final script that listens to the EventBus)
 extends Node2D
 
-@onready var console_anim_player = $SubViewportContainer/SubViewport/Console3D/AnimationPlayer
+@onready var console_anim_player = $SubViewportContainer/SubViewport/Console3D/console/Physical3DButtons/AnimationPlayer
 @onready var interaction_controller: InteractionController = $SubViewportContainer/SubViewport/Console3D/Camera3D
-@onready var deployment_screen: Control = $SubViewportContainer/SubViewport/Console3D/console/MainScreen/SubViewport/DeploymentScreen
+@onready var deployment_screen: Control = $SubViewportContainer/SubViewport/Console3D/console/MainScreen3D/console/MainScreen/SubViewport/DeploymentScreen
 
 const CardChooserScene = preload("res://scenes/ui/CardChooser.tscn")
 
@@ -13,7 +13,7 @@ var enemy_buttons: Array = []
 func _ready():
 	await get_tree().create_timer(0.1).timeout
 	var console: ConsoleController = $SubViewportContainer/SubViewport/Console3D
-	deployment_screen = console.get_node("console/MainScreen/SubViewport/DeploymentScreen")
+	deployment_screen = console.get_node("console/MainScreen3D/console/MainScreen/SubViewport/DeploymentScreen")
 	
 	GameManager.game_state_changed.connect(update_all_ui)
 	GameManager.turn_started.connect(on_turn_started)

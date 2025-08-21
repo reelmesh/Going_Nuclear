@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "cipher": {
+      "command": "cipher",
+      "args": ["--mode", "mcp", "--agent", "./cipher.yml"],
+      "env": {
+        "GEMINI_API_KEY": "AIzaSyCd-MbxECg68Njft1gDqKPo4j-IOUXEcaE"
+      }
+    }
+  }
+}

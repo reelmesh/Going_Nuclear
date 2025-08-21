@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://csnkdx2uy54nd"]
+[gd_scene load_steps=9 format=4 uid="uid://csnkdx2uy54nd"]
 
 [ext_resource type="Material" uid="uid://c3vb3an7mufm6" path="res://art/3d/materials/MainScreen.tres" id="38_2h6vd"]
 [ext_resource type="PackedScene" uid="uid://bldjawb1maw2x" path="res://scenes/ui/DeploymentScreen.tscn" id="39_ivjp4"]
 [ext_resource type="Material" uid="uid://b7lv2ufiikwa6" path="res://art/3d/materials/MainScreenGlass.tres" id="40_qgnwv"]
-[ext_resource type="Script" uid="uid://cn5xmmkhwb3dj" path="res://scripts/3d/InteractionController.gd" id="52_srlxk"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_s22nr"]
 _surfaces = [{
@@ -107,9 +106,3 @@ shape = SubResource("BoxShape3D_picoh")
 [node name="MainScreenGlass" type="MeshInstance3D" parent="console"]
 mesh = SubResource("ArrayMesh_f127i")
 skeleton = NodePath("")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0)
-fov = 35.0
-size = 0.61
-script = ExtResource("52_srlxk")
