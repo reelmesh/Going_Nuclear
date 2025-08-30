@@ -1,6 +1,5 @@
-[gd_scene load_steps=24 format=4 uid="uid://du7gf41pyaxyc"]
+[gd_scene load_steps=23 format=4 uid="uid://du7gf41pyaxyc"]
 
-[ext_resource type="Script" uid="uid://u8hoin4pnesp" path="res://scenes/3d/ConsoleController.gd" id="1_k0ujk"]
 [ext_resource type="Material" uid="uid://cg5vfkh3o024l" path="res://art/3d/materials/DarkScreens.tres" id="7_0augu"]
 [ext_resource type="Texture2D" uid="uid://bd44788pae6du" path="res://art/3d/textures/console_EnemyScreenGlass_Color_4096.png" id="8_nqt0s"]
 
@@ -227,7 +226,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_xb8x2")
 
 [node name="AvatarScreens" type="Node3D"]
-script = ExtResource("1_k0ujk")
 
 [node name="console" type="Node3D" parent="."]
 
@@ -241,6 +239,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_3yr6o")
 transparent_bg = true
 
 [node name="AvatarImage_BottomLeft" type="TextureRect" parent="console/EnemyAvatarScreen_BottomLeft/SubViewport"]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -264,6 +263,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_3drjo")
 transparent_bg = true
 
 [node name="AvatarImage_BottomRight" type="TextureRect" parent="console/EnemyAvatarScreen_BottomRight/SubViewport"]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -287,6 +287,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_nj5u0")
 transparent_bg = true
 
 [node name="AvatarImage_TopLeft" type="TextureRect" parent="console/EnemyAvatarScreen_TopLeft/SubViewport"]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -311,6 +312,7 @@ transparent_bg = true
 handle_input_locally = false
 
 [node name="AvatarImage_TopRight" type="TextureRect" parent="console/EnemyAvatarScreen_TopRight/SubViewport"]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

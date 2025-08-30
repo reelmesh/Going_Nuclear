@@ -2,7 +2,13 @@
 extends Node2D
 
 @onready var console_anim_player = $SubViewportContainer/SubViewport/Console3D/console/Physical3DButtons/AnimationPlayer
+@onready var console: ConsoleController = $SubViewportContainer/SubViewport/Console3D
 @onready var interaction_controller: InteractionController = $SubViewportContainer/SubViewport/Console3D/Camera3D
+@onready var light_anim_player: AnimationPlayer = $SubViewportContainer/SubViewport/Console3D/LightAnimationPlayer
+@onready var overhead_light: SpotLight3D = $SubViewportContainer/SubViewport/Console3D/Overhead_Light
+@onready var ambient_light: OmniLight3D = $SubViewportContainer/SubViewport/Console3D/Ambient_Light
+@onready var left_fill_light: OmniLight3D = $SubViewportContainer/SubViewport/Console3D/LeftFill_Light
+@onready var right_fill_light: OmniLight3D = $SubViewportContainer/SubViewport/Console3D/RightFill_Light
 @onready var deployment_screen: Control = $SubViewportContainer/SubViewport/Console3D/console/MainScreen3D/console/MainScreen/SubViewport/DeploymentScreen
 # --- MODIFICATION ---
 # Added a reference to the Input Shield's CollisionShape3D.
@@ -13,6 +19,9 @@ const CardChooserScene = preload("res://scenes/ui/CardChooser.tscn")
 
 var selected_enemy_button: PhysicalButton3D = null
 var enemy_buttons: Array = []
+var all_buttons: Array = []
+var enemy_button_map: Dictionary = {}
+var end_turn_button: PhysicalButton3D = null
 
 # --- MODIFICATION ---
 # Added a flag to control verbose shield state logging in _process
@@ -20,7 +29,6 @@ var _log_shield_state_verbose = false
 
 func _ready():
 	await get_tree().create_timer(0.1).timeout
-	var console: ConsoleController = $SubViewportContainer/SubViewport/Console3D
 	deployment_screen = console.get_node("console/MainScreen3D/console/MainScreen/SubViewport/DeploymentScreen")
 	
 	GameManager.game_state_changed.connect(update_all_ui)
@@ -56,6 +64,7 @@ func _ready():
 	Logger.log("--- INPUT SHIELD INITIALLY DISABLED (State: %s) ---" % input_shield_collision_shape.disabled)
 	
 	setup_game()
+	_set_default_lighting()
 
 
 # --- MODIFICATION ---
@@ -69,6 +78,52 @@ func _unhandled_input(event: InputEvent):
 	if interaction_controller:
 		interaction_controller.check_for_click(event)
 
+func update_all_ui():
+	var ai_players = []
+	for p in GameManager.active_players:
+		if p.is_ai:
+			ai_players.append(p)
+	
+	if console:
+		console.update_avatar_display(ai_players)
+		console.update_info_screens(GameManager.get_human_player_state(), ai_players)
+		
+		enemy_button_map.clear()
+		var player_map_visual = { 0: "EnemyButtonTopRight", 1: "EnemyButtonBottomRight", 2: "EnemyButtonTopLeft", 3: "EnemyButtonBottomLeft" }
+		for i in range(ai_players.size()):
+			if player_map_visual.has(i):
+				var button_name = player_map_visual[i]
+				enemy_button_map[button_name] = ai_players[i]
+
+func on_turn_started(player_state):
+	if player_state.is_ai:
+		if light_anim_player and not light_anim_player.is_playing():
+			light_anim_player.play("Alarm_AI_TurnLoop")
+	else:
+		if light_anim_player:
+			light_anim_player.play("Alarm_AI_TurnEnd")
+			await light_anim_player.animation_finished
+		
+		if selected_enemy_button:
+			selected_enemy_button.play_animation(true) # Play release animation
+			selected_enemy_button = null
+			
+		for button in all_buttons:
+			button.enable()
+
+func find_button_by_mesh_name(mesh_name: String) -> PhysicalButton3D:
+	for button in all_buttons:
+		if button.target_mesh.name == mesh_name:
+			return button
+	return null
+
+func setup_game():
+	var all_factions = FactionDatabase.get_all_faction_ids()
+	all_factions.shuffle()
+	var selected_factions = all_factions.slice(0, 4)
+	GameManager.start_new_game(selected_factions)
+	update_all_ui()
+
 func connect_3d_buttons():
 	var console_model_root = $SubViewportContainer/SubViewport/Console3D/console
 	if console_model_root:
@@ -76,8 +131,11 @@ func connect_3d_buttons():
 			if node is PhysicalButton3D:
 				node.button_pressed.connect(_on_3d_button_pressed)
 				node.set_animation_player(console_anim_player)
+				all_buttons.append(node)
 				if node.target_mesh.name.begins_with("EnemyButton"):
 					enemy_buttons.append(node)
+				elif node.target_mesh.name == "EndTurnButton":
+					end_turn_button = node
 
 func _on_3d_button_pressed(mesh_name: String):
 	Logger.log("--- 3D Button Pressed: %s ---" % mesh_name)
@@ -95,6 +153,7 @@ func _on_3d_button_pressed(mesh_name: String):
 			GameManager.player_selected_target(null)
 			for btn in enemy_buttons:
 				btn.enable()
+			return
 		else:
 			if selected_enemy_button:
 				selected_enemy_button.play_animation(true)
@@ -103,12 +162,9 @@ func _on_3d_button_pressed(mesh_name: String):
 			for btn in enemy_buttons:
 				if btn != selected_enemy_button:
 					btn.disable()
-			var player_map = { "EnemyButtonTopRight": 0, "EnemyButtonBottomRight": 1, "EnemyButtonTopLeft": 2, "EnemyButtonBottomLeft": 3 }
-			var ai_players = []
-			for p in GameManager.active_players:
-				if p.is_ai: ai_players.append(p)
-			if player_map.has(mesh_name) and player_map[mesh_name] < ai_players.size():
-				var target_player = ai_players[player_map[mesh_name]]
+			
+			if enemy_button_map.has(mesh_name):
+				var target_player = enemy_button_map[mesh_name]
 				GameManager.player_selected_target(target_player)
 			return
 
@@ -128,8 +184,6 @@ func _on_3d_button_pressed(mesh_name: String):
 
 	if mesh_name == "EndTurnButton":
 		deployment_screen.hide_screen() # Close the menu if it's open
-		# --- MODIFICATION ---
-		# Do not re-enable `process_input` here as it's no longer managed for this flow.
 		_on_end_turn_pressed()
 	elif mesh_name == "BuildButton":
 		deployment_screen.show_choices("Invest in a Sector:", GameManager.INVESTMENT_SECTORS, "INVESTMENT")
@@ -224,151 +278,25 @@ func _on_end_turn_pressed():
 	else:
 		Logger.log("ERROR: Cannot disable input shield, reference is null!")
 		
+	if end_turn_button:
+		end_turn_button.play_animation() # Play press animation
+
+	for button in all_buttons:
+		button.disable()
+	
+	if light_anim_player:
+		light_anim_player.play("Alarm_AI_TurnStart")
+		
 	if GameManager.is_player_action_valid():
 		GameManager.process_player_attack()
 	else:
 		Logger.log("No action selected. Ending turn.")
 		GameManager.pass_turn()
 
-
-# --- MODIFICATION ---
-# Added a new function to handle clicks on the input shield.
-# This function will hide the deployment screen and disable the shield's collision shape.
-		# --- DEBUG ---
-		Logger.log("--- _on_input_shield_clicked SIGNAL RECEIVED ---")
-		# Check if the event is a mouse button press
-		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			# --- DEBUG ---
-			Logger.log("--- _on_input_shield_clicked MOUSE EVENT PROCESSED ---")
-			Logger.log("--- Input Shield Clicked ---")
-			
-			# Hide the deployment screen
-			if deployment_screen:
-				deployment_screen.hide_screen()
-				Logger.log("--- DEPLOYMENT SCREEN HIDDEN ---")
-			else:
-				Logger.log("ERROR: Deployment screen reference is null in _on_input_shield_clicked!")
-			
-			# Disable the input shield's collision shape
-			if input_shield_collision_shape:
-				input_shield_collision_shape.disabled = true
-				# --- DEBUG ---
-				Logger.log("--- INPUT SHIELD DISABLED after click (New State: %s) ---" % input_shield_collision_shape.disabled)
-			else:
-				Logger.log("ERROR: Cannot disable input shield in _on_input_shield_clicked, reference is null!")
-
-func find_button_by_mesh_name(mesh_name: String) -> PhysicalButton3D:
-	var console_model_root = $SubViewportContainer/SubViewport/Console3D/console
-	if console_model_root:
-		for node in console_model_root.find_children("*", "StaticBody3D", true):
-			if node is PhysicalButton3D and node.target_mesh.name == mesh_name:
-				return node
-	return null
-
-func on_turn_started(player_state: PlayerState):
-	if player_state.is_ai:
-		set_player_controls_enabled(false)
-	else:
-		set_player_controls_enabled(true)
-		if selected_enemy_button:
-			selected_enemy_button.play_animation(true)
-			selected_enemy_button = null
-			GameManager.player_selected_target(null)
-		for btn in enemy_buttons:
-			btn.enable()
-
-func set_player_controls_enabled(is_enabled: bool):
-	var console_model_root = $SubViewportContainer/SubViewport/Console3D/console
-	if not console_model_root: return
-	
-	for node in console_model_root.find_children("*", "StaticBody3D", true):
-		if node is PhysicalButton3D:
-			if is_enabled:
-				node.enable()
-			else:
-				node.disable()
-				
-	var status = "ENABLED" if is_enabled else "DISABLED"
-	Logger.log("Player 3D controls have been " + status)
-
-func setup_game():
-	var factions_in_match = ["usa", "russia", "china", "north_korea"]
-	GameManager.start_new_game(factions_in_match)
-	update_all_ui()
-	GameManager.start_turn()
-
-func update_all_ui():
-	var console: ConsoleController = $SubViewportContainer/SubViewport/Console3D
-	if not console: return
-	
-	var human_player = GameManager.get_human_player_state()
-	if human_player and console.player_info_label:
-		var player_text = "TREASURY: $%sT
-MORALE: %s%%
-AP: %s" % [
-			human_player.current_treasury,
-			int(human_player.current_morale * 100),
-			human_player.current_ap
-		]
-		console.player_info_label.text = player_text
-		
-	generate_player_ui()
-
-func generate_player_ui():
-	var console: ConsoleController = $SubViewportContainer/SubViewport/Console3D
-	if not console: return
-	
-	var enemy_labels = [
-		console.enemy_info_tr, console.enemy_info_br,
-		console.enemy_info_tl, console.enemy_info_bl]
-	
-	var avatar_images = [
-		console.avatar_image_tr, console.avatar_image_br,
-		console.avatar_image_tl, console.avatar_image_bl]
-	var ai_players = []
-	for p in GameManager.active_players:
-		if p.is_ai: ai_players.append(p)
-
-	for i in range(enemy_labels.size()):
-		if i < ai_players.size():
-			var ai = ai_players[i]
-			if enemy_labels[i]:
-				enemy_labels[i].text = "%s
-%s
-Pop: %sM" % [ai.faction_data.faction_name, ai.faction_data.leader_name, ai.current_population]
-			if avatar_images[i]:
-				avatar_images[i].texture = ai.faction_data.avatar
-		else:
-			if enemy_labels[i]:
-				enemy_labels[i].text = ""
-			if avatar_images[i]:
-				avatar_images[i].texture = null
-
-	# Initially disable the shield's collision shape
-	input_shield_collision_shape.disabled = true
-	Logger.log("--- INPUT SHIELD INITIALLY DISABLED (State: %s) ---" % input_shield_collision_shape.disabled)
-	
-	setup_game()
+	if selected_enemy_button:
+		selected_enemy_button = null
 
 
-# Hide the deployment screen
-	if deployment_screen:
-		deployment_screen.hide_screen()
-		Logger.log("--- DEPLOYMENT SCREEN HIDDEN ---")
-	else:
-		Logger.log("ERROR: Deployment screen reference is null in _on_input_shield_clicked!")
-
-	# Disable the input shield's collision shape
-	if input_shield_collision_shape:
-		input_shield_collision_shape.disabled = true
-		# --- DEBUG ---
-		Logger.log("--- INPUT SHIELD DISABLED after click (New State: %s) ---" % input_shield_collision_shape.disabled)
-	else:
-		Logger.log("ERROR: Cannot disable input shield in _on_input_shield_clicked, reference is null!")
-
-# --- MODIFICATION ---
-# Added a new function to handle clicks on the input shield.
-# This function will hide the deployment screen and disable the shield's collision shape.
 func _on_input_shield_clicked(_camera: Camera3D, event: InputEvent, _click_position: Vector3, _click_normal: Vector3, _shape_idx: int):
 	# --- DEBUG ---
 	Logger.log("--- _on_input_shield_clicked SIGNAL RECEIVED ---")
@@ -377,36 +305,14 @@ func _on_input_shield_clicked(_camera: Camera3D, event: InputEvent, _click_posit
 		# --- DEBUG ---
 		Logger.log("--- _on_input_shield_clicked MOUSE EVENT PROCESSED ---")
 		Logger.log("--- Input Shield Clicked ---")
-		
-		# Hide the deployment screen
-		if deployment_screen:
-			deployment_screen.hide_screen()
-			Logger.log("--- DEPLOYMENT SCREEN HIDDEN ---")
-		else:
-			Logger.log("ERROR: Deployment screen reference is null in _on_input_shield_clicked!")
-		
-		# Disable the input shield's collision shape
-		if input_shield_collision_shape:
-			input_shield_collision_shape.disabled = true
-			# --- DEBUG ---
-			Logger.log("--- INPUT SHIELD DISABLED after click (New State: %s) ---" % input_shield_collision_shape.disabled)
-		else:
-			Logger.log("ERROR: Cannot disable input shield in _on_input_shield_clicked, reference is null!")
-}
 
-	# Check if the event is a mouse button press
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		# --- DEBUG ---
-		Logger.log("--- _on_input_shield_clicked MOUSE EVENT PROCESSED ---")
-		Logger.log("--- Input Shield Clicked ---")
-		
 		# Hide the deployment screen
 		if deployment_screen:
 			deployment_screen.hide_screen()
 			Logger.log("--- DEPLOYMENT SCREEN HIDDEN ---")
 		else:
 			Logger.log("ERROR: Deployment screen reference is null in _on_input_shield_clicked!")
-		
+
 		# Disable the input shield's collision shape
 		if input_shield_collision_shape:
 			input_shield_collision_shape.disabled = true
@@ -414,4 +320,13 @@ func _on_input_shield_clicked(_camera: Camera3D, event: InputEvent, _click_posit
 			Logger.log("--- INPUT SHIELD DISABLED after click (New State: %s) ---" % input_shield_collision_shape.disabled)
 		else:
 			Logger.log("ERROR: Cannot disable input shield in _on_input_shield_clicked, reference is null!")
-}
+
+func _set_default_lighting():
+	if overhead_light:
+		overhead_light.light_energy = 5.0
+	if ambient_light:
+		ambient_light.light_energy = 0.5
+	if left_fill_light:
+		left_fill_light.light_color = Color(1, 1, 1, 1)
+	if right_fill_light:
+		right_fill_light.light_color = Color(1, 1, 1, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://c74uoaliwxt4l"]
+[gd_scene load_steps=20 format=4 uid="uid://c74uoaliwxt4l"]
 
 [ext_resource type="Script" uid="uid://u8hoin4pnesp" path="res://scenes/3d/ConsoleController.gd" id="1_3drjo"]
 [ext_resource type="Texture2D" uid="uid://bealtbcwntk5o" path="res://art/3d/textures/console_ConsoleBasePlate_BSDF_B_4096.png" id="1_cr3t5"]
@@ -64,8 +64,199 @@ shadow_mesh = SubResource("ArrayMesh_5ol5b")
 resource_local_to_scene = true
 background_mode = 3
 background_energy_multiplier = 0.1
-ambient_light_color = Color(0.0923971, 0.0923971, 0.0923971, 1)
-ambient_light_energy = 0.1
+ambient_light_source = 1
+ambient_light_energy = 0.0
+reflected_light_source = 1
+
+[sub_resource type="Animation" id="Animation_vlynl"]
+resource_name = "Alarm_AI_TurnEnd"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ambient_Light:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.1, 0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Overhead_Light:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 5.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftFill_Light:light_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RightFill_Light:light_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_84ais"]
+resource_name = "Alarm_AI_TurnLoop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftFill_Light:light_color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightFill_Light:light_color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_n3jts"]
+resource_name = "Alarm_AI_TurnStart"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ambient_Light:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.5, 0.1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Overhead_Light:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [5.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftFill_Light:light_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RightFill_Light:light_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mvnwf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ambient_Light:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Overhead_Light:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeftFill_Light:light_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RightFill_Light:light_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_84ais"]
+_data = {
+&"Alarm_AI_TurnEnd": SubResource("Animation_vlynl"),
+&"Alarm_AI_TurnLoop": SubResource("Animation_84ais"),
+&"Alarm_AI_TurnStart": SubResource("Animation_n3jts"),
+&"RESET": SubResource("Animation_mvnwf")
+}
 
 [node name="Console3D" type="Node3D"]
 script = ExtResource("1_3drjo")
@@ -77,15 +268,12 @@ mesh = SubResource("ArrayMesh_mrlnu")
 skeleton = NodePath("")
 
 [node name="Physical3DButtons" parent="console" instance=ExtResource("6_n3jts")]
-script = null
 
 [node name="MainScreen3D" parent="console" instance=ExtResource("38_f127i")]
 
 [node name="InfoScreens" parent="console" instance=ExtResource("8_mvnwf")]
-script = null
 
 [node name="AvatarScreens" parent="console" instance=ExtResource("9_84ais")]
-script = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0)
@@ -96,10 +284,9 @@ script = ExtResource("2_u1dr3")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tj45l")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.911576, 0.411132, 0, -0.411132, -0.911576, 0, 1.21806, -2.4237)
-light_color = Color(1, 0.946512, 0.842581, 1)
-light_energy = 5.0
+[node name="Overhead_Light" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.911576, 0.411132, 0, -0.411132, -0.911576, 0, 1.2, -2.5)
+light_color = Color(1, 0.882667, 0.84, 1)
 light_indirect_energy = 0.0
 light_size = 0.791
 light_specular = 1.864
@@ -109,14 +296,19 @@ spot_attenuation = 1.34
 spot_angle = 15.0823
 spot_angle_attenuation = 0.659754
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12277, 0.350142, -0.118711)
+[node name="Ambient_Light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 1)
+light_energy = 0.1
+
+[node name="LeftFill_Light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0.35, 0)
 omni_range = 1.4
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09184, 0.350142, -0.118711)
+[node name="RightFill_Light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0.35, 0)
 omni_range = 1.4
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.73397e-05, 0.810835, 1.08393)
-light_energy = 0.5
+[node name="LightAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_84ais")
+}

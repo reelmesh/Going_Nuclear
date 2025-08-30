@@ -1,6 +1,5 @@
-[gd_scene load_steps=55 format=4 uid="uid://cy154nif2kuml"]
+[gd_scene load_steps=54 format=4 uid="uid://cy154nif2kuml"]
 
-[ext_resource type="Script" uid="uid://u8hoin4pnesp" path="res://scenes/3d/ConsoleController.gd" id="1_45jf6"]
 [ext_resource type="FontFile" uid="uid://b8w8xh1hiyrfw" path="res://art/fonts/MatrixTypeDisplay-Bold.ttf" id="6_6toyj"]
 [ext_resource type="Texture2D" uid="uid://bqjvla1rxn01m" path="res://art/3d/textures/console_EnemyInfoScreensGlass_Color_4096.png" id="7_6x7av"]
 [ext_resource type="Texture2D" uid="uid://dfw1al40coa75" path="res://art/3d/textures/console_GameLogScreen_BSDF_1024.png" id="8_tns0k"]
@@ -779,7 +778,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ajcu2")
 
 [node name="InfoScreens" type="Node3D"]
-script = ExtResource("1_45jf6")
 
 [node name="console" type="Node3D" parent="."]
 
@@ -799,6 +797,7 @@ rotation = 1.5708
 theme_override_styles/panel = SubResource("StyleBoxTexture_picoh")
 
 [node name="EnemyInfoBottomLeftLabel" type="RichTextLabel" parent="console/EnemyInfoScreen_BottomLeft/LogViewport/Panel"]
+unique_name_in_owner = true
 layout_mode = 1
 offset_left = 35.0
 offset_top = 50.0
@@ -830,6 +829,7 @@ rotation = 1.5708
 theme_override_styles/panel = SubResource("StyleBoxTexture_picoh")
 
 [node name="EnemyInfoBottomRightLabel" type="RichTextLabel" parent="console/EnemyInfoScreen_BottomRight/LogViewport/Panel"]
+unique_name_in_owner = true
 layout_mode = 1
 offset_left = 35.0
 offset_top = 50.0
@@ -861,6 +861,7 @@ rotation = 1.5708
 theme_override_styles/panel = SubResource("StyleBoxTexture_picoh")
 
 [node name="EnemyInfoTopLeftLabel" type="RichTextLabel" parent="console/EnemyInfoScreen_TopLeft/LogViewport/Panel"]
+unique_name_in_owner = true
 layout_mode = 1
 offset_left = 35.0
 offset_top = 50.0
@@ -892,6 +893,7 @@ rotation = 1.5708
 theme_override_styles/panel = SubResource("StyleBoxTexture_picoh")
 
 [node name="EnemyInfoTopRightLabel" type="RichTextLabel" parent="console/EnemyInfoScreen_TopRight/LogViewport/Panel"]
+unique_name_in_owner = true
 layout_mode = 1
 offset_left = 35.0
 offset_top = 50.0
@@ -968,6 +970,7 @@ rotation = 1.5708
 theme_override_styles/panel = SubResource("StyleBoxTexture_picoh")
 
 [node name="PlayerInfoLabel" type="RichTextLabel" parent="console/PlayerInfoScreen/LogViewport/Panel"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 1
 offset_left = 470.0

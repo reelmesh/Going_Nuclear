@@ -1,0 +1,12 @@
+{
+  "$schema": "https://charm.land/crush.json",
+  "mcp": {
+    "byteroverb": {
+      "type": "http",
+      "url": "https://mcp.byterover.dev/v2/mcp",
+      "headers": {
+        "Authorization": "$(echo Bearer $BYTEROVER_MCP_TOKEN)"
+      }
+    }
+  }
+}

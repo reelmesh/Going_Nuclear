@@ -61,5 +61,37 @@ func _ready():
 	else:
 		print("ERROR: Could not find EnemyInfoTopRightLabel at the specified path.")
 
+	if is_instance_valid(avatar_image_tr):
+		print("SUCCESS: Found avatar_image_tr.")
+	else:
+		print("ERROR: Could not find avatar_image_tr at the specified path.")
+
 	# ... (You can add checks for the other enemy labels if you wish)
 	print("--- Self-Check Complete ---")
+
+func update_avatar_display(ai_players: Array):
+	if ai_players.size() > 0 and avatar_image_tr:
+		avatar_image_tr.texture = ai_players[0].faction_data.avatar
+	if ai_players.size() > 1 and avatar_image_br:
+		avatar_image_br.texture = ai_players[1].faction_data.avatar
+	if ai_players.size() > 2 and avatar_image_tl:
+		avatar_image_tl.texture = ai_players[2].faction_data.avatar
+	if ai_players.size() > 3 and avatar_image_bl:
+		avatar_image_bl.texture = ai_players[3].faction_data.avatar
+
+func update_info_screens(player_state: PlayerState, ai_players: Array):
+	if player_state:
+		player_info_label.text = "Player: %s\nAP: %d\nTreasury: %d\nPopulation: %dM" % [player_state.faction_data.faction_name, player_state.current_ap, player_state.current_treasury, player_state.current_population]
+
+	if ai_players.size() > 0 and enemy_info_tr:
+		var p = ai_players[0]
+		enemy_info_tr.text = "Leader: %s\nFaction: %s\nPopulation: %dM" % [p.faction_data.leader_name, p.faction_data.faction_name, p.current_population]
+	if ai_players.size() > 1 and enemy_info_br:
+		var p = ai_players[1]
+		enemy_info_br.text = "Leader: %s\nFaction: %s\nPopulation: %dM" % [p.faction_data.leader_name, p.faction_data.faction_name, p.current_population]
+	if ai_players.size() > 2 and enemy_info_tl:
+		var p = ai_players[2]
+		enemy_info_tl.text = "Leader: %s\nFaction: %s\nPopulation: %dM" % [p.faction_data.leader_name, p.faction_data.faction_name, p.current_population]
+	if ai_players.size() > 3 and enemy_info_bl:
+		var p = ai_players[3]
+		enemy_info_bl.text = "Leader: %s\nFaction: %s\nPopulation: %dM" % [p.faction_data.leader_name, p.faction_data.faction_name, p.current_population]
