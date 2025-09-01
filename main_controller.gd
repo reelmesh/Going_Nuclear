@@ -22,6 +22,7 @@ var enemy_buttons: Array = []
 var all_buttons: Array = []
 var enemy_button_map: Dictionary = {}
 var end_turn_button: PhysicalButton3D = null
+var _enemy_to_release: PhysicalButton3D = null
 
 # --- MODIFICATION ---
 # Added a flag to control verbose shield state logging in _process
@@ -104,10 +105,18 @@ func on_turn_started(player_state):
 			light_anim_player.play("Alarm_AI_TurnEnd")
 			await light_anim_player.animation_finished
 		
-		if selected_enemy_button:
-			selected_enemy_button.play_animation(true) # Play release animation
-			selected_enemy_button = null
-			
+		# First, handle the EndTurnButton and wait for it to finish.
+		if end_turn_button:
+			end_turn_button.play_animation(true) # Play release animation
+			if console_anim_player and console_anim_player.is_playing():
+				await console_anim_player.animation_finished
+
+		# THEN, use the targeting system to find the correct button to release.
+		if _enemy_to_release:
+			Logger.log("DEBUG: Releasing pressed button: %s" % _enemy_to_release.target_mesh.name)
+			_enemy_to_release.play_animation(true)
+			_enemy_to_release = null
+		
 		for button in all_buttons:
 			button.enable()
 
@@ -294,6 +303,7 @@ func _on_end_turn_pressed():
 		GameManager.pass_turn()
 
 	if selected_enemy_button:
+		_enemy_to_release = selected_enemy_button
 		selected_enemy_button = null
 
 

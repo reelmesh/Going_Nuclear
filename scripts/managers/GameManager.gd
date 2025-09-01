@@ -71,6 +71,11 @@ func draw_card(player_state: PlayerState):
 	else:
 		Logger.log("The main deck is empty!")
 
+func get_current_player() -> PlayerState:
+	if active_players.is_empty():
+		return null
+	return active_players[current_player_index]
+
 func find_random_card_of_type(card_type: CardData.CardType) -> String:
 	var card_pool = CardDatabase.get_card_ids_by_type(card_type)
 	if not card_pool.is_empty():

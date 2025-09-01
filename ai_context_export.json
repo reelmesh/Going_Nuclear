@@ -8,7 +8,7 @@
 		"Logger": "*res://scripts/managers/Logger.gd",
 		"WinConditionManager": "*res://scripts/managers/WinConditionManager.gd"
 	},
-	"generated_timestamp": "2025-08-28T22:46:44",
+	"generated_timestamp": "2025-08-31T00:08:36",
 	"project_name": "Going Nuclear",
 	"project_settings": {
 		"application": {
@@ -289,6 +289,347 @@
 			}
 		},
 		{
+			"path": "res:///scenes/3d/MainScreen.tscn",
+			"root_node": {
+				"children": [
+					{
+						"children": [
+							{
+								"children": [],
+								"groups": [],
+								"name": "MainScreenGlass",
+								"properties": {
+									"mesh": "res://scenes/3d/MainScreen.tscn::ArrayMesh_f127i",
+									"skeleton": "",
+									"surface_material_override/0": "<Object#null>"
+								},
+								"script": "",
+								"type": "MeshInstance3D"
+							},
+							{
+								"children": [
+									{
+										"children": [
+											{
+												"children": [
+													{
+														"children": [],
+														"groups": [],
+														"name": "InputShield",
+														"properties": {
+															"anchors_preset": 15,
+															"color": [
+																1.0,
+																0.0,
+																0.0166663993149996,
+																0.0
+															],
+															"layout_mode": 1,
+															"position": [
+																-125.0,
+																-72.5
+															],
+															"theme": "res://art/ui/card_menu-theme.tres"
+														},
+														"script": "",
+														"type": "ColorRect"
+													},
+													{
+														"children": [
+															{
+																"children": [
+																	{
+																		"children": [
+																			{
+																				"children": [],
+																				"groups": [],
+																				"name": "TitleLabel",
+																				"properties": {
+																					"anchors_preset": 15,
+																					"autowrap_mode": 3,
+																					"horizontal_alignment": 1,
+																					"layout_mode": 1,
+																					"position": [
+																						-0.5,
+																						-11.5
+																					],
+																					"size": [
+																						1.0,
+																						23.0
+																					],
+																					"text": "BUTTON SELECTION",
+																					"theme_override_colors/font_color": [
+																						0.0,
+																						0.0,
+																						0.0,
+																						1.0
+																					],
+																					"theme_override_font_sizes/font_size": 40,
+																					"theme_override_fonts/font": "res://art/fonts/AcPlus_IBM_VGA_8x14.ttf",
+																					"vertical_alignment": 1
+																				},
+																				"script": "",
+																				"type": "Label"
+																			}
+																		],
+																		"groups": [],
+																		"name": "TitleBar",
+																		"properties": {
+																			"custom_minimum_size": [
+																				500.0,
+																				75.0
+																			],
+																			"layout_mode": 2,
+																			"mouse_filter": 1,
+																			"size_flags_vertical": 0,
+																			"theme": "res://art/ui/card_menu-theme.tres"
+																		},
+																		"script": "",
+																		"type": "Panel"
+																	},
+																	{
+																		"children": [
+																			{
+																				"children": [],
+																				"groups": [],
+																				"name": "Panel",
+																				"properties": {
+																					"layout_mode": 2,
+																					"size_flags_vertical": 3,
+																					"theme_override_styles/panel": "res://scenes/ui/DeploymentScreen.tscn::StyleBoxFlat_nt86h"
+																				},
+																				"script": "",
+																				"type": "Panel"
+																			}
+																		],
+																		"groups": [],
+																		"name": "OptionsList",
+																		"properties": {
+																			"custom_minimum_size": [
+																				500.0,
+																				0.0
+																			],
+																			"layout_mode": 2,
+																			"size_flags_vertical": 3,
+																			"theme": "res://art/ui/card_menu-theme.tres"
+																		},
+																		"script": "",
+																		"type": "VBoxContainer"
+																	}
+																],
+																"groups": [],
+																"name": "CardChooserUI",
+																"properties": {
+																	"layout_mode": 2,
+																	"theme": "res://art/ui/card_menu-theme.tres"
+																},
+																"script": "",
+																"type": "VBoxContainer"
+															},
+															{
+																"children": [
+																	{
+																		"children": [
+																			{
+																				"children": [],
+																				"groups": [],
+																				"name": "Visualizer_Art",
+																				"properties": {
+																					"custom_minimum_size": [
+																						450.0,
+																						450.0
+																					],
+																					"layout_mode": 2,
+																					"size_flags_horizontal": 4,
+																					"size_flags_vertical": 0
+																				},
+																				"script": "",
+																				"type": "TextureRect"
+																			},
+																			{
+																				"children": [],
+																				"groups": [],
+																				"name": "Visualizer_Description",
+																				"properties": {
+																					"autowrap_mode": 3,
+																					"custom_minimum_size": [
+																						0.0,
+																						150.0
+																					],
+																					"horizontal_alignment": 1,
+																					"layout_mode": 2,
+																					"size_flags_vertical": 0,
+																					"text": "Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Descriptio",
+																					"theme_override_colors/font_color": [
+																						0.0,
+																						0.0,
+																						0.0,
+																						1.0
+																					],
+																					"theme_override_font_sizes/font_size": 28,
+																					"theme_override_fonts/font": "res://art/fonts/AcPlus_IBM_VGA_8x14.ttf",
+																					"theme_override_styles/normal": "<StyleBoxFlat#-9223368770079075755>",
+																					"vertical_alignment": 1
+																				},
+																				"script": "",
+																				"type": "Label"
+																			}
+																		],
+																		"groups": [],
+																		"name": "VisualizerContent",
+																		"properties": {
+																			"layout_mode": 2
+																		},
+																		"script": "",
+																		"type": "VBoxContainer"
+																	}
+																],
+																"groups": [],
+																"name": "CardVisualsOverlay",
+																"properties": {
+																	"custom_minimum_size": [
+																		450.0,
+																		600.0
+																	],
+																	"layout_mode": 2,
+																	"mouse_filter": 1,
+																	"size_flags_horizontal": 10,
+																	"size_flags_vertical": 4,
+																	"theme_override_styles/panel": "res://art/ui/dark_green_box_flat.tres"
+																},
+																"script": "",
+																"type": "PanelContainer"
+															}
+														],
+														"groups": [],
+														"name": "ContentBox",
+														"properties": {
+															"layout_mode": 2,
+															"size": [
+																954.0,
+																604.0
+															],
+															"theme": "res://art/ui/card_menu-theme.tres"
+														},
+														"script": "",
+														"type": "HBoxContainer"
+													}
+												],
+												"groups": [],
+												"name": "DeploymentScreen",
+												"properties": {
+													"anchors_preset": 15,
+													"custom_minimum_size": [
+														1210.0,
+														750.0
+													],
+													"mouse_default_cursor_shape": 2,
+													"position": [
+														-295.0,
+														-445.0
+													],
+													"rotation": 1.57079994678497,
+													"scale": [
+														1.0,
+														-0.699999988079071
+													],
+													"script": "res://scenes/ui/DeploymentUI.gd",
+													"size": [
+														1210.0,
+														750.0
+													],
+													"theme": "res://art/ui/card_menu-theme.tres"
+												},
+												"script": "res://scenes/ui/DeploymentUI.gd",
+												"type": "Control"
+											}
+										],
+										"groups": [],
+										"name": "SubViewport",
+										"properties": {
+											"size": "(750, 1210)",
+											"transparent_bg": true
+										},
+										"script": "",
+										"type": "SubViewport"
+									},
+									{
+										"children": [
+											{
+												"children": [],
+												"groups": [],
+												"name": "InputShield_CollisionShape",
+												"properties": {
+													"position": [
+														0.0000504505987919401,
+														-0.178965002298355,
+														-0.000296690006507561
+													],
+													"shape": "res://scenes/3d/MainScreen.tscn::BoxShape3D_picoh"
+												},
+												"script": "",
+												"type": "CollisionShape3D"
+											}
+										],
+										"groups": [],
+										"name": "InputShield_StaticBody",
+										"properties": {
+											"position": [
+												0.0,
+												0.0,
+												0.00100000004749745
+											]
+										},
+										"script": "",
+										"type": "StaticBody3D"
+									}
+								],
+								"groups": [],
+								"name": "MainScreen",
+								"properties": {
+									"mesh": "res://scenes/3d/MainScreen.tscn::ArrayMesh_picoh",
+									"position": [
+										0.0,
+										0.0129289999604225,
+										-0.0777985975146294
+									],
+									"rotation": [
+										0.0,
+										-3.14159274101257,
+										0.0
+									],
+									"scale": [
+										-6.7805700302124,
+										-0.0969522967934608,
+										-4.20753002166748
+									],
+									"script": "res://scripts/3d/MainScreen3DController.gd",
+									"skeleton": "",
+									"surface_material_override/0": "<ShaderMaterial#-9223368770599169546>"
+								},
+								"script": "res://scripts/3d/MainScreen3DController.gd",
+								"type": "MeshInstance3D"
+							}
+						],
+						"groups": [],
+						"name": "console",
+						"properties": {
+
+						},
+						"script": "",
+						"type": "Node3D"
+					}
+				],
+				"groups": [],
+				"name": "MainScreen3D",
+				"properties": {
+
+				},
+				"script": "",
+				"type": "Node3D"
+			}
+		},
+		{
 			"path": "res:///scenes/3d/AvatarScreens.tscn",
 			"root_node": {
 				"children": [
@@ -343,7 +684,7 @@
 										0.730261981487274
 									],
 									"skeleton": "",
-									"surface_material_override/0": "<StandardMaterial3D#-9223368739963983169>"
+									"surface_material_override/0": "<StandardMaterial3D#-9223368769391209940>"
 								},
 								"script": "",
 								"type": "MeshInstance3D"
@@ -397,7 +738,7 @@
 										0.730261981487274
 									],
 									"skeleton": "",
-									"surface_material_override/0": "<StandardMaterial3D#-9223368739762649910>"
+									"surface_material_override/0": "<StandardMaterial3D#-9223368769189883346>"
 								},
 								"script": "",
 								"type": "MeshInstance3D"
@@ -451,7 +792,7 @@
 										0.730261981487274
 									],
 									"skeleton": "",
-									"surface_material_override/0": "<StandardMaterial3D#-9223368739594877783>"
+									"surface_material_override/0": "<StandardMaterial3D#-9223368769022116855>"
 								},
 								"script": "",
 								"type": "MeshInstance3D"
@@ -506,7 +847,7 @@
 										0.730261981487274
 									],
 									"skeleton": "",
-									"surface_material_override/0": "<StandardMaterial3D#-9223368739427105707>"
+									"surface_material_override/0": "<StandardMaterial3D#-9223368768854339208>"
 								},
 								"script": "",
 								"type": "MeshInstance3D"
@@ -546,9 +887,641 @@
 				"groups": [],
 				"name": "AvatarScreens",
 				"properties": {
-					"script": "res://scenes/3d/ConsoleController.gd"
+
 				},
-				"script": "res://scenes/3d/ConsoleController.gd",
+				"script": "",
+				"type": "Node3D"
+			}
+		},
+		{
+			"path": "res:///scenes/3d/InfoScreens.tscn",
+			"root_node": {
+				"children": [
+					{
+						"children": [
+							{
+								"children": [
+									{
+										"children": [
+											{
+												"children": [
+													{
+														"children": [],
+														"groups": [],
+														"name": "EnemyInfoBottomLeftLabel",
+														"properties": {
+															"layout_mode": 1,
+															"position": [
+																35.0,
+																50.0
+															],
+															"scale": [
+																0.600000023841858,
+																1.0
+															],
+															"scroll_active": false,
+															"size": [
+																700.0,
+																450.0
+															],
+															"text": "InternalInternalInternalInternalInternal",
+															"theme_override_colors/default_color": [
+																0.0,
+																0.0,
+																0.0,
+																1.0
+															],
+															"theme_override_colors/font_shadow_color": [
+																0.0,
+																0.0,
+																0.0,
+																1.0
+															],
+															"theme_override_constants/shadow_offset_y": 5,
+															"theme_override_font_sizes/normal_font_size": 70,
+															"theme_override_fonts/normal_font": "res://art/fonts/MatrixTypeDisplay-Bold.ttf",
+															"vertical_alignment": 1
+														},
+														"script": "",
+														"type": "RichTextLabel"
+													}
+												],
+												"groups": [],
+												"name": "Panel",
+												"properties": {
+													"position": [
+														512.0,
+														0.0
+													],
+													"rotation": 1.57079994678497,
+													"size": [
+														512.0,
+														512.0
+													],
+													"theme_override_styles/panel": "res://scenes/3d/InfoScreens.tscn::StyleBoxTexture_picoh"
+												},
+												"script": "",
+												"type": "Panel"
+											}
+										],
+										"groups": [],
+										"name": "LogViewport",
+										"properties": {
+
+										},
+										"script": "",
+										"type": "SubViewport"
+									}
+								],
+								"groups": [],
+								"name": "EnemyInfoScreen_BottomLeft",
+								"properties": {
+									"mesh": "res://scenes/3d/InfoScreens.tscn::ArrayMesh_gtbua",
+									"position": [
+										0.0,
+										0.0266105998307467,
+										0.0
+									],
+									"scale": [
+										11.013500213623,
+										0.0658802017569542,
+										6.18556022644043
+									],
+									"skeleton": "",
+									"surface_material_override/0": "<ShaderMaterial#-9223368767528938857>"
+								},
+								"script": "",
+								"type": "MeshInstance3D"
+							},
+							{
+								"children": [
+									{
+										"children": [
+											{
+												"children": [
+													{
+														"children": [],
+														"groups": [],
+														"name": "EnemyInfoBottomRightLabel",
+														"properties": {
+															"layout_mode": 1,
+															"position": [
+																35.0,
+																50.0
+															],
+															"scale": [
+																0.600000023841858,
+																1.0
+															],
+															"scroll_active": false,
+															"size": [
+																700.0,
+																450.0
+															],
+															"text": "InternalInternalInternalInternalInternal",
+															"theme_override_colors/default_color": [
+																0.0,
+																0.0,
+																0.0,
+																1.0
+															],
+															"theme_override_colors/font_shadow_color": [
+																0.0,
+																0.0,
+																0.0,
+																1.0
+															],
+															"theme_override_constants/shadow_offset_y": 5,
+															"theme_override_font_sizes/normal_font_size": 70,
+															"theme_override_fonts/normal_font": "res://art/fonts/MatrixTypeDisplay-Bold.ttf",
+															"vertical_alignment": 1
+														},
+														"script": "",
+														"type": "RichTextLabel"
+													}
+												],
+												"groups": [],
+												"name": "Panel",
+												"properties": {
+													"position": [
+														512.0,
+														0.0
+													],
+													"rotation": 1.57079994678497,
+													"size": [
+														512.0,
+														512.0
+													],
+													"theme_override_styles/panel": "res://scenes/3d/InfoScreens.tscn::StyleBoxTexture_picoh"
+												},
+												"script": "",
+												"type": "Panel"
+											}
+										],
+										"groups": [],
+										"name": "LogViewport",
+										"properties": {
+
+										},
+										"script": "",
+										"type": "SubViewport"
+									}
+								],
+								"groups": [],
+								"name": "EnemyInfoScreen_BottomRight",
+								"properties": {
+									"mesh": "<ArrayMesh#-9223368767243726172>",
+									"position": [
+										0.0,
+										0.0266105998307467,
+										0.0
+									],
+									"scale": [
+										11.013500213623,
+										0.0658802017569542,
+										6.18556022644043
+									],
+									"skeleton": "",
+									"surface_material_override/0": "<ShaderMaterial#-9223368766656523611>"
+								},
+								"script": "",
+								"type": "MeshInstance3D"
+							},
+							{
+								"children": [
+									{
+										"children": [
+											{
+												"children": [
+													{
+														"children": [],
+														"groups": [],
+														"name": "EnemyInfoTopLeftLabel",
+														"properties": {
+															"layout_mode": 1,
+															"position": [
+																35.0,
+																50.0
+															],
+															"scale": [
+																0.600000023841858,
+																1.0
+															],
+															"scroll_active": false,
+															"size": [
+																700.0,
+																450.0
+															],
+															"text": "InternalInternalInternalInternalInternal",
+															"theme_override_colors/default_color": [
+																0.0,
+																0.0,
+																0.0,
+																1.0
+															],
+															"theme_override_colors/font_shadow_color": [
+																0.0,
+																0.0,
+																0.0,
+																1.0
+															],
+															"theme_override_constants/shadow_offset_y": 5,
+															"theme_override_font_sizes/normal_font_size": 70,
+															"theme_override_fonts/normal_font": "res://art/fonts/MatrixTypeDisplay-Bold.ttf",
+															"vertical_alignment": 1
+														},
+														"script": "",
+														"type": "RichTextLabel"
+													}
+												],
+												"groups": [],
+												"name": "Panel",
+												"properties": {
+													"position": [
+														512.0,
+														0.0
+													],
+													"rotation": 1.57079994678497,
+													"size": [
+														512.0,
+														512.0
+													],
+													"theme_override_styles/panel": "res://scenes/3d/InfoScreens.tscn::StyleBoxTexture_picoh"
+												},
+												"script": "",
+												"type": "Panel"
+											}
+										],
+										"groups": [],
+										"name": "LogViewport",
+										"properties": {
+
+										},
+										"script": "",
+										"type": "SubViewport"
+									}
+								],
+								"groups": [],
+								"name": "EnemyInfoScreen_TopLeft",
+								"properties": {
+									"mesh": "res://scenes/3d/InfoScreens.tscn::ArrayMesh_hu2oy",
+									"position": [
+										0.0,
+										0.0266105998307467,
+										0.0
+									],
+									"scale": [
+										11.013500213623,
+										0.0658802017569542,
+										6.18556022644043
+									],
+									"skeleton": "",
+									"surface_material_override/0": "<ShaderMaterial#-9223368765800885582>"
+								},
+								"script": "",
+								"type": "MeshInstance3D"
+							},
+							{
+								"children": [
+									{
+										"children": [
+											{
+												"children": [
+													{
+														"children": [],
+														"groups": [],
+														"name": "EnemyInfoTopRightLabel",
+														"properties": {
+															"layout_mode": 1,
+															"position": [
+																35.0,
+																50.0
+															],
+															"scale": [
+																0.600000023841858,
+																1.0
+															],
+															"scroll_active": false,
+															"size": [
+																700.0,
+																450.0
+															],
+															"text": "InternalInternalInternalInternalInternal",
+															"theme_override_colors/default_color": [
+																0.0,
+																0.0,
+																0.0,
+																1.0
+															],
+															"theme_override_colors/font_shadow_color": [
+																0.0,
+																0.0,
+																0.0,
+																1.0
+															],
+															"theme_override_constants/shadow_offset_y": 5,
+															"theme_override_font_sizes/normal_font_size": 70,
+															"theme_override_fonts/normal_font": "res://art/fonts/MatrixTypeDisplay-Bold.ttf",
+															"vertical_alignment": 1
+														},
+														"script": "",
+														"type": "RichTextLabel"
+													}
+												],
+												"groups": [],
+												"name": "Panel",
+												"properties": {
+													"position": [
+														512.0,
+														0.0
+													],
+													"rotation": 1.57079994678497,
+													"size": [
+														512.0,
+														512.0
+													],
+													"theme_override_styles/panel": "res://scenes/3d/InfoScreens.tscn::StyleBoxTexture_picoh"
+												},
+												"script": "",
+												"type": "Panel"
+											}
+										],
+										"groups": [],
+										"name": "LogViewport",
+										"properties": {
+
+										},
+										"script": "",
+										"type": "SubViewport"
+									}
+								],
+								"groups": [],
+								"name": "EnemyInfoScreen_TopRight",
+								"properties": {
+									"mesh": "res://scenes/3d/InfoScreens.tscn::ArrayMesh_jn7jt",
+									"position": [
+										0.0,
+										0.0266105998307467,
+										0.0
+									],
+									"scale": [
+										11.013500213623,
+										0.0658802017569542,
+										6.18556022644043
+									],
+									"skeleton": "",
+									"surface_material_override/0": "<ShaderMaterial#-9223368764945247553>"
+								},
+								"script": "",
+								"type": "MeshInstance3D"
+							},
+							{
+								"children": [],
+								"groups": [],
+								"name": "EnemyInfoScreensGlass",
+								"properties": {
+									"mesh": "res://scenes/3d/InfoScreens.tscn::ArrayMesh_e7c38",
+									"position": [
+										0.0,
+										0.0294032990932465,
+										0.0
+									],
+									"scale": [
+										11.013500213623,
+										0.0658802017569542,
+										6.18556022644043
+									],
+									"skeleton": "",
+									"surface_material_override/0": "<Object#null>"
+								},
+								"script": "",
+								"type": "MeshInstance3D"
+							},
+							{
+								"children": [
+									{
+										"children": [
+											{
+												"children": [
+													{
+														"children": [],
+														"groups": [],
+														"name": "GameLogLabel",
+														"properties": {
+															"layout_mode": 1,
+															"position": [
+																210.0,
+																10.0
+															],
+															"rotation": 1.57079994678497,
+															"scroll_active": false,
+															"size": [
+																575.0,
+																200.0
+															],
+															"text": "Internal Test\nInternal Test\nInternal Test\nInternal Test\nInternal Test\nInternal Test\nInternal Test\nInternal Test\nInternal Test\nInternal Test\nInternal Test\nInternal Test",
+															"theme_override_colors/default_color": [
+																0.0,
+																0.0,
+																0.0,
+																1.0
+															],
+															"theme_override_colors/font_shadow_color": [
+																0.0,
+																0.0,
+																0.0,
+																1.0
+															],
+															"theme_override_font_sizes/normal_font_size": 16,
+															"theme_override_fonts/normal_font": "res://art/fonts/MatrixTypeDisplay-Regular.ttf"
+														},
+														"script": "",
+														"type": "RichTextLabel"
+													}
+												],
+												"groups": [],
+												"name": "Panel",
+												"properties": {
+													"size": [
+														220.0,
+														575.0
+													],
+													"theme_override_styles/panel": "<StyleBoxTexture#-9223368763854728489>"
+												},
+												"script": "",
+												"type": "Panel"
+											}
+										],
+										"groups": [],
+										"name": "LogViewport",
+										"properties": {
+											"size": "(285, 575)"
+										},
+										"script": "",
+										"type": "SubViewport"
+									}
+								],
+								"groups": [],
+								"name": "GameLogScreen",
+								"properties": {
+									"mesh": "<ArrayMesh#-9223368764643257651>",
+									"position": [
+										0.0,
+										0.0266105998307467,
+										0.0
+									],
+									"rotation_order": 0,
+									"scale": [
+										11.013500213623,
+										0.0658802017569542,
+										6.18556022644043
+									],
+									"skeleton": "",
+									"surface_material_override/0": "<ShaderMaterial#-9223368764039277873>"
+								},
+								"script": "",
+								"type": "MeshInstance3D"
+							},
+							{
+								"children": [
+									{
+										"children": [
+											{
+												"children": [
+													{
+														"children": [],
+														"groups": [],
+														"name": "PlayerInfoLabel",
+														"properties": {
+															"custom_minimum_size": [
+																500.0,
+																500.0
+															],
+															"layout_mode": 1,
+															"position": [
+																470.0,
+																30.0
+															],
+															"rotation": 1.57079994678497,
+															"scale": [
+																0.600000023841858,
+																1.0
+															],
+															"scroll_active": false,
+															"size": [
+																500.0,
+																500.0
+															],
+															"text": "Internal\nInternal\nInternal\nInternal",
+															"theme_override_colors/default_color": [
+																0.0,
+																0.0,
+																0.0,
+																1.0
+															],
+															"theme_override_colors/font_shadow_color": [
+																0.0,
+																0.0,
+																0.0,
+																1.0
+															],
+															"theme_override_font_sizes/normal_font_size": 50,
+															"theme_override_fonts/normal_font": "res://art/fonts/MatrixTypeDisplay-Regular.ttf"
+														},
+														"script": "",
+														"type": "RichTextLabel"
+													}
+												],
+												"groups": [],
+												"name": "Panel",
+												"properties": {
+													"position": [
+														390.0,
+														0.0
+													],
+													"rotation": 1.57079994678497,
+													"size": [
+														512.0,
+														512.0
+													],
+													"theme_override_styles/panel": "res://scenes/3d/InfoScreens.tscn::StyleBoxTexture_picoh"
+												},
+												"script": "",
+												"type": "Panel"
+											}
+										],
+										"groups": [],
+										"name": "LogViewport",
+										"properties": {
+
+										},
+										"script": "",
+										"type": "SubViewport"
+									}
+								],
+								"groups": [],
+								"name": "PlayerInfoScreen",
+								"properties": {
+									"mesh": "<ArrayMesh#-9223368763502406934>",
+									"position": [
+										0.0,
+										0.0266105998307467,
+										0.0
+									],
+									"scale": [
+										11.013500213623,
+										0.0658802017569542,
+										6.18556022644043
+									],
+									"skeleton": "",
+									"surface_material_override/0": "<Object#null>"
+								},
+								"script": "",
+								"type": "MeshInstance3D"
+							},
+							{
+								"children": [],
+								"groups": [],
+								"name": "DEFCONStatus",
+								"properties": {
+									"mesh": "res://scenes/3d/InfoScreens.tscn::ArrayMesh_0if53",
+									"position": [
+										-0.360617011785507,
+										0.0308532994240522,
+										0.219675004482269
+									],
+									"rotation": [
+										1.57079637050629,
+										0.0,
+										0.0
+									],
+									"scale": [
+										0.470079988241196,
+										0.470079988241196,
+										0.470079988241196
+									],
+									"skeleton": "",
+									"surface_material_override/0": "<Object#null>"
+								},
+								"script": "",
+								"type": "MeshInstance3D"
+							}
+						],
+						"groups": [],
+						"name": "console",
+						"properties": {
+
+						},
+						"script": "",
+						"type": "Node3D"
+					}
+				],
+				"groups": [],
+				"name": "InfoScreens",
+				"properties": {
+
+				},
+				"script": "",
 				"type": "Node3D"
 			}
 		},
@@ -875,7 +1848,7 @@
 												"groups": [],
 												"name": "EndTurnButton",
 												"properties": {
-													"mesh": "res://scenes/3d/Pyshical3DButtons.tscn::ArrayMesh_bouml",
+													"mesh": "<ArrayMesh#-9223368760499285157>",
 													"position": [
 														-0.456000000238419,
 														0.0410000011324883,
@@ -1230,7 +2203,7 @@
 										"name": "AnimationPlayer",
 										"properties": {
 											"libraries": {
-												"": "<AnimationLibrary#-9223369379024911867>"
+												"": "<AnimationLibrary#-9223369767568457846>"
 											}
 										},
 										"script": "",
@@ -1423,7 +2396,7 @@
 																									],
 																									"theme_override_font_sizes/font_size": 28,
 																									"theme_override_fonts/font": "res://art/fonts/AcPlus_IBM_VGA_8x14.ttf",
-																									"theme_override_styles/normal": "<StyleBoxFlat#-9223368736524647146>",
+																									"theme_override_styles/normal": "<StyleBoxFlat#-9223368758955781229>",
 																									"vertical_alignment": 1
 																								},
 																								"script": "",
@@ -1560,7 +2533,7 @@
 													],
 													"script": "res://scripts/3d/MainScreen3DController.gd",
 													"skeleton": "",
-													"surface_material_override/0": "<ShaderMaterial#-9223368737044740871>"
+													"surface_material_override/0": "<ShaderMaterial#-9223368759475874954>"
 												},
 												"script": "res://scripts/3d/MainScreen3DController.gd",
 												"type": "MeshInstance3D"
@@ -1676,7 +2649,7 @@
 														6.18556022644043
 													],
 													"skeleton": "",
-													"surface_material_override/0": "<ShaderMaterial#-9223368735853558500>"
+													"surface_material_override/0": "<ShaderMaterial#-9223368758284692583>"
 												},
 												"script": "",
 												"type": "MeshInstance3D"
@@ -1758,7 +2731,7 @@
 												"groups": [],
 												"name": "EnemyInfoScreen_BottomRight",
 												"properties": {
-													"mesh": "<ArrayMesh#-9223368735568345815>",
+													"mesh": "<ArrayMesh#-9223368757999479898>",
 													"position": [
 														0.0,
 														0.0266105998307467,
@@ -1770,7 +2743,7 @@
 														6.18556022644043
 													],
 													"skeleton": "",
-													"surface_material_override/0": "<ShaderMaterial#-9223368734981143254>"
+													"surface_material_override/0": "<ShaderMaterial#-9223368757412277337>"
 												},
 												"script": "",
 												"type": "MeshInstance3D"
@@ -1864,7 +2837,7 @@
 														6.18556022644043
 													],
 													"skeleton": "",
-													"surface_material_override/0": "<ShaderMaterial#-9223368734125505225>"
+													"surface_material_override/0": "<ShaderMaterial#-9223368756556639308>"
 												},
 												"script": "",
 												"type": "MeshInstance3D"
@@ -1958,7 +2931,7 @@
 														6.18556022644043
 													],
 													"skeleton": "",
-													"surface_material_override/0": "<ShaderMaterial#-9223368733269867196>"
+													"surface_material_override/0": "<ShaderMaterial#-9223368755701001279>"
 												},
 												"script": "",
 												"type": "MeshInstance3D"
@@ -2034,7 +3007,7 @@
 																		220.0,
 																		575.0
 																	],
-																	"theme_override_styles/panel": "<StyleBoxTexture#-9223368732179348132>"
+																	"theme_override_styles/panel": "<StyleBoxTexture#-9223368754610482215>"
 																},
 																"script": "",
 																"type": "Panel"
@@ -2052,7 +3025,7 @@
 												"groups": [],
 												"name": "GameLogScreen",
 												"properties": {
-													"mesh": "<ArrayMesh#-9223368732967877294>",
+													"mesh": "<ArrayMesh#-9223368755399011377>",
 													"position": [
 														0.0,
 														0.0266105998307467,
@@ -2065,7 +3038,7 @@
 														6.18556022644043
 													],
 													"skeleton": "",
-													"surface_material_override/0": "<ShaderMaterial#-9223368732363897516>"
+													"surface_material_override/0": "<ShaderMaterial#-9223368754795031599>"
 												},
 												"script": "",
 												"type": "MeshInstance3D"
@@ -2150,7 +3123,7 @@
 												"groups": [],
 												"name": "PlayerInfoScreen",
 												"properties": {
-													"mesh": "<ArrayMesh#-9223368731827026577>",
+													"mesh": "<ArrayMesh#-9223368754258160660>",
 													"position": [
 														0.0,
 														0.0266105998307467,
@@ -2265,7 +3238,7 @@
 														0.730261981487274
 													],
 													"skeleton": "",
-													"surface_material_override/0": "<StandardMaterial3D#-9223368730853948029>"
+													"surface_material_override/0": "<StandardMaterial3D#-9223368753285082112>"
 												},
 												"script": "",
 												"type": "MeshInstance3D"
@@ -2319,7 +3292,7 @@
 														0.730261981487274
 													],
 													"skeleton": "",
-													"surface_material_override/0": "<StandardMaterial3D#-9223368730652621428>"
+													"surface_material_override/0": "<StandardMaterial3D#-9223368753083755511>"
 												},
 												"script": "",
 												"type": "MeshInstance3D"
@@ -2373,7 +3346,7 @@
 														0.730261981487274
 													],
 													"skeleton": "",
-													"surface_material_override/0": "<StandardMaterial3D#-9223368730484849260>"
+													"surface_material_override/0": "<StandardMaterial3D#-9223368752915983343>"
 												},
 												"script": "",
 												"type": "MeshInstance3D"
@@ -2428,7 +3401,7 @@
 														0.730261981487274
 													],
 													"skeleton": "",
-													"surface_material_override/0": "<StandardMaterial3D#-9223368730317077092>"
+													"surface_material_override/0": "<StandardMaterial3D#-9223368752748211175>"
 												},
 												"script": "",
 												"type": "MeshInstance3D"
@@ -2508,7 +3481,7 @@
 						"groups": [],
 						"name": "WorldEnvironment",
 						"properties": {
-							"environment": "<Environment#-9223368730098973273>"
+							"environment": "<Environment#-9223368752530107356>"
 						},
 						"script": "",
 						"type": "WorldEnvironment"
@@ -2516,22 +3489,21 @@
 					{
 						"children": [],
 						"groups": [],
-						"name": "SpotLight3D",
+						"name": "Overhead_Light",
 						"properties": {
 							"light_color": [
 								1.0,
-								0.94651198387146,
-								0.84258097410202,
+								0.882667005062103,
+								0.839999973773956,
 								1.0
 							],
-							"light_energy": 5.0,
 							"light_indirect_energy": 0.0,
 							"light_size": 0.791000008583069,
 							"light_specular": 1.8639999628067,
 							"position": [
 								0.0,
-								1.21806001663208,
-								-2.42370009422302
+								1.20000004768372,
+								-2.5
 							],
 							"rotation": [
 								-2.71789717674255,
@@ -2550,13 +3522,13 @@
 					{
 						"children": [],
 						"groups": [],
-						"name": "OmniLight3D",
+						"name": "Ambient_Light",
 						"properties": {
-							"omni_range": 1.39999997615814,
+							"light_energy": 0.100000001490116,
 							"position": [
-								-1.12276995182037,
-								0.350142002105713,
-								-0.11871100217104
+								0.0,
+								0.800000011920929,
+								1.0
 							]
 						},
 						"script": "",
@@ -2565,13 +3537,13 @@
 					{
 						"children": [],
 						"groups": [],
-						"name": "OmniLight3D2",
+						"name": "LeftFill_Light",
 						"properties": {
 							"omni_range": 1.39999997615814,
 							"position": [
-								1.09184002876282,
-								0.350142002105713,
-								-0.11871100217104
+								-1.10000002384186,
+								0.349999994039536,
+								0.0
 							]
 						},
 						"script": "",
@@ -2580,17 +3552,29 @@
 					{
 						"children": [],
 						"groups": [],
-						"name": "OmniLight3D3",
+						"name": "RightFill_Light",
 						"properties": {
-							"light_energy": 0.5,
+							"omni_range": 1.39999997615814,
 							"position": [
-								-0.000057339701015735,
-								0.810835003852844,
-								1.08393001556396
+								1.10000002384186,
+								0.349999994039536,
+								0.0
 							]
 						},
 						"script": "",
 						"type": "OmniLight3D"
+					},
+					{
+						"children": [],
+						"groups": [],
+						"name": "LightAnimationPlayer",
+						"properties": {
+							"libraries": {
+								"": "<AnimationLibrary#-9223369758626201592>"
+							}
+						},
+						"script": "",
+						"type": "AnimationPlayer"
 					}
 				],
 				"groups": [],
@@ -2599,979 +3583,6 @@
 					"script": "res://scenes/3d/ConsoleController.gd"
 				},
 				"script": "res://scenes/3d/ConsoleController.gd",
-				"type": "Node3D"
-			}
-		},
-		{
-			"path": "res:///scenes/3d/InfoScreens.tscn",
-			"root_node": {
-				"children": [
-					{
-						"children": [
-							{
-								"children": [
-									{
-										"children": [
-											{
-												"children": [
-													{
-														"children": [],
-														"groups": [],
-														"name": "EnemyInfoBottomLeftLabel",
-														"properties": {
-															"layout_mode": 1,
-															"position": [
-																35.0,
-																50.0
-															],
-															"scale": [
-																0.600000023841858,
-																1.0
-															],
-															"scroll_active": false,
-															"size": [
-																700.0,
-																450.0
-															],
-															"text": "InternalInternalInternalInternalInternal",
-															"theme_override_colors/default_color": [
-																0.0,
-																0.0,
-																0.0,
-																1.0
-															],
-															"theme_override_colors/font_shadow_color": [
-																0.0,
-																0.0,
-																0.0,
-																1.0
-															],
-															"theme_override_constants/shadow_offset_y": 5,
-															"theme_override_font_sizes/normal_font_size": 70,
-															"theme_override_fonts/normal_font": "res://art/fonts/MatrixTypeDisplay-Bold.ttf",
-															"vertical_alignment": 1
-														},
-														"script": "",
-														"type": "RichTextLabel"
-													}
-												],
-												"groups": [],
-												"name": "Panel",
-												"properties": {
-													"position": [
-														512.0,
-														0.0
-													],
-													"rotation": 1.57079994678497,
-													"size": [
-														512.0,
-														512.0
-													],
-													"theme_override_styles/panel": "res://scenes/3d/InfoScreens.tscn::StyleBoxTexture_picoh"
-												},
-												"script": "",
-												"type": "Panel"
-											}
-										],
-										"groups": [],
-										"name": "LogViewport",
-										"properties": {
-
-										},
-										"script": "",
-										"type": "SubViewport"
-									}
-								],
-								"groups": [],
-								"name": "EnemyInfoScreen_BottomLeft",
-								"properties": {
-									"mesh": "res://scenes/3d/InfoScreens.tscn::ArrayMesh_gtbua",
-									"position": [
-										0.0,
-										0.0266105998307467,
-										0.0
-									],
-									"scale": [
-										11.013500213623,
-										0.0658802017569542,
-										6.18556022644043
-									],
-									"skeleton": "",
-									"surface_material_override/0": "<ShaderMaterial#-9223368726038886813>"
-								},
-								"script": "",
-								"type": "MeshInstance3D"
-							},
-							{
-								"children": [
-									{
-										"children": [
-											{
-												"children": [
-													{
-														"children": [],
-														"groups": [],
-														"name": "EnemyInfoBottomRightLabel",
-														"properties": {
-															"layout_mode": 1,
-															"position": [
-																35.0,
-																50.0
-															],
-															"scale": [
-																0.600000023841858,
-																1.0
-															],
-															"scroll_active": false,
-															"size": [
-																700.0,
-																450.0
-															],
-															"text": "InternalInternalInternalInternalInternal",
-															"theme_override_colors/default_color": [
-																0.0,
-																0.0,
-																0.0,
-																1.0
-															],
-															"theme_override_colors/font_shadow_color": [
-																0.0,
-																0.0,
-																0.0,
-																1.0
-															],
-															"theme_override_constants/shadow_offset_y": 5,
-															"theme_override_font_sizes/normal_font_size": 70,
-															"theme_override_fonts/normal_font": "res://art/fonts/MatrixTypeDisplay-Bold.ttf",
-															"vertical_alignment": 1
-														},
-														"script": "",
-														"type": "RichTextLabel"
-													}
-												],
-												"groups": [],
-												"name": "Panel",
-												"properties": {
-													"position": [
-														512.0,
-														0.0
-													],
-													"rotation": 1.57079994678497,
-													"size": [
-														512.0,
-														512.0
-													],
-													"theme_override_styles/panel": "res://scenes/3d/InfoScreens.tscn::StyleBoxTexture_picoh"
-												},
-												"script": "",
-												"type": "Panel"
-											}
-										],
-										"groups": [],
-										"name": "LogViewport",
-										"properties": {
-
-										},
-										"script": "",
-										"type": "SubViewport"
-									}
-								],
-								"groups": [],
-								"name": "EnemyInfoScreen_BottomRight",
-								"properties": {
-									"mesh": "<ArrayMesh#-9223368725753674128>",
-									"position": [
-										0.0,
-										0.0266105998307467,
-										0.0
-									],
-									"scale": [
-										11.013500213623,
-										0.0658802017569542,
-										6.18556022644043
-									],
-									"skeleton": "",
-									"surface_material_override/0": "<ShaderMaterial#-9223368725166471567>"
-								},
-								"script": "",
-								"type": "MeshInstance3D"
-							},
-							{
-								"children": [
-									{
-										"children": [
-											{
-												"children": [
-													{
-														"children": [],
-														"groups": [],
-														"name": "EnemyInfoTopLeftLabel",
-														"properties": {
-															"layout_mode": 1,
-															"position": [
-																35.0,
-																50.0
-															],
-															"scale": [
-																0.600000023841858,
-																1.0
-															],
-															"scroll_active": false,
-															"size": [
-																700.0,
-																450.0
-															],
-															"text": "InternalInternalInternalInternalInternal",
-															"theme_override_colors/default_color": [
-																0.0,
-																0.0,
-																0.0,
-																1.0
-															],
-															"theme_override_colors/font_shadow_color": [
-																0.0,
-																0.0,
-																0.0,
-																1.0
-															],
-															"theme_override_constants/shadow_offset_y": 5,
-															"theme_override_font_sizes/normal_font_size": 70,
-															"theme_override_fonts/normal_font": "res://art/fonts/MatrixTypeDisplay-Bold.ttf",
-															"vertical_alignment": 1
-														},
-														"script": "",
-														"type": "RichTextLabel"
-													}
-												],
-												"groups": [],
-												"name": "Panel",
-												"properties": {
-													"position": [
-														512.0,
-														0.0
-													],
-													"rotation": 1.57079994678497,
-													"size": [
-														512.0,
-														512.0
-													],
-													"theme_override_styles/panel": "res://scenes/3d/InfoScreens.tscn::StyleBoxTexture_picoh"
-												},
-												"script": "",
-												"type": "Panel"
-											}
-										],
-										"groups": [],
-										"name": "LogViewport",
-										"properties": {
-
-										},
-										"script": "",
-										"type": "SubViewport"
-									}
-								],
-								"groups": [],
-								"name": "EnemyInfoScreen_TopLeft",
-								"properties": {
-									"mesh": "res://scenes/3d/InfoScreens.tscn::ArrayMesh_hu2oy",
-									"position": [
-										0.0,
-										0.0266105998307467,
-										0.0
-									],
-									"scale": [
-										11.013500213623,
-										0.0658802017569542,
-										6.18556022644043
-									],
-									"skeleton": "",
-									"surface_material_override/0": "<ShaderMaterial#-9223368724310833538>"
-								},
-								"script": "",
-								"type": "MeshInstance3D"
-							},
-							{
-								"children": [
-									{
-										"children": [
-											{
-												"children": [
-													{
-														"children": [],
-														"groups": [],
-														"name": "EnemyInfoTopRightLabel",
-														"properties": {
-															"layout_mode": 1,
-															"position": [
-																35.0,
-																50.0
-															],
-															"scale": [
-																0.600000023841858,
-																1.0
-															],
-															"scroll_active": false,
-															"size": [
-																700.0,
-																450.0
-															],
-															"text": "InternalInternalInternalInternalInternal",
-															"theme_override_colors/default_color": [
-																0.0,
-																0.0,
-																0.0,
-																1.0
-															],
-															"theme_override_colors/font_shadow_color": [
-																0.0,
-																0.0,
-																0.0,
-																1.0
-															],
-															"theme_override_constants/shadow_offset_y": 5,
-															"theme_override_font_sizes/normal_font_size": 70,
-															"theme_override_fonts/normal_font": "res://art/fonts/MatrixTypeDisplay-Bold.ttf",
-															"vertical_alignment": 1
-														},
-														"script": "",
-														"type": "RichTextLabel"
-													}
-												],
-												"groups": [],
-												"name": "Panel",
-												"properties": {
-													"position": [
-														512.0,
-														0.0
-													],
-													"rotation": 1.57079994678497,
-													"size": [
-														512.0,
-														512.0
-													],
-													"theme_override_styles/panel": "res://scenes/3d/InfoScreens.tscn::StyleBoxTexture_picoh"
-												},
-												"script": "",
-												"type": "Panel"
-											}
-										],
-										"groups": [],
-										"name": "LogViewport",
-										"properties": {
-
-										},
-										"script": "",
-										"type": "SubViewport"
-									}
-								],
-								"groups": [],
-								"name": "EnemyInfoScreen_TopRight",
-								"properties": {
-									"mesh": "res://scenes/3d/InfoScreens.tscn::ArrayMesh_jn7jt",
-									"position": [
-										0.0,
-										0.0266105998307467,
-										0.0
-									],
-									"scale": [
-										11.013500213623,
-										0.0658802017569542,
-										6.18556022644043
-									],
-									"skeleton": "",
-									"surface_material_override/0": "<ShaderMaterial#-9223368723455195509>"
-								},
-								"script": "",
-								"type": "MeshInstance3D"
-							},
-							{
-								"children": [],
-								"groups": [],
-								"name": "EnemyInfoScreensGlass",
-								"properties": {
-									"mesh": "res://scenes/3d/InfoScreens.tscn::ArrayMesh_e7c38",
-									"position": [
-										0.0,
-										0.0294032990932465,
-										0.0
-									],
-									"scale": [
-										11.013500213623,
-										0.0658802017569542,
-										6.18556022644043
-									],
-									"skeleton": "",
-									"surface_material_override/0": "<Object#null>"
-								},
-								"script": "",
-								"type": "MeshInstance3D"
-							},
-							{
-								"children": [
-									{
-										"children": [
-											{
-												"children": [
-													{
-														"children": [],
-														"groups": [],
-														"name": "GameLogLabel",
-														"properties": {
-															"layout_mode": 1,
-															"position": [
-																210.0,
-																10.0
-															],
-															"rotation": 1.57079994678497,
-															"scroll_active": false,
-															"size": [
-																575.0,
-																200.0
-															],
-															"text": "Internal Test\nInternal Test\nInternal Test\nInternal Test\nInternal Test\nInternal Test\nInternal Test\nInternal Test\nInternal Test\nInternal Test\nInternal Test\nInternal Test",
-															"theme_override_colors/default_color": [
-																0.0,
-																0.0,
-																0.0,
-																1.0
-															],
-															"theme_override_colors/font_shadow_color": [
-																0.0,
-																0.0,
-																0.0,
-																1.0
-															],
-															"theme_override_font_sizes/normal_font_size": 16,
-															"theme_override_fonts/normal_font": "res://art/fonts/MatrixTypeDisplay-Regular.ttf"
-														},
-														"script": "",
-														"type": "RichTextLabel"
-													}
-												],
-												"groups": [],
-												"name": "Panel",
-												"properties": {
-													"size": [
-														220.0,
-														575.0
-													],
-													"theme_override_styles/panel": "<StyleBoxTexture#-9223368722364676445>"
-												},
-												"script": "",
-												"type": "Panel"
-											}
-										],
-										"groups": [],
-										"name": "LogViewport",
-										"properties": {
-											"size": "(285, 575)"
-										},
-										"script": "",
-										"type": "SubViewport"
-									}
-								],
-								"groups": [],
-								"name": "GameLogScreen",
-								"properties": {
-									"mesh": "<ArrayMesh#-9223368723153205607>",
-									"position": [
-										0.0,
-										0.0266105998307467,
-										0.0
-									],
-									"rotation_order": 0,
-									"scale": [
-										11.013500213623,
-										0.0658802017569542,
-										6.18556022644043
-									],
-									"skeleton": "",
-									"surface_material_override/0": "<ShaderMaterial#-9223368722549225829>"
-								},
-								"script": "",
-								"type": "MeshInstance3D"
-							},
-							{
-								"children": [
-									{
-										"children": [
-											{
-												"children": [
-													{
-														"children": [],
-														"groups": [],
-														"name": "PlayerInfoLabel",
-														"properties": {
-															"custom_minimum_size": [
-																500.0,
-																500.0
-															],
-															"layout_mode": 1,
-															"position": [
-																470.0,
-																30.0
-															],
-															"rotation": 1.57079994678497,
-															"scale": [
-																0.600000023841858,
-																1.0
-															],
-															"scroll_active": false,
-															"size": [
-																500.0,
-																500.0
-															],
-															"text": "Internal\nInternal\nInternal\nInternal",
-															"theme_override_colors/default_color": [
-																0.0,
-																0.0,
-																0.0,
-																1.0
-															],
-															"theme_override_colors/font_shadow_color": [
-																0.0,
-																0.0,
-																0.0,
-																1.0
-															],
-															"theme_override_font_sizes/normal_font_size": 50,
-															"theme_override_fonts/normal_font": "res://art/fonts/MatrixTypeDisplay-Regular.ttf"
-														},
-														"script": "",
-														"type": "RichTextLabel"
-													}
-												],
-												"groups": [],
-												"name": "Panel",
-												"properties": {
-													"position": [
-														390.0,
-														0.0
-													],
-													"rotation": 1.57079994678497,
-													"size": [
-														512.0,
-														512.0
-													],
-													"theme_override_styles/panel": "res://scenes/3d/InfoScreens.tscn::StyleBoxTexture_picoh"
-												},
-												"script": "",
-												"type": "Panel"
-											}
-										],
-										"groups": [],
-										"name": "LogViewport",
-										"properties": {
-
-										},
-										"script": "",
-										"type": "SubViewport"
-									}
-								],
-								"groups": [],
-								"name": "PlayerInfoScreen",
-								"properties": {
-									"mesh": "<ArrayMesh#-9223368722012354890>",
-									"position": [
-										0.0,
-										0.0266105998307467,
-										0.0
-									],
-									"scale": [
-										11.013500213623,
-										0.0658802017569542,
-										6.18556022644043
-									],
-									"skeleton": "",
-									"surface_material_override/0": "<Object#null>"
-								},
-								"script": "",
-								"type": "MeshInstance3D"
-							},
-							{
-								"children": [],
-								"groups": [],
-								"name": "DEFCONStatus",
-								"properties": {
-									"mesh": "res://scenes/3d/InfoScreens.tscn::ArrayMesh_0if53",
-									"position": [
-										-0.360617011785507,
-										0.0308532994240522,
-										0.219675004482269
-									],
-									"rotation": [
-										1.57079637050629,
-										0.0,
-										0.0
-									],
-									"scale": [
-										0.470079988241196,
-										0.470079988241196,
-										0.470079988241196
-									],
-									"skeleton": "",
-									"surface_material_override/0": "<Object#null>"
-								},
-								"script": "",
-								"type": "MeshInstance3D"
-							}
-						],
-						"groups": [],
-						"name": "console",
-						"properties": {
-
-						},
-						"script": "",
-						"type": "Node3D"
-					}
-				],
-				"groups": [],
-				"name": "InfoScreens",
-				"properties": {
-					"script": "res://scenes/3d/ConsoleController.gd"
-				},
-				"script": "res://scenes/3d/ConsoleController.gd",
-				"type": "Node3D"
-			}
-		},
-		{
-			"path": "res:///scenes/3d/MainScreen.tscn",
-			"root_node": {
-				"children": [
-					{
-						"children": [
-							{
-								"children": [],
-								"groups": [],
-								"name": "MainScreenGlass",
-								"properties": {
-									"mesh": "res://scenes/3d/MainScreen.tscn::ArrayMesh_f127i",
-									"skeleton": "",
-									"surface_material_override/0": "<Object#null>"
-								},
-								"script": "",
-								"type": "MeshInstance3D"
-							},
-							{
-								"children": [
-									{
-										"children": [
-											{
-												"children": [
-													{
-														"children": [],
-														"groups": [],
-														"name": "InputShield",
-														"properties": {
-															"anchors_preset": 15,
-															"color": [
-																1.0,
-																0.0,
-																0.0166663993149996,
-																0.0
-															],
-															"layout_mode": 1,
-															"position": [
-																-125.0,
-																-72.5
-															],
-															"theme": "res://art/ui/card_menu-theme.tres"
-														},
-														"script": "",
-														"type": "ColorRect"
-													},
-													{
-														"children": [
-															{
-																"children": [
-																	{
-																		"children": [
-																			{
-																				"children": [],
-																				"groups": [],
-																				"name": "TitleLabel",
-																				"properties": {
-																					"anchors_preset": 15,
-																					"autowrap_mode": 3,
-																					"horizontal_alignment": 1,
-																					"layout_mode": 1,
-																					"position": [
-																						-0.5,
-																						-11.5
-																					],
-																					"size": [
-																						1.0,
-																						23.0
-																					],
-																					"text": "BUTTON SELECTION",
-																					"theme_override_colors/font_color": [
-																						0.0,
-																						0.0,
-																						0.0,
-																						1.0
-																					],
-																					"theme_override_font_sizes/font_size": 40,
-																					"theme_override_fonts/font": "res://art/fonts/AcPlus_IBM_VGA_8x14.ttf",
-																					"vertical_alignment": 1
-																				},
-																				"script": "",
-																				"type": "Label"
-																			}
-																		],
-																		"groups": [],
-																		"name": "TitleBar",
-																		"properties": {
-																			"custom_minimum_size": [
-																				500.0,
-																				75.0
-																			],
-																			"layout_mode": 2,
-																			"mouse_filter": 1,
-																			"size_flags_vertical": 0,
-																			"theme": "res://art/ui/card_menu-theme.tres"
-																		},
-																		"script": "",
-																		"type": "Panel"
-																	},
-																	{
-																		"children": [
-																			{
-																				"children": [],
-																				"groups": [],
-																				"name": "Panel",
-																				"properties": {
-																					"layout_mode": 2,
-																					"size_flags_vertical": 3,
-																					"theme_override_styles/panel": "res://scenes/ui/DeploymentScreen.tscn::StyleBoxFlat_nt86h"
-																				},
-																				"script": "",
-																				"type": "Panel"
-																			}
-																		],
-																		"groups": [],
-																		"name": "OptionsList",
-																		"properties": {
-																			"custom_minimum_size": [
-																				500.0,
-																				0.0
-																			],
-																			"layout_mode": 2,
-																			"size_flags_vertical": 3,
-																			"theme": "res://art/ui/card_menu-theme.tres"
-																		},
-																		"script": "",
-																		"type": "VBoxContainer"
-																	}
-																],
-																"groups": [],
-																"name": "CardChooserUI",
-																"properties": {
-																	"layout_mode": 2,
-																	"theme": "res://art/ui/card_menu-theme.tres"
-																},
-																"script": "",
-																"type": "VBoxContainer"
-															},
-															{
-																"children": [
-																	{
-																		"children": [
-																			{
-																				"children": [],
-																				"groups": [],
-																				"name": "Visualizer_Art",
-																				"properties": {
-																					"custom_minimum_size": [
-																						450.0,
-																						450.0
-																					],
-																					"layout_mode": 2,
-																					"size_flags_horizontal": 4,
-																					"size_flags_vertical": 0
-																				},
-																				"script": "",
-																				"type": "TextureRect"
-																			},
-																			{
-																				"children": [],
-																				"groups": [],
-																				"name": "Visualizer_Description",
-																				"properties": {
-																					"autowrap_mode": 3,
-																					"custom_minimum_size": [
-																						0.0,
-																						150.0
-																					],
-																					"horizontal_alignment": 1,
-																					"layout_mode": 2,
-																					"size_flags_vertical": 0,
-																					"text": "Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Description Card Descriptio",
-																					"theme_override_colors/font_color": [
-																						0.0,
-																						0.0,
-																						0.0,
-																						1.0
-																					],
-																					"theme_override_font_sizes/font_size": 28,
-																					"theme_override_fonts/font": "res://art/fonts/AcPlus_IBM_VGA_8x14.ttf",
-																					"theme_override_styles/normal": "<StyleBoxFlat#-9223368718539471058>",
-																					"vertical_alignment": 1
-																				},
-																				"script": "",
-																				"type": "Label"
-																			}
-																		],
-																		"groups": [],
-																		"name": "VisualizerContent",
-																		"properties": {
-																			"layout_mode": 2
-																		},
-																		"script": "",
-																		"type": "VBoxContainer"
-																	}
-																],
-																"groups": [],
-																"name": "CardVisualsOverlay",
-																"properties": {
-																	"custom_minimum_size": [
-																		450.0,
-																		600.0
-																	],
-																	"layout_mode": 2,
-																	"mouse_filter": 1,
-																	"size_flags_horizontal": 10,
-																	"size_flags_vertical": 4,
-																	"theme_override_styles/panel": "res://art/ui/dark_green_box_flat.tres"
-																},
-																"script": "",
-																"type": "PanelContainer"
-															}
-														],
-														"groups": [],
-														"name": "ContentBox",
-														"properties": {
-															"layout_mode": 2,
-															"size": [
-																954.0,
-																604.0
-															],
-															"theme": "res://art/ui/card_menu-theme.tres"
-														},
-														"script": "",
-														"type": "HBoxContainer"
-													}
-												],
-												"groups": [],
-												"name": "DeploymentScreen",
-												"properties": {
-													"anchors_preset": 15,
-													"custom_minimum_size": [
-														1210.0,
-														750.0
-													],
-													"mouse_default_cursor_shape": 2,
-													"position": [
-														-295.0,
-														-445.0
-													],
-													"rotation": 1.57079994678497,
-													"scale": [
-														1.0,
-														-0.699999988079071
-													],
-													"script": "res://scenes/ui/DeploymentUI.gd",
-													"size": [
-														1210.0,
-														750.0
-													],
-													"theme": "res://art/ui/card_menu-theme.tres"
-												},
-												"script": "res://scenes/ui/DeploymentUI.gd",
-												"type": "Control"
-											}
-										],
-										"groups": [],
-										"name": "SubViewport",
-										"properties": {
-											"size": "(750, 1210)",
-											"transparent_bg": true
-										},
-										"script": "",
-										"type": "SubViewport"
-									},
-									{
-										"children": [
-											{
-												"children": [],
-												"groups": [],
-												"name": "InputShield_CollisionShape",
-												"properties": {
-													"position": [
-														0.0000504505987919401,
-														-0.178965002298355,
-														-0.000296690006507561
-													],
-													"shape": "res://scenes/3d/MainScreen.tscn::BoxShape3D_picoh"
-												},
-												"script": "",
-												"type": "CollisionShape3D"
-											}
-										],
-										"groups": [],
-										"name": "InputShield_StaticBody",
-										"properties": {
-											"position": [
-												0.0,
-												0.0,
-												0.00100000004749745
-											]
-										},
-										"script": "",
-										"type": "StaticBody3D"
-									}
-								],
-								"groups": [],
-								"name": "MainScreen",
-								"properties": {
-									"mesh": "res://scenes/3d/MainScreen.tscn::ArrayMesh_picoh",
-									"position": [
-										0.0,
-										0.0129289999604225,
-										-0.0777985975146294
-									],
-									"rotation": [
-										0.0,
-										-3.14159274101257,
-										0.0
-									],
-									"scale": [
-										-6.7805700302124,
-										-0.0969522967934608,
-										-4.20753002166748
-									],
-									"script": "res://scripts/3d/MainScreen3DController.gd",
-									"skeleton": "",
-									"surface_material_override/0": "<ShaderMaterial#-9223368719059564783>"
-								},
-								"script": "res://scripts/3d/MainScreen3DController.gd",
-								"type": "MeshInstance3D"
-							}
-						],
-						"groups": [],
-						"name": "console",
-						"properties": {
-
-						},
-						"script": "",
-						"type": "Node3D"
-					}
-				],
-				"groups": [],
-				"name": "MainScreen3D",
-				"properties": {
-
-				},
-				"script": "",
 				"type": "Node3D"
 			}
 		},
@@ -3882,7 +3893,7 @@
 								"groups": [],
 								"name": "EndTurnButton",
 								"properties": {
-									"mesh": "res://scenes/3d/Pyshical3DButtons.tscn::ArrayMesh_bouml",
+									"mesh": "<ArrayMesh#-9223368748704901900>",
 									"position": [
 										-0.456000000238419,
 										0.0410000011324883,
@@ -4237,7 +4248,7 @@
 						"name": "AnimationPlayer",
 						"properties": {
 							"libraries": {
-								"": "<AnimationLibrary#-9223369379024911867>"
+								"": "<AnimationLibrary#-9223369767568457846>"
 							}
 						},
 						"script": "",
@@ -4247,9 +4258,9 @@
 				"groups": [],
 				"name": "Physical3DButtons",
 				"properties": {
-					"script": "res://scenes/3d/ConsoleController.gd"
+
 				},
-				"script": "res://scenes/3d/ConsoleController.gd",
+				"script": "",
 				"type": "Node3D"
 			}
 		},
@@ -4640,7 +4651,7 @@
 													],
 													"theme_override_font_sizes/font_size": 28,
 													"theme_override_fonts/font": "res://art/fonts/AcPlus_IBM_VGA_8x14.ttf",
-													"theme_override_styles/normal": "<StyleBoxFlat#-9223368714596825088>",
+													"theme_override_styles/normal": "<StyleBoxFlat#-9223368745567562352>",
 													"vertical_alignment": 1
 												},
 												"script": "",
@@ -4711,77 +4722,6 @@
 			}
 		},
 		{
-			"path": "res:///scenes/ui/LogScreen2D.tscn",
-			"root_node": {
-				"children": [
-					{
-						"children": [
-							{
-								"children": [
-									{
-										"children": [],
-										"groups": [],
-										"name": "GameLogLabel",
-										"properties": {
-											"anchors_preset": 15,
-											"horizontal_alignment": 1,
-											"layout_mode": 1,
-											"position": [
-												-0.5,
-												0.0
-											],
-											"size": [
-												1.0,
-												0.0
-											],
-											"text": "TESTING 123",
-											"theme_override_colors/default_color": [
-												0.0,
-												0.0,
-												0.0,
-												1.0
-											],
-											"theme_override_font_sizes/normal_font_size": 50,
-											"theme_override_fonts/normal_font": "res://art/fonts/MatrixType-Bold.ttf",
-											"vertical_alignment": 1
-										},
-										"script": "",
-										"type": "RichTextLabel"
-									}
-								],
-								"groups": [],
-								"name": "LCD_Panel",
-								"properties": {
-									"anchors_preset": 15,
-									"theme_override_styles/panel": "res://scenes/ui/LogScreen2D.tscn::StyleBoxFlat_gcqd2"
-								},
-								"script": "",
-								"type": "Panel"
-							}
-						],
-						"groups": [],
-						"name": "SubViewport",
-						"properties": {
-							"handle_input_locally": false,
-							"render_target_update_mode": 4
-						},
-						"script": "",
-						"type": "SubViewport"
-					}
-				],
-				"groups": [],
-				"name": "LogScreen2D",
-				"properties": {
-					"size": [
-						40.0,
-						40.0
-					]
-				},
-				"script": "",
-				"type": "SubViewportContainer"
-			}
-		},
-		{
 			"path": "res:///scenes/ui/OptionButton.tscn",
 			"root_node": {
 				"children": [],
@@ -4811,30 +4751,6 @@
 					"theme_override_fonts/font": "res://art/fonts/AcPlus_IBM_VGA_8x14.ttf",
 					"theme_override_styles/hover": "res://scenes/ui/OptionButton.tscn::StyleBoxFlat_2",
 					"theme_override_styles/normal": "res://scenes/ui/OptionButton.tscn::StyleBoxFlat_1"
-				},
-				"script": "",
-				"type": "Button"
-			}
-		},
-		{
-			"path": "res:///scenes/ui/PlaceholderButton.tscn",
-			"root_node": {
-				"children": [],
-				"groups": [],
-				"name": "PlaceholderButton",
-				"properties": {
-					"custom_minimum_size": [
-						100.0,
-						100.0
-					],
-					"size": [
-						100.0,
-						100.0
-					],
-					"theme_override_styles/disabled": "res://scenes/ui/PlaceholderButton.tscn::StyleBoxFlat_ppoe3",
-					"theme_override_styles/hover": "res://scenes/ui/PlaceholderButton.tscn::StyleBoxFlat_8cbmw",
-					"theme_override_styles/hover_pressed": "res://scenes/ui/PlaceholderButton.tscn::StyleBoxFlat_odomo",
-					"theme_override_styles/normal": "res://scenes/ui/PlaceholderButton.tscn::StyleBoxFlat_0fhw7"
 				},
 				"script": "",
 				"type": "Button"
@@ -5267,7 +5183,7 @@
 																		"groups": [],
 																		"name": "EndTurnButton",
 																		"properties": {
-																			"mesh": "res://scenes/3d/Pyshical3DButtons.tscn::ArrayMesh_bouml",
+																			"mesh": "<ArrayMesh#-9223368743369746959>",
 																			"position": [
 																				-0.456000000238419,
 																				0.0410000011324883,
@@ -5622,7 +5538,7 @@
 																"name": "AnimationPlayer",
 																"properties": {
 																	"libraries": {
-																		"": "<AnimationLibrary#-9223369379024911867>"
+																		"": "<AnimationLibrary#-9223369767568457846>"
 																	}
 																},
 																"script": "",
@@ -5815,7 +5731,7 @@
 																															],
 																															"theme_override_font_sizes/font_size": 28,
 																															"theme_override_fonts/font": "res://art/fonts/AcPlus_IBM_VGA_8x14.ttf",
-																															"theme_override_styles/normal": "<StyleBoxFlat#-9223368709764986693>",
+																															"theme_override_styles/normal": "<StyleBoxFlat#-9223368741826243031>",
 																															"vertical_alignment": 1
 																														},
 																														"script": "",
@@ -5952,7 +5868,7 @@
 																			],
 																			"script": "res://scripts/3d/MainScreen3DController.gd",
 																			"skeleton": "",
-																			"surface_material_override/0": "<ShaderMaterial#-9223368710285080418>"
+																			"surface_material_override/0": "<ShaderMaterial#-9223368742346336756>"
 																		},
 																		"script": "res://scripts/3d/MainScreen3DController.gd",
 																		"type": "MeshInstance3D"
@@ -6068,7 +5984,7 @@
 																				6.18556022644043
 																			],
 																			"skeleton": "",
-																			"surface_material_override/0": "<ShaderMaterial#-9223368709093898047>"
+																			"surface_material_override/0": "<ShaderMaterial#-9223368741155154385>"
 																		},
 																		"script": "",
 																		"type": "MeshInstance3D"
@@ -6150,7 +6066,7 @@
 																		"groups": [],
 																		"name": "EnemyInfoScreen_BottomRight",
 																		"properties": {
-																			"mesh": "<ArrayMesh#-9223368708808685362>",
+																			"mesh": "<ArrayMesh#-9223368740869941700>",
 																			"position": [
 																				0.0,
 																				0.0266105998307467,
@@ -6162,7 +6078,7 @@
 																				6.18556022644043
 																			],
 																			"skeleton": "",
-																			"surface_material_override/0": "<ShaderMaterial#-9223368708221482801>"
+																			"surface_material_override/0": "<ShaderMaterial#-9223368740282739139>"
 																		},
 																		"script": "",
 																		"type": "MeshInstance3D"
@@ -6256,7 +6172,7 @@
 																				6.18556022644043
 																			],
 																			"skeleton": "",
-																			"surface_material_override/0": "<ShaderMaterial#-9223368707365844772>"
+																			"surface_material_override/0": "<ShaderMaterial#-9223368739427101110>"
 																		},
 																		"script": "",
 																		"type": "MeshInstance3D"
@@ -6350,7 +6266,7 @@
 																				6.18556022644043
 																			],
 																			"skeleton": "",
-																			"surface_material_override/0": "<ShaderMaterial#-9223368706510206743>"
+																			"surface_material_override/0": "<ShaderMaterial#-9223368738571463081>"
 																		},
 																		"script": "",
 																		"type": "MeshInstance3D"
@@ -6426,7 +6342,7 @@
 																								220.0,
 																								575.0
 																							],
-																							"theme_override_styles/panel": "<StyleBoxTexture#-9223368705419687679>"
+																							"theme_override_styles/panel": "<StyleBoxTexture#-9223368737480944017>"
 																						},
 																						"script": "",
 																						"type": "Panel"
@@ -6444,7 +6360,7 @@
 																		"groups": [],
 																		"name": "GameLogScreen",
 																		"properties": {
-																			"mesh": "<ArrayMesh#-9223368706208216841>",
+																			"mesh": "<ArrayMesh#-9223368738269473179>",
 																			"position": [
 																				0.0,
 																				0.0266105998307467,
@@ -6457,7 +6373,7 @@
 																				6.18556022644043
 																			],
 																			"skeleton": "",
-																			"surface_material_override/0": "<ShaderMaterial#-9223368705604237063>"
+																			"surface_material_override/0": "<ShaderMaterial#-9223368737665493401>"
 																		},
 																		"script": "",
 																		"type": "MeshInstance3D"
@@ -6542,7 +6458,7 @@
 																		"groups": [],
 																		"name": "PlayerInfoScreen",
 																		"properties": {
-																			"mesh": "<ArrayMesh#-9223368705067366124>",
+																			"mesh": "<ArrayMesh#-9223368737128622462>",
 																			"position": [
 																				0.0,
 																				0.0266105998307467,
@@ -6657,7 +6573,7 @@
 																				0.730261981487274
 																			],
 																			"skeleton": "",
-																			"surface_material_override/0": "<StandardMaterial3D#-9223368704094287576>"
+																			"surface_material_override/0": "<StandardMaterial3D#-9223368736155543914>"
 																		},
 																		"script": "",
 																		"type": "MeshInstance3D"
@@ -6711,7 +6627,7 @@
 																				0.730261981487274
 																			],
 																			"skeleton": "",
-																			"surface_material_override/0": "<StandardMaterial3D#-9223368703892960975>"
+																			"surface_material_override/0": "<StandardMaterial3D#-9223368735954217313>"
 																		},
 																		"script": "",
 																		"type": "MeshInstance3D"
@@ -6765,7 +6681,7 @@
 																				0.730261981487274
 																			],
 																			"skeleton": "",
-																			"surface_material_override/0": "<StandardMaterial3D#-9223368703725188807>"
+																			"surface_material_override/0": "<StandardMaterial3D#-9223368735786445145>"
 																		},
 																		"script": "",
 																		"type": "MeshInstance3D"
@@ -6820,7 +6736,7 @@
 																				0.730261981487274
 																			],
 																			"skeleton": "",
-																			"surface_material_override/0": "<StandardMaterial3D#-9223368703557416639>"
+																			"surface_material_override/0": "<StandardMaterial3D#-9223368735618672977>"
 																		},
 																		"script": "",
 																		"type": "MeshInstance3D"
@@ -6900,7 +6816,7 @@
 												"groups": [],
 												"name": "WorldEnvironment",
 												"properties": {
-													"environment": "<Environment#-9223368703339312820>"
+													"environment": "<Environment#-9223368735400569158>"
 												},
 												"script": "",
 												"type": "WorldEnvironment"
@@ -6908,22 +6824,21 @@
 											{
 												"children": [],
 												"groups": [],
-												"name": "SpotLight3D",
+												"name": "Overhead_Light",
 												"properties": {
 													"light_color": [
 														1.0,
-														0.94651198387146,
-														0.84258097410202,
+														0.882667005062103,
+														0.839999973773956,
 														1.0
 													],
-													"light_energy": 5.0,
 													"light_indirect_energy": 0.0,
 													"light_size": 0.791000008583069,
 													"light_specular": 1.8639999628067,
 													"position": [
 														0.0,
-														1.21806001663208,
-														-2.42370009422302
+														1.20000004768372,
+														-2.5
 													],
 													"rotation": [
 														-2.71789717674255,
@@ -6942,13 +6857,13 @@
 											{
 												"children": [],
 												"groups": [],
-												"name": "OmniLight3D",
+												"name": "Ambient_Light",
 												"properties": {
-													"omni_range": 1.39999997615814,
+													"light_energy": 0.100000001490116,
 													"position": [
-														-1.12276995182037,
-														0.350142002105713,
-														-0.11871100217104
+														0.0,
+														0.800000011920929,
+														1.0
 													]
 												},
 												"script": "",
@@ -6957,13 +6872,13 @@
 											{
 												"children": [],
 												"groups": [],
-												"name": "OmniLight3D2",
+												"name": "LeftFill_Light",
 												"properties": {
 													"omni_range": 1.39999997615814,
 													"position": [
-														1.09184002876282,
-														0.350142002105713,
-														-0.11871100217104
+														-1.10000002384186,
+														0.349999994039536,
+														0.0
 													]
 												},
 												"script": "",
@@ -6972,17 +6887,29 @@
 											{
 												"children": [],
 												"groups": [],
-												"name": "OmniLight3D3",
+												"name": "RightFill_Light",
 												"properties": {
-													"light_energy": 0.5,
+													"omni_range": 1.39999997615814,
 													"position": [
-														-0.000057339701015735,
-														0.810835003852844,
-														1.08393001556396
+														1.10000002384186,
+														0.349999994039536,
+														0.0
 													]
 												},
 												"script": "",
 												"type": "OmniLight3D"
+											},
+											{
+												"children": [],
+												"groups": [],
+												"name": "LightAnimationPlayer",
+												"properties": {
+													"libraries": {
+														"": "<AnimationLibrary#-9223369758626201592>"
+													}
+												},
+												"script": "",
+												"type": "AnimationPlayer"
 											}
 										],
 										"groups": [],
@@ -7284,10 +7211,12 @@
 			"signals": []
 		},
 		{
-			"content": "# (This script is attached to the root of Console3D.tscn)\nclass_name ConsoleController\nextends Node3D\n# --- This script acts as a \"receptionist\" for our 3D console. ---\n# It holds references to all the important nodes within this scene.\n\n# NOTE: The paths below assume the labels are children of a SubViewport system.\n# You will need to adjust these paths to match your exact scene structure.\n# Example: $LogViewport/GameLogLabel\n\n# --- Avatar Screens ---\n# These are the 2D scenes that act as \"slide projectors\"\n# --- References to the TextureRects inside each screen's SubViewport ---\n@onready var avatar_image_tr: TextureRect = $console/AvatarScreens/console/EnemyAvatarScreen_TopRight/SubViewport/AvatarImage_TopRight\n@onready var avatar_image_br: TextureRect = $console/AvatarScreens/console/EnemyAvatarScreen_BottomRight/SubViewport/AvatarImage_BottomRight\n@onready var avatar_image_tl: TextureRect = $console/AvatarScreens/console/EnemyAvatarScreen_TopLeft/SubViewport/AvatarImage_TopLeft\n@onready var avatar_image_bl: TextureRect = $console/AvatarScreens/console/EnemyAvatarScreen_BottomLeft/SubViewport/AvatarImage_BottomLeft\n#@onready var deployment_screen: DeploymentUI = $console/MainScreen/SubViewport/DeploymentScreen\n\n\n# --- Info Labels ---\n# These are the 3D TextMesh nodes that display text\n@onready var game_log_label = $console/InfoScreens/console/GameLogScreen/LogViewport/Panel/GameLogLabel\n@onready var player_info_label = $console/InfoScreens/console/PlayerInfoScreen/LogViewport/Panel/PlayerInfoLabel\n@onready var enemy_info_tl = $console/InfoScreens/console/EnemyInfoScreen_TopLeft/LogViewport/Panel/EnemyInfoTopLeftLabel\n@onready var enemy_info_bl = $console/InfoScreens/console/EnemyInfoScreen_BottomLeft/LogViewport/Panel/EnemyInfoBottomLeftLabel\n@onready var enemy_info_tr = $console/InfoScreens/console/EnemyInfoScreen_TopRight/LogViewport/Panel/EnemyInfoTopRightLabel\n@onready var enemy_info_br = $console/InfoScreens/console/EnemyInfoScreen_BottomRight/LogViewport/Panel/EnemyInfoBottomRightLabel\n\n# This function runs when the node is ready.\nfunc _ready():\n\t# We will now test each of our own paths.\n\tprint(\"--- ConsoleController Self-Check ---\")\n\tif is_instance_valid(game_log_label):\n\t\tprint(\"SUCCESS: Found GameLogLabel.\")\n\telse:\n\t\tprint(\"ERROR: Could not find GameLogLabel at the specified path.\")\n\t\t\n\tif is_instance_valid(player_info_label):\n\t\tprint(\"SUCCESS: Found PlayerInfoLabel.\")\n\telse:\n\t\tprint(\"ERROR: Could not find PlayerInfoLabel at the specified path.\")\n\n\tif is_instance_valid(enemy_info_tr):\n\t\tprint(\"SUCCESS: Found EnemyInfoTopRightLabel.\")\n\telse:\n\t\tprint(\"ERROR: Could not find EnemyInfoTopRightLabel at the specified path.\")\n\n\tif is_instance_valid(enemy_info_tl):\n\t\tprint(\"SUCCESS: Found EnemyInfoTopLeftLabel.\")\n\telse:\n\t\tprint(\"ERROR: Could not find EnemyInfoTopRightLabel at the specified path.\")\n\n\tif is_instance_valid(enemy_info_br):\n\t\tprint(\"SUCCESS: Found EnemyInfoBottomRightLabel.\")\n\telse:\n\t\tprint(\"ERROR: Could not find EnemyInfoTopRightLabel at the specified path.\")\n\n\tif is_instance_valid(enemy_info_bl):\n\t\tprint(\"SUCCESS: Found EnemyInfoBottomLeftLabel.\")\n\telse:\n\t\tprint(\"ERROR: Could not find EnemyInfoTopRightLabel at the specified path.\")\n\n\t# ... (You can add checks for the other enemy labels if you wish)\n\tprint(\"--- Self-Check Complete ---\")\n",
+			"content": "# (This script is attached to the root of Console3D.tscn)\nclass_name ConsoleController\nextends Node3D\n# --- This script acts as a \"receptionist\" for our 3D console. ---\n# It holds references to all the important nodes within this scene.\n\n# NOTE: The paths below assume the labels are children of a SubViewport system.\n# You will need to adjust these paths to match your exact scene structure.\n# Example: $LogViewport/GameLogLabel\n\n# --- Avatar Screens ---\n# These are the 2D scenes that act as \"slide projectors\"\n# --- References to the TextureRects inside each screen's SubViewport ---\n@onready var avatar_image_tr: TextureRect = $console/AvatarScreens/console/EnemyAvatarScreen_TopRight/SubViewport/AvatarImage_TopRight\n@onready var avatar_image_br: TextureRect = $console/AvatarScreens/console/EnemyAvatarScreen_BottomRight/SubViewport/AvatarImage_BottomRight\n@onready var avatar_image_tl: TextureRect = $console/AvatarScreens/console/EnemyAvatarScreen_TopLeft/SubViewport/AvatarImage_TopLeft\n@onready var avatar_image_bl: TextureRect = $console/AvatarScreens/console/EnemyAvatarScreen_BottomLeft/SubViewport/AvatarImage_BottomLeft\n#@onready var deployment_screen: DeploymentUI = $console/MainScreen/SubViewport/DeploymentScreen\n\n\n# --- Info Labels ---\n# These are the 3D TextMesh nodes that display text\n@onready var game_log_label = $console/InfoScreens/console/GameLogScreen/LogViewport/Panel/GameLogLabel\n@onready var player_info_label = $console/InfoScreens/console/PlayerInfoScreen/LogViewport/Panel/PlayerInfoLabel\n@onready var enemy_info_tl = $console/InfoScreens/console/EnemyInfoScreen_TopLeft/LogViewport/Panel/EnemyInfoTopLeftLabel\n@onready var enemy_info_bl = $console/InfoScreens/console/EnemyInfoScreen_BottomLeft/LogViewport/Panel/EnemyInfoBottomLeftLabel\n@onready var enemy_info_tr = $console/InfoScreens/console/EnemyInfoScreen_TopRight/LogViewport/Panel/EnemyInfoTopRightLabel\n@onready var enemy_info_br = $console/InfoScreens/console/EnemyInfoScreen_BottomRight/LogViewport/Panel/EnemyInfoBottomRightLabel\n\n# This function runs when the node is ready.\nfunc _ready():\n\t# We will now test each of our own paths.\n\tprint(\"--- ConsoleController Self-Check ---\")\n\tif is_instance_valid(game_log_label):\n\t\tprint(\"SUCCESS: Found GameLogLabel.\")\n\telse:\n\t\tprint(\"ERROR: Could not find GameLogLabel at the specified path.\")\n\t\t\n\tif is_instance_valid(player_info_label):\n\t\tprint(\"SUCCESS: Found PlayerInfoLabel.\")\n\telse:\n\t\tprint(\"ERROR: Could not find PlayerInfoLabel at the specified path.\")\n\n\tif is_instance_valid(enemy_info_tr):\n\t\tprint(\"SUCCESS: Found EnemyInfoTopRightLabel.\")\n\telse:\n\t\tprint(\"ERROR: Could not find EnemyInfoTopRightLabel at the specified path.\")\n\n\tif is_instance_valid(enemy_info_tl):\n\t\tprint(\"SUCCESS: Found EnemyInfoTopLeftLabel.\")\n\telse:\n\t\tprint(\"ERROR: Could not find EnemyInfoTopRightLabel at the specified path.\")\n\n\tif is_instance_valid(enemy_info_br):\n\t\tprint(\"SUCCESS: Found EnemyInfoBottomRightLabel.\")\n\telse:\n\t\tprint(\"ERROR: Could not find EnemyInfoTopRightLabel at the specified path.\")\n\n\tif is_instance_valid(enemy_info_bl):\n\t\tprint(\"SUCCESS: Found EnemyInfoBottomLeftLabel.\")\n\telse:\n\t\tprint(\"ERROR: Could not find EnemyInfoTopRightLabel at the specified path.\")\n\n\tif is_instance_valid(avatar_image_tr):\n\t\tprint(\"SUCCESS: Found avatar_image_tr.\")\n\telse:\n\t\tprint(\"ERROR: Could not find avatar_image_tr at the specified path.\")\n\n\t# ... (You can add checks for the other enemy labels if you wish)\n\tprint(\"--- Self-Check Complete ---\")\n\nfunc update_avatar_display(ai_players: Array):\n\tif ai_players.size() > 0 and avatar_image_tr:\n\t\tavatar_image_tr.texture = ai_players[0].faction_data.avatar\n\tif ai_players.size() > 1 and avatar_image_br:\n\t\tavatar_image_br.texture = ai_players[1].faction_data.avatar\n\tif ai_players.size() > 2 and avatar_image_tl:\n\t\tavatar_image_tl.texture = ai_players[2].faction_data.avatar\n\tif ai_players.size() > 3 and avatar_image_bl:\n\t\tavatar_image_bl.texture = ai_players[3].faction_data.avatar\n\nfunc update_info_screens(player_state: PlayerState, ai_players: Array):\n\tif player_state:\n\t\tplayer_info_label.text = \"Player: %s\\nAP: %d\\nTreasury: %d\\nPopulation: %dM\" % [player_state.faction_data.faction_name, player_state.current_ap, player_state.current_treasury, player_state.current_population]\n\n\tif ai_players.size() > 0 and enemy_info_tr:\n\t\tvar p = ai_players[0]\n\t\tenemy_info_tr.text = \"Leader: %s\\nFaction: %s\\nPopulation: %dM\" % [p.faction_data.leader_name, p.faction_data.faction_name, p.current_population]\n\tif ai_players.size() > 1 and enemy_info_br:\n\t\tvar p = ai_players[1]\n\t\tenemy_info_br.text = \"Leader: %s\\nFaction: %s\\nPopulation: %dM\" % [p.faction_data.leader_name, p.faction_data.faction_name, p.current_population]\n\tif ai_players.size() > 2 and enemy_info_tl:\n\t\tvar p = ai_players[2]\n\t\tenemy_info_tl.text = \"Leader: %s\\nFaction: %s\\nPopulation: %dM\" % [p.faction_data.leader_name, p.faction_data.faction_name, p.current_population]\n\tif ai_players.size() > 3 and enemy_info_bl:\n\t\tvar p = ai_players[3]\n\t\tenemy_info_bl.text = \"Leader: %s\\nFaction: %s\\nPopulation: %dM\" % [p.faction_data.leader_name, p.faction_data.faction_name, p.current_population]\n",
 			"exports": [],
 			"functions": [
-				"func _ready():"
+				"func _ready():",
+				"func update_avatar_display(ai_players: Array):",
+				"func update_info_screens(player_state: PlayerState, ai_players: Array):"
 			],
 			"language": "gd",
 			"path": "res:///scenes/3d/ConsoleController.gd",
@@ -7368,7 +7297,7 @@
 			"signals": []
 		},
 		{
-			"content": "# (This script is correct and does not need to be changed)\nclass_name PhysicalButton3D\nextends StaticBody3D\n\nsignal button_pressed(mesh_name)\n\n@onready var target_mesh: MeshInstance3D = get_parent()\n@onready var collision_shape: CollisionShape3D = $CollisionShape3D\n\nvar anim_player: AnimationPlayer\n\nfunc set_animation_player(p_anim_player: AnimationPlayer):\n\tself.anim_player = p_anim_player\n\nfunc on_click():\n\tbutton_pressed.emit(target_mesh.name)\n\nfunc play_animation(is_backwards: bool = false):\n\tvar anim_name = \"%s_Press\" % target_mesh.name\n\tif anim_player and anim_player.has_animation(anim_name):\n\t\tif is_backwards:\n\t\t\tanim_player.play_backwards(anim_name)\n\t\telse:\n\t\t\tanim_player.play(anim_name)\n\nfunc enable():\n\tif collision_shape:\n\t\tcollision_shape.disabled = false\n\nfunc disable():\n\tif collision_shape:\n\t\tcollision_shape.disabled = true\n",
+			"content": "# (This script is correct and does not need to be changed)\nclass_name PhysicalButton3D\nextends StaticBody3D\n\nsignal button_pressed(mesh_name)\n\n@onready var target_mesh: MeshInstance3D = get_parent()\n@onready var collision_shape: CollisionShape3D = $CollisionShape3D\n\nvar anim_player: AnimationPlayer\n\nfunc set_animation_player(p_anim_player: AnimationPlayer):\n\tself.anim_player = p_anim_player\n\nfunc on_click():\n\tbutton_pressed.emit(target_mesh.name)\n\nfunc play_animation(is_backwards: bool = false):\n\tvar anim_name = \"%s_Press\" % target_mesh.name\n\tvar release_anim_name = \"%s_Release\" % target_mesh.name\n\n\tif anim_player:\n\t\tif is_backwards and anim_player.has_animation(release_anim_name):\n\t\t\tanim_player.play(release_anim_name)\n\t\telif anim_player.has_animation(anim_name):\n\t\t\tif is_backwards:\n\t\t\t\tanim_player.play_backwards(anim_name)\n\t\t\telse:\n\t\t\t\tanim_player.play(anim_name)\n\nfunc enable():\n\tif collision_shape:\n\t\tcollision_shape.disabled = false\n\nfunc disable():\n\tif collision_shape:\n\t\tcollision_shape.disabled = true\n",
 			"exports": [],
 			"functions": [
 				"func set_animation_player(p_anim_player: AnimationPlayer):",
@@ -7384,7 +7313,7 @@
 			]
 		},
 		{
-			"content": "# (This is the full, final, and correct AIController script)\nclass_name AIController\n\nstatic func take_turn(ai_player: PlayerState, all_players: Array) -> void:\n\tLogger.log(\"AIController is now in charge of %s.\" % ai_player.faction_data.faction_name)\n\t\n\tvar target = choose_smarter_target(ai_player, all_players)\n\tif not target:\n\t\tLogger.log(\"%s can't find a valid target and ends their turn.\" % ai_player.faction_data.faction_name)\n\t\treturn\n\n\tLogger.log(\"%s chose %s as a target.\" % [ai_player.faction_data.faction_name, target.faction_data.leader_name])\n\t\n\tvar infowar_card_id = find_card_of_type(ai_player.hand, CardData.CardType.INFO_WAR)\n\tvar delivery_card_id = find_card_of_type(ai_player.hand, CardData.CardType.DELIVERY)\n\tvar payload_card_id = find_card_of_type(ai_player.hand, CardData.CardType.PAYLOAD)\n\t\n\tif infowar_card_id:\n\t\tvar card_data = CardDatabase.get_card_data(infowar_card_id)\n\t\tGameManager.execute_infowar_attack(ai_player, target, card_data)\n\t\tai_player.hand.erase(infowar_card_id)\n\telif delivery_card_id and payload_card_id:\n\t\tvar delivery_data = CardDatabase.get_card_data(delivery_card_id)\n\t\tvar payload_data = CardDatabase.get_card_data(payload_card_id)\n\t\tGameManager.execute_conventional_attack(ai_player, target, delivery_data, payload_data)\n\t\tai_player.hand.erase(delivery_card_id)\n\t\tai_player.hand.erase(payload_card_id)\n\telse:\n\t\tLogger.log(\"%s doesn't have the right cards to attack and ends their turn.\" % ai_player.faction_data.faction_name)\n\n\nstatic func choose_smarter_target(ai_player: PlayerState, all_players: Array) -> PlayerState:\n\tvar possible_targets: Array = []\n\tfor p in all_players:\n\t\tif p != ai_player and p.current_population > 0:\n\t\t\tpossible_targets.append(p)\n\t\n\tif possible_targets.is_empty():\n\t\treturn null\n\n\tif ai_player.faction_data.personality_traits.has(FactionData.Traits.RUTHLESS):\n\t\tLogger.log(\"%s is feeling RUTHLESS and looks for the weakest target...\" % ai_player.faction_data.faction_name)\n\t\tpossible_targets.sort_custom(func(a, b):\n\t\t\treturn a.current_population < b.current_population\n\t\t)\n\t\tvar weakest_target = possible_targets[0]\n\t\tLogger.log(\"The weakest target is %s.\" % weakest_target.faction_data.leader_name)\n\t\treturn weakest_target\n\t\n\tpossible_targets.sort_custom(func(a, b):\n\t\tvar id_a = a.faction_data.resource_path.get_file().get_basename()\n\t\tvar id_b = b.faction_data.resource_path.get_file().get_basename()\n\t\tvar score_a = ai_player.faction_data.relationships.get(id_a, 0)\n\t\tvar score_b = ai_player.faction_data.relationships.get(id_b, 0)\n\t\treturn score_a < score_b\n\t)\n\n\tvar most_hated_target = possible_targets[0]\n\tLogger.log(\"Sorted targets by relationship. Most hated is %s.\" % most_hated_target.faction_data.leader_name)\n\treturn most_hated_target\n\nstatic func find_card_of_type(hand: Array, card_type: CardData.CardType) -> String:\n\tfor card_id in hand:\n\t\tvar card_data = CardDatabase.get_card_data(card_id)\n\t\tif card_data and card_data.card_type == card_type:\n\t\t\treturn card_id\n\treturn \"\"\n",
+			"content": "# (This is the full, final, and correct AIController script)\nclass_name AIController\n\nstatic var last_target: PlayerState = null\n\nstatic func take_turn(ai_player: PlayerState, all_players: Array) -> void:\n\tLogger.log(\"AIController is now in charge of %s.\" % ai_player.faction_data.faction_name)\n\t\n\tvar target = choose_smarter_target(ai_player, all_players)\n\tlast_target = target\n\tif not target:\n\t\tLogger.log(\"%s can't find a valid target and ends their turn.\" % ai_player.faction_data.faction_name)\n\t\treturn\n\n\tLogger.log(\"%s chose %s as a target.\" % [ai_player.faction_data.faction_name, target.faction_data.leader_name])\n\t\n\tvar infowar_card_id = find_card_of_type(ai_player.hand, CardData.CardType.INFO_WAR)\n\tvar delivery_card_id = find_card_of_type(ai_player.hand, CardData.CardType.DELIVERY)\n\tvar payload_card_id = find_card_of_type(ai_player.hand, CardData.CardType.PAYLOAD)\n\t\n\tif infowar_card_id:\n\t\tvar card_data = CardDatabase.get_card_data(infowar_card_id)\n\t\tGameManager.execute_infowar_attack(ai_player, target, card_data)\n\t\tai_player.hand.erase(infowar_card_id)\n\telif delivery_card_id and payload_card_id:\n\t\tvar delivery_data = CardDatabase.get_card_data(delivery_card_id)\n\t\tvar payload_data = CardDatabase.get_card_data(payload_card_id)\n\t\tGameManager.execute_conventional_attack(ai_player, target, delivery_data, payload_data)\n\t\tai_player.hand.erase(delivery_card_id)\n\t\tai_player.hand.erase(payload_card_id)\n\telse:\n\t\tLogger.log(\"%s doesn't have the right cards to attack and ends their turn.\" % ai_player.faction_data.faction_name)\n\nstatic func get_last_target() -> PlayerState:\n\treturn last_target\n\n\nstatic func choose_smarter_target(ai_player: PlayerState, all_players: Array) -> PlayerState:\n\tvar possible_targets: Array = []\n\tfor p in all_players:\n\t\tif p != ai_player and p.current_population > 0:\n\t\t\tpossible_targets.append(p)\n\t\n\tif possible_targets.is_empty():\n\t\treturn null\n\n\tif ai_player.faction_data.personality_traits.has(FactionData.Traits.RUTHLESS):\n\t\tLogger.log(\"%s is feeling RUTHLESS and looks for the weakest target...\" % ai_player.faction_data.faction_name)\n\t\tpossible_targets.sort_custom(func(a, b):\n\t\t\treturn a.current_population < b.current_population\n\t\t)\n\t\tvar weakest_target = possible_targets[0]\n\t\tLogger.log(\"The weakest target is %s.\" % weakest_target.faction_data.leader_name)\n\t\treturn weakest_target\n\t\n\tpossible_targets.sort_custom(func(a, b):\n\t\tvar id_a = a.faction_data.resource_path.get_file().get_basename()\n\t\tvar id_b = b.faction_data.resource_path.get_file().get_basename()\n\t\tvar score_a = ai_player.faction_data.relationships.get(id_a, 0)\n\t\tvar score_b = ai_player.faction_data.relationships.get(id_b, 0)\n\t\treturn score_a < score_b\n\t)\n\n\tvar most_hated_target = possible_targets[0]\n\tLogger.log(\"Sorted targets by relationship. Most hated is %s.\" % most_hated_target.faction_data.leader_name)\n\treturn most_hated_target\n\nstatic func find_card_of_type(hand: Array, card_type: CardData.CardType) -> String:\n\tfor card_id in hand:\n\t\tvar card_data = CardDatabase.get_card_data(card_id)\n\t\tif card_data and card_data.card_type == card_type:\n\t\t\treturn card_id\n\treturn \"\"\n",
 			"exports": [],
 			"functions": [],
 			"language": "gd",
@@ -7493,13 +7422,14 @@
 			"signals": []
 		},
 		{
-			"content": "# (This is the full, final, and correct GameManager script)\nextends Node\n\nsignal game_state_changed\nsignal turn_started(player_state)\n\nvar active_players: Array[PlayerState] = []\nvar current_player_index: int = 0\nvar is_game_running: bool = false\nvar main_deck: Array = []\nvar build_cost: int = 25\n\nconst AP_COST_BUILD = 1\nconst AP_COST_INFOWAR = 1\nconst AP_COST_CONVENTIONAL = 2\n\nconst INVESTMENT_SECTORS = [\n\t{\"id\": 0, \"name\": \"Nuclear Program\", \"ap_cost\": 2, \"treasury_cost\": 100, \"type\": CardData.CardType.PAYLOAD},\n\t{\"id\": 1, \"name\": \"Aerospace & Ballistics\", \"ap_cost\": 2, \"treasury_cost\": 80, \"type\": CardData.CardType.DELIVERY},\n\t{\"id\": 2, \"name\": \"Cyber Warfare Division\", \"ap_cost\": 1, \"treasury_cost\": 50, \"type\": CardData.CardType.INFO_WAR},\n\t{\"id\": 3, \"name\": \"Intelligence Agency\", \"ap_cost\": 1, \"treasury_cost\": 40, \"type\": CardData.CardType.UTILITY},\n\t{\"id\": 4, \"name\": \"Civil Defense Initiative\", \"ap_cost\": 1, \"treasury_cost\": 30, \"type\": CardData.CardType.DEFENSE}\n]\n\nvar selected_delivery_card: CardData = null\nvar selected_payload_card: CardData = null\nvar selected_infowar_card: CardData = null\nvar selected_target: PlayerState = null\n\nfunc start_new_game(faction_ids: Array):\n\tactive_players.clear()\n\tmain_deck.clear()\n\tcurrent_player_index = 0\n\tis_game_running = true\n\tvar human_faction_data = FactionData.new()\n\thuman_faction_data.faction_name = \"Your Nation\"\n\thuman_faction_data.leader_name = \"The President\"\n\thuman_faction_data.starting_population = 100\n\thuman_faction_data.starting_treasury = 150\n\thuman_faction_data.starting_morale = 0.80\n\thuman_faction_data.base_action_points = 3\n\tvar human_player_state = PlayerState.new(human_faction_data, false, 0)\n\tactive_players.append(human_player_state)\n\tvar ai_player_index = 1\n\tfor id in faction_ids:\n\t\tvar data = FactionDatabase.get_faction_data(id)\n\t\tif data:\n\t\t\tvar new_ai_player = PlayerState.new(data, true, ai_player_index)\n\t\t\tactive_players.append(new_ai_player)\n\t\t\tai_player_index += 1\n\tsetup_deck()\n\tdeal_initial_cards(5)\n\nfunc setup_deck():\n\tmain_deck = CardDatabase.get_all_card_ids()\n\tmain_deck.append_array(CardDatabase.get_all_card_ids())\n\tmain_deck.append_array(CardDatabase.get_all_card_ids())\n\tmain_deck.shuffle()\n\tLogger.log(\"GameManager: Deck created and shuffled with %s cards.\" % main_deck.size())\n\nfunc deal_initial_cards(amount: int):\n\tfor player in active_players:\n\t\tfor i in range(amount):\n\t\t\tdraw_card(player)\n\nfunc draw_card(player_state: PlayerState):\n\tif not main_deck.is_empty():\n\t\tvar new_card_id = main_deck.pop_front()\n\t\tplayer_state.hand.append(new_card_id)\n\t\tLogger.log(\"%s drew: %s\" % [player_state.faction_data.faction_name, new_card_id])\n\telse:\n\t\tLogger.log(\"The main deck is empty!\")\n\nfunc find_random_card_of_type(card_type: CardData.CardType) -> String:\n\tvar card_pool = CardDatabase.get_card_ids_by_type(card_type)\n\tif not card_pool.is_empty():\n\t\treturn card_pool.pick_random()\n\treturn \"\"\n\nfunc get_human_player_state() -> PlayerState:\n\tif not active_players.is_empty() and not active_players[0].is_ai:\n\t\treturn active_players[0]\n\treturn null\n\nfunc player_selected_card(p_card_data: CardData):\n\tmatch p_card_data.card_type:\n\t\tCardData.CardType.DELIVERY:\n\t\t\tselected_delivery_card = p_card_data\n\t\t\tselected_infowar_card = null\n\t\tCardData.CardType.PAYLOAD:\n\t\t\tselected_payload_card = p_card_data\n\t\t\tselected_infowar_card = null\n\t\tCardData.CardType.INFO_WAR:\n\t\t\tselected_infowar_card = p_card_data\n\t\t\tselected_delivery_card = null\n\t\t\tselected_payload_card = null\n\nfunc player_selected_target(p_player_state: PlayerState):\n\tselected_target = p_player_state\n\nfunc start_turn():\n\tif active_players.is_empty(): return\n\tvar current_player = active_players[current_player_index]\n\tcurrent_player.current_ap = current_player.faction_data.base_action_points\n\tvar treasury_gain = 5 + int(current_player.current_population / 10.0 * current_player.current_morale)\n\tcurrent_player.current_treasury += treasury_gain\n\tLogger.log(\"\\n--- It's now %s's turn. ---\" % current_player.faction_data.faction_name)\n\tLogger.log(\"%s gains %d Treasury. AP reset to %d.\" % [current_player.faction_data.faction_name, treasury_gain, current_player.current_ap])\n\tturn_started.emit(current_player)\n\tif current_player.is_ai:\n\t\tprocess_ai_turn(current_player)\n\telse:\n\t\tgame_state_changed.emit()\n\nfunc next_turn():\n\tcurrent_player_index = (current_player_index + 1) % active_players.size()\n\tstart_turn()\n\nfunc process_ai_turn(ai_player: PlayerState):\n\tLogger.log(\"%s is thinking...\" % ai_player.faction_data.faction_name)\n\tgame_state_changed.emit()\n\tawait get_tree().create_timer(2.0).timeout\n\tAIController.take_turn(ai_player, active_players)\n\tgame_state_changed.emit()\n\tnext_turn()\n\nfunc process_build_action(sector_id: int):\n\tvar player = get_human_player_state()\n\tif not player: return\n\tvar sector = INVESTMENT_SECTORS[sector_id]\n\tif player.current_ap < sector.ap_cost:\n\t\tLogger.log(\"Not enough AP!\")\n\t\treturn\n\tif player.current_treasury < sector.treasury_cost:\n\t\tLogger.log(\"Not enough Treasury!\")\n\t\treturn\n\tplayer.current_ap -= sector.ap_cost\n\tplayer.current_treasury -= sector.treasury_cost\n\tvar card_to_draw = find_random_card_of_type(sector.type)\n\tif card_to_draw:\n\t\tplayer.hand.append(card_to_draw)\n\t\tLogger.log(\"Build successful! Acquired: %s\" % card_to_draw)\n\telse:\n\t\tLogger.log(\"Build failed: No cards of that type available to draw.\")\n\tgame_state_changed.emit()\n\n# Additional function to get sector information for UI display\nfunc get_investment_sector(sector_id: int) -> Dictionary:\n\treturn INVESTMENT_SECTORS[sector_id]\n\nfunc is_player_action_valid() -> bool:\n\tif selected_infowar_card and selected_target:\n\t\treturn true\n\tif selected_delivery_card and selected_payload_card and selected_target:\n\t\treturn true\n\treturn false\n\nfunc pass_turn():\n\tselected_delivery_card = null\n\tselected_payload_card = null\n\tselected_infowar_card = null\n\tselected_target = null\n\tgame_state_changed.emit()\n\tnext_turn()\n\nfunc process_player_attack():\n\tvar attacker = get_human_player_state()\n\tif not attacker: return\n\tif selected_infowar_card and selected_target:\n\t\tif attacker.current_ap < AP_COST_INFOWAR:\n\t\t\tLogger.log(\"Not enough Action Points! InfoWar attack costs %d AP.\" % AP_COST_INFOWAR)\n\t\t\treturn\n\t\tattacker.current_ap -= AP_COST_INFOWAR\n\t\texecute_infowar_attack(attacker, selected_target, selected_infowar_card)\n\t\tattacker.hand.erase(selected_infowar_card.resource_path.get_file().get_basename())\n\telif selected_delivery_card and selected_payload_card and selected_target:\n\t\tif attacker.current_ap < AP_COST_CONVENTIONAL:\n\t\t\tLogger.log(\"Not enough Action Points! Conventional attack costs %d AP.\" % AP_COST_CONVENTIONAL)\n\t\t\treturn\n\t\tattacker.current_ap -= AP_COST_CONVENTIONAL\n\t\texecute_conventional_attack(attacker, selected_target, selected_delivery_card, selected_payload_card)\n\t\tattacker.hand.erase(selected_delivery_card.resource_path.get_file().get_basename())\n\t\tattacker.hand.erase(selected_payload_card.resource_path.get_file().get_basename())\n\telse:\n\t\tLogger.log(\"Invalid selection for attack.\")\n\t\treturn\n\tselected_delivery_card = null\n\tselected_payload_card = null\n\tselected_infowar_card = null\n\tselected_target = null\n\tif attacker.current_ap <= 0:\n\t\tLogger.log(\"Out of Action Points. Ending turn automatically.\")\n\t\tpass_turn()\n\telse:\n\t\tLogger.log(\"Action complete. %d AP remaining.\" % attacker.current_ap)\n\t\tgame_state_changed.emit()\n\nfunc execute_conventional_attack(attacker: PlayerState, target: PlayerState, delivery: CardData, payload: CardData):\n\tLogger.log(\"%s launches a %s with a %s at %s!\" % [attacker.faction_data.faction_name, delivery.card_name, payload.card_name, target.faction_data.faction_name])\n\tif randf() < delivery.success_chance:\n\t\tvar damage = payload.damage\n\t\tLogger.log(\"DIRECT HIT! %s loses %s million people.\" % [target.faction_data.faction_name, damage])\n\t\ttarget.current_population -= damage\n\t\tif target.current_population < 0:\n\t\t\ttarget.current_population = 0\n\t\t\tLogger.log(\"%s has been annihilated!\" % target.faction_data.faction_name)\n\telse:\n\t\tLogger.log(\"The attack was intercepted!\")\n\nfunc execute_infowar_attack(attacker: PlayerState, target: PlayerState, card: CardData):\n\tLogger.log(\"%s uses '%s' on %s!\" % [attacker.faction_data.faction_name, card.card_name, target.faction_data.faction_name])\n\tvar damage = card.damage\n\tif damage > 0:\n\t\tLogger.log(\"It's super effective! %s loses %s million people to chaos and dissent.\" % [target.faction_data.faction_name, damage])\n\t\ttarget.current_population -= damage\n\t\tif target.current_population < 0:\n\t\t\ttarget.current_population = 0\n",
+			"content": "# (This is the full, final, and correct GameManager script)\nextends Node\n\nsignal game_state_changed\nsignal turn_started(player_state)\n\nvar active_players: Array[PlayerState] = []\nvar current_player_index: int = 0\nvar is_game_running: bool = false\nvar main_deck: Array = []\nvar build_cost: int = 25\n\nconst AP_COST_BUILD = 1\nconst AP_COST_INFOWAR = 1\nconst AP_COST_CONVENTIONAL = 2\n\nconst INVESTMENT_SECTORS = [\n\t{\"id\": 0, \"name\": \"Nuclear Program\", \"ap_cost\": 2, \"treasury_cost\": 100, \"type\": CardData.CardType.PAYLOAD},\n\t{\"id\": 1, \"name\": \"Aerospace & Ballistics\", \"ap_cost\": 2, \"treasury_cost\": 80, \"type\": CardData.CardType.DELIVERY},\n\t{\"id\": 2, \"name\": \"Cyber Warfare Division\", \"ap_cost\": 1, \"treasury_cost\": 50, \"type\": CardData.CardType.INFO_WAR},\n\t{\"id\": 3, \"name\": \"Intelligence Agency\", \"ap_cost\": 1, \"treasury_cost\": 40, \"type\": CardData.CardType.UTILITY},\n\t{\"id\": 4, \"name\": \"Civil Defense Initiative\", \"ap_cost\": 1, \"treasury_cost\": 30, \"type\": CardData.CardType.DEFENSE}\n]\n\nvar selected_delivery_card: CardData = null\nvar selected_payload_card: CardData = null\nvar selected_infowar_card: CardData = null\nvar selected_target: PlayerState = null\n\nfunc start_new_game(faction_ids: Array):\n\tactive_players.clear()\n\tmain_deck.clear()\n\tcurrent_player_index = 0\n\tis_game_running = true\n\tvar human_faction_data = FactionData.new()\n\thuman_faction_data.faction_name = \"Your Nation\"\n\thuman_faction_data.leader_name = \"The President\"\n\thuman_faction_data.starting_population = 100\n\thuman_faction_data.starting_treasury = 150\n\thuman_faction_data.starting_morale = 0.80\n\thuman_faction_data.base_action_points = 3\n\tvar human_player_state = PlayerState.new(human_faction_data, false, 0)\n\tactive_players.append(human_player_state)\n\tvar ai_player_index = 1\n\tfor id in faction_ids:\n\t\tvar data = FactionDatabase.get_faction_data(id)\n\t\tif data:\n\t\t\tvar new_ai_player = PlayerState.new(data, true, ai_player_index)\n\t\t\tactive_players.append(new_ai_player)\n\t\t\tai_player_index += 1\n\tsetup_deck()\n\tdeal_initial_cards(5)\n\nfunc setup_deck():\n\tmain_deck = CardDatabase.get_all_card_ids()\n\tmain_deck.append_array(CardDatabase.get_all_card_ids())\n\tmain_deck.append_array(CardDatabase.get_all_card_ids())\n\tmain_deck.shuffle()\n\tLogger.log(\"GameManager: Deck created and shuffled with %s cards.\" % main_deck.size())\n\nfunc deal_initial_cards(amount: int):\n\tfor player in active_players:\n\t\tfor i in range(amount):\n\t\t\tdraw_card(player)\n\nfunc draw_card(player_state: PlayerState):\n\tif not main_deck.is_empty():\n\t\tvar new_card_id = main_deck.pop_front()\n\t\tplayer_state.hand.append(new_card_id)\n\t\tLogger.log(\"%s drew: %s\" % [player_state.faction_data.faction_name, new_card_id])\n\telse:\n\t\tLogger.log(\"The main deck is empty!\")\n\nfunc get_current_player() -> PlayerState:\n\tif active_players.is_empty():\n\t\treturn null\n\treturn active_players[current_player_index]\n\nfunc find_random_card_of_type(card_type: CardData.CardType) -> String:\n\tvar card_pool = CardDatabase.get_card_ids_by_type(card_type)\n\tif not card_pool.is_empty():\n\t\treturn card_pool.pick_random()\n\treturn \"\"\n\nfunc get_human_player_state() -> PlayerState:\n\tif not active_players.is_empty() and not active_players[0].is_ai:\n\t\treturn active_players[0]\n\treturn null\n\nfunc player_selected_card(p_card_data: CardData):\n\tmatch p_card_data.card_type:\n\t\tCardData.CardType.DELIVERY:\n\t\t\tselected_delivery_card = p_card_data\n\t\t\tselected_infowar_card = null\n\t\tCardData.CardType.PAYLOAD:\n\t\t\tselected_payload_card = p_card_data\n\t\t\tselected_infowar_card = null\n\t\tCardData.CardType.INFO_WAR:\n\t\t\tselected_infowar_card = p_card_data\n\t\t\tselected_delivery_card = null\n\t\t\tselected_payload_card = null\n\nfunc player_selected_target(p_player_state: PlayerState):\n\tselected_target = p_player_state\n\nfunc start_turn():\n\tif active_players.is_empty(): return\n\tvar current_player = active_players[current_player_index]\n\tcurrent_player.current_ap = current_player.faction_data.base_action_points\n\tvar treasury_gain = 5 + int(current_player.current_population / 10.0 * current_player.current_morale)\n\tcurrent_player.current_treasury += treasury_gain\n\tLogger.log(\"\\n--- It's now %s's turn. ---\" % current_player.faction_data.faction_name)\n\tLogger.log(\"%s gains %d Treasury. AP reset to %d.\" % [current_player.faction_data.faction_name, treasury_gain, current_player.current_ap])\n\tturn_started.emit(current_player)\n\tif current_player.is_ai:\n\t\tprocess_ai_turn(current_player)\n\telse:\n\t\tgame_state_changed.emit()\n\nfunc next_turn():\n\tcurrent_player_index = (current_player_index + 1) % active_players.size()\n\tstart_turn()\n\nfunc process_ai_turn(ai_player: PlayerState):\n\tLogger.log(\"%s is thinking...\" % ai_player.faction_data.faction_name)\n\tgame_state_changed.emit()\n\tawait get_tree().create_timer(2.0).timeout\n\tAIController.take_turn(ai_player, active_players)\n\tgame_state_changed.emit()\n\tnext_turn()\n\nfunc process_build_action(sector_id: int):\n\tvar player = get_human_player_state()\n\tif not player: return\n\tvar sector = INVESTMENT_SECTORS[sector_id]\n\tif player.current_ap < sector.ap_cost:\n\t\tLogger.log(\"Not enough AP!\")\n\t\treturn\n\tif player.current_treasury < sector.treasury_cost:\n\t\tLogger.log(\"Not enough Treasury!\")\n\t\treturn\n\tplayer.current_ap -= sector.ap_cost\n\tplayer.current_treasury -= sector.treasury_cost\n\tvar card_to_draw = find_random_card_of_type(sector.type)\n\tif card_to_draw:\n\t\tplayer.hand.append(card_to_draw)\n\t\tLogger.log(\"Build successful! Acquired: %s\" % card_to_draw)\n\telse:\n\t\tLogger.log(\"Build failed: No cards of that type available to draw.\")\n\tgame_state_changed.emit()\n\n# Additional function to get sector information for UI display\nfunc get_investment_sector(sector_id: int) -> Dictionary:\n\treturn INVESTMENT_SECTORS[sector_id]\n\nfunc is_player_action_valid() -> bool:\n\tif selected_infowar_card and selected_target:\n\t\treturn true\n\tif selected_delivery_card and selected_payload_card and selected_target:\n\t\treturn true\n\treturn false\n\nfunc pass_turn():\n\tselected_delivery_card = null\n\tselected_payload_card = null\n\tselected_infowar_card = null\n\tselected_target = null\n\tgame_state_changed.emit()\n\tnext_turn()\n\nfunc process_player_attack():\n\tvar attacker = get_human_player_state()\n\tif not attacker: return\n\tif selected_infowar_card and selected_target:\n\t\tif attacker.current_ap < AP_COST_INFOWAR:\n\t\t\tLogger.log(\"Not enough Action Points! InfoWar attack costs %d AP.\" % AP_COST_INFOWAR)\n\t\t\treturn\n\t\tattacker.current_ap -= AP_COST_INFOWAR\n\t\texecute_infowar_attack(attacker, selected_target, selected_infowar_card)\n\t\tattacker.hand.erase(selected_infowar_card.resource_path.get_file().get_basename())\n\telif selected_delivery_card and selected_payload_card and selected_target:\n\t\tif attacker.current_ap < AP_COST_CONVENTIONAL:\n\t\t\tLogger.log(\"Not enough Action Points! Conventional attack costs %d AP.\" % AP_COST_CONVENTIONAL)\n\t\t\treturn\n\t\tattacker.current_ap -= AP_COST_CONVENTIONAL\n\t\texecute_conventional_attack(attacker, selected_target, selected_delivery_card, selected_payload_card)\n\t\tattacker.hand.erase(selected_delivery_card.resource_path.get_file().get_basename())\n\t\tattacker.hand.erase(selected_payload_card.resource_path.get_file().get_basename())\n\telse:\n\t\tLogger.log(\"Invalid selection for attack.\")\n\t\treturn\n\tselected_delivery_card = null\n\tselected_payload_card = null\n\tselected_infowar_card = null\n\tselected_target = null\n\tif attacker.current_ap <= 0:\n\t\tLogger.log(\"Out of Action Points. Ending turn automatically.\")\n\t\tpass_turn()\n\telse:\n\t\tLogger.log(\"Action complete. %d AP remaining.\" % attacker.current_ap)\n\t\tgame_state_changed.emit()\n\nfunc execute_conventional_attack(attacker: PlayerState, target: PlayerState, delivery: CardData, payload: CardData):\n\tLogger.log(\"%s launches a %s with a %s at %s!\" % [attacker.faction_data.faction_name, delivery.card_name, payload.card_name, target.faction_data.faction_name])\n\tif randf() < delivery.success_chance:\n\t\tvar damage = payload.damage\n\t\tLogger.log(\"DIRECT HIT! %s loses %s million people.\" % [target.faction_data.faction_name, damage])\n\t\ttarget.current_population -= damage\n\t\tif target.current_population < 0:\n\t\t\ttarget.current_population = 0\n\t\t\tLogger.log(\"%s has been annihilated!\" % target.faction_data.faction_name)\n\telse:\n\t\tLogger.log(\"The attack was intercepted!\")\n\nfunc execute_infowar_attack(attacker: PlayerState, target: PlayerState, card: CardData):\n\tLogger.log(\"%s uses '%s' on %s!\" % [attacker.faction_data.faction_name, card.card_name, target.faction_data.faction_name])\n\tvar damage = card.damage\n\tif damage > 0:\n\t\tLogger.log(\"It's super effective! %s loses %s million people to chaos and dissent.\" % [target.faction_data.faction_name, damage])\n\t\ttarget.current_population -= damage\n\t\tif target.current_population < 0:\n\t\t\ttarget.current_population = 0\n",
 			"exports": [],
 			"functions": [
 				"func start_new_game(faction_ids: Array):",
 				"func setup_deck():",
 				"func deal_initial_cards(amount: int):",
 				"func draw_card(player_state: PlayerState):",
+				"func get_current_player() -> PlayerState:",
 				"func find_random_card_of_type(card_type: CardData.CardType) -> String:",
 				"func get_human_player_state() -> PlayerState:",
 				"func player_selected_card(p_card_data: CardData):",
@@ -7563,18 +7493,23 @@
 			"signals": []
 		},
 		{
-			"content": "# (This is the full, final script that listens to the EventBus)\nextends Node2D\n\n@onready var console_anim_player = $SubViewportContainer/SubViewport/Console3D/console/Physical3DButtons/AnimationPlayer\n@onready var interaction_controller: InteractionController = $SubViewportContainer/SubViewport/Console3D/Camera3D\n@onready var deployment_screen: Control = $SubViewportContainer/SubViewport/Console3D/console/MainScreen3D/console/MainScreen/SubViewport/DeploymentScreen\n# --- MODIFICATION ---\n# Added a reference to the Input Shield's CollisionShape3D.\n# Adjust the path if the actual node structure differs.\n@onready var input_shield_collision_shape: CollisionShape3D = $SubViewportContainer/SubViewport/Console3D/console/MainScreen3D/console/MainScreen/InputShield_StaticBody/InputShield_CollisionShape\n\nconst CardChooserScene = preload(\"res://scenes/ui/CardChooser.tscn\")\n\nvar selected_enemy_button: PhysicalButton3D = null\nvar enemy_buttons: Array = []\n\n# --- MODIFICATION ---\n# Added a flag to control verbose shield state logging in _process\nvar _log_shield_state_verbose = false\n\nfunc _ready():\n\tawait get_tree().create_timer(0.1).timeout\n\tvar console: ConsoleController = $SubViewportContainer/SubViewport/Console3D\n\tdeployment_screen = console.get_node(\"console/MainScreen3D/console/MainScreen/SubViewport/DeploymentScreen\")\n\t\n\tGameManager.game_state_changed.connect(update_all_ui)\n\tGameManager.turn_started.connect(on_turn_started)\n\t\n\tEventBus.deployment_choice_made.connect(_on_deployment_choice_made)\n\t\n\tconnect_3d_buttons()\n\t\n\tif console and console.game_log_label:\n\t\tLogger.log_label = console.game_log_label\n\t\tLogger.log(\"--- GAME LOG CONNECTION ESTABLISHED ---\")\n\t\n\t# --- MODIFICATION ---\n\t# Definitive check for Input Shield Collision Shape reference\n\tif input_shield_collision_shape:\n\t\tLogger.log(\"--- INPUT SHIELD COLLISION SHAPE SUCCESSFULLY ACQUIRED ---\")\n\t\tLogger.log(\"--- PATH: %s ---\" % input_shield_collision_shape.get_path())\n\t\t# Connect directly to the StaticBody3D parent, which should have the input_event signal\n\t\tvar shield_static_body = input_shield_collision_shape.get_parent()\n\t\tif shield_static_body:\n\t\t\tLogger.log(\"--- SHIELD STATIC BODY FOUND: %s ---\" % shield_static_body.name)\n\t\t\t# Attempt connection and check result\n\t\t\tvar connection_result = shield_static_body.input_event.connect(_on_input_shield_clicked)\n\t\t\tif connection_result == OK:\n\t\t\t\tLogger.log(\"--- INPUT SHIELD SIGNAL CONNECTED SUCCESSFULLY ---\")\n\t\t\telse:\n\t\t\t\tLogger.log(\"ERROR: Failed to connect input shield signal. Error code: %d\" % connection_result)\n\t\telse:\n\t\t\tLogger.log(\"ERROR: Shield Static Body NOT found!\")\n\t\t# Initially disable the shield's collision shape\n\tinput_shield_collision_shape.disabled = true\n\tLogger.log(\"--- INPUT SHIELD INITIALLY DISABLED (State: %s) ---\" % input_shield_collision_shape.disabled)\n\t\n\tsetup_game()\n\n\n# --- MODIFICATION ---\n# Added _process to log shield state if _log_shield_state_verbose is true\nfunc _process(_delta):\n\tif _log_shield_state_verbose and input_shield_collision_shape:\n\t\tif not input_shield_collision_shape.disabled:\n\t\t\tLogger.log(\"--- SHIELD STATE (VERBOSE): ENABLED ---\")\n\nfunc _unhandled_input(event: InputEvent):\n\tif interaction_controller:\n\t\tinteraction_controller.check_for_click(event)\n\nfunc connect_3d_buttons():\n\tvar console_model_root = $SubViewportContainer/SubViewport/Console3D/console\n\tif console_model_root:\n\t\tfor node in console_model_root.find_children(\"*\", \"StaticBody3D\", true):\n\t\t\tif node is PhysicalButton3D:\n\t\t\t\tnode.button_pressed.connect(_on_3d_button_pressed)\n\t\t\t\tnode.set_animation_player(console_anim_player)\n\t\t\t\tif node.target_mesh.name.begins_with(\"EnemyButton\"):\n\t\t\t\t\tenemy_buttons.append(node)\n\nfunc _on_3d_button_pressed(mesh_name: String):\n\tLogger.log(\"--- 3D Button Pressed: %s ---\" % mesh_name)\n\tvar button_node: PhysicalButton3D = find_button_by_mesh_name(mesh_name)\n\tif not button_node:\n\t\tLogger.log(\"ERROR: PhysicalButton3D node not found for mesh: %s\" % mesh_name)\n\t\treturn\n\t\n\tvar is_enemy_button = mesh_name.begins_with(\"EnemyButton\")\n\t\n\tif is_enemy_button:\n\t\tif selected_enemy_button == button_node:\n\t\t\tbutton_node.play_animation(true)\n\t\t\tselected_enemy_button = null\n\t\t\tGameManager.player_selected_target(null)\n\t\t\tfor btn in enemy_buttons:\n\t\t\t\tbtn.enable()\n\t\telse:\n\t\t\tif selected_enemy_button:\n\t\t\t\tselected_enemy_button.play_animation(true)\n\t\t\tbutton_node.play_animation(false)\n\t\t\tselected_enemy_button = button_node\n\t\t\tfor btn in enemy_buttons:\n\t\t\t\tif btn != selected_enemy_button:\n\t\t\t\t\tbtn.disable()\n\t\t\tvar player_map = { \"EnemyButtonTopRight\": 0, \"EnemyButtonBottomRight\": 1, \"EnemyButtonTopLeft\": 2, \"EnemyButtonBottomLeft\": 3 }\n\t\t\tvar ai_players = []\n\t\t\tfor p in GameManager.active_players:\n\t\t\t\tif p.is_ai: ai_players.append(p)\n\t\t\tif player_map.has(mesh_name) and player_map[mesh_name] < ai_players.size():\n\t\t\t\tvar target_player = ai_players[player_map[mesh_name]]\n\t\t\t\tGameManager.player_selected_target(target_player)\n\t\t\treturn\n\n\tbutton_node.play_animation()\n\t\n\tif not deployment_screen:\n\t\tLogger.log(\"ERROR: DeploymentScreen node reference is not set.\")\n\t\treturn\n\n\t# --- MODIFICATION ---\n\t# According to the design principles:\n\t# 1. 3D buttons should ALWAYS remain active/interactable.\n\t# 2. The DeploymentScreen should not block general 3D input.\n\t# Therefore, we DO NOT disable `interaction_controller.process_input` here.\n\t# The responsibility for closing the menu (and potentially managing specific states)\n\t# now lies with the DeploymentScreen itself or a dedicated \"click-off\" shield.\n\n\tif mesh_name == \"EndTurnButton\":\n\t\tdeployment_screen.hide_screen() # Close the menu if it's open\n\t\t# --- MODIFICATION ---\n\t\t# Do not re-enable `process_input` here as it's no longer managed for this flow.\n\t\t_on_end_turn_pressed()\n\telif mesh_name == \"BuildButton\":\n\t\tdeployment_screen.show_choices(\"Invest in a Sector:\", GameManager.INVESTMENT_SECTORS, \"INVESTMENT\")\n\telif mesh_name == \"DeliveryButton\":\n\t\tshow_cards_on_deployment_screen(CardData.CardType.DELIVERY)\n\telif mesh_name == \"PayloadButton\":\n\t\tshow_cards_on_deployment_screen(CardData.CardType.PAYLOAD)\n\telif mesh_name == \"InfoWarButton\":\n\t\tshow_cards_on_deployment_screen(CardData.CardType.INFO_WAR)\n\telif mesh_name == \"UtilityButton\":\n\t\tshow_cards_on_deployment_screen(CardData.CardType.UTILITY)\n\telif mesh_name == \"DefenseButton\":\n\t\tshow_cards_on_deployment_screen(CardData.CardType.DEFENSE)\n\nfunc show_cards_on_deployment_screen(card_type: int):\n\tLogger.log(\"Attempting to show deployment screen for card type: %s\" % CardData.CardType.keys()[card_type])\n\tif not deployment_screen:\n\t\tLogger.log(\"ERROR: DeploymentScreen node reference is not set.\")\n\t\treturn\n\n\tvar title = CardData.CardType.keys()[card_type].capitalize()\n\tvar human_hand = GameManager.get_human_player_state().hand\n\tLogger.log(\"Player hand contains: %s\" % str(human_hand))\n\t\n\tvar card_ids_of_type = []\n\tfor card_id in human_hand:\n\t\tvar card_data = CardDatabase.get_card_data(card_id)\n\t\tif card_data and card_data.card_type == card_type:\n\t\t\tcard_ids_of_type.append(card_id)\n\n\tLogger.log(\"Found %d cards of type %s in hand.\" % [card_ids_of_type.size(), title])\n\n\tif card_ids_of_type.is_empty():\n\t\tLogger.log(\"Result: You have no cards of type: %s\" % title)\n\t\treturn\n\n\tvar card_objects = []\n\tfor id in card_ids_of_type:\n\t\tcard_objects.append(CardDatabase.get_card_data(id))\n\n\tLogger.log(\"Instructing DeploymentScreen to show %d choices.\" % card_objects.size())\n\tdeployment_screen.show_choices(\"Select a %s Card:\" % title, card_objects, \"CARD\")\n\nfunc _on_deployment_choice_made(choice_data):\n\tLogger.log(\"--- Deployment Choice Received by Main Controller ---\")\n\tif not deployment_screen:\n\t\tLogger.log(\"ERROR: DeploymentScreen node reference is not set in _on_deployment_choice_made.\")\n\t\treturn\n\t\n\tif choice_data is int:\n\t\tLogger.log(\"Choice is an INVESTMENT (ID: %d). Processing build action.\" % choice_data)\n\t\tGameManager.process_build_action(choice_data)\n\telif choice_data is CardData:\n\t\tLogger.log(\"Choice is a CARD ('%s'). Processing card selection.\" % choice_data.card_name)\n\t\tGameManager.player_selected_card(choice_data)\n\telse:\n\t\tLogger.log(\"ERROR: Received unknown choice data type: %s\" % typeof(choice_data))\n\t\n\t# Hide the deployment screen after a choice is made\n\tdeployment_screen.hide_screen()\n\t\n\t# --- MODIFICATION ---\n\t# According to the design principles, `interaction_controller.process_input`\n\t# is no longer managed by this function for the Deployment Screen flow.\n\t# It remains true to keep 3D buttons active.\n\t# If specific temporary disabling were needed for other reasons (e.g., animations),\n\t# it would be handled locally or by the shield mechanism.\n\t\n\t# --- MODIFICATION ---\n\t# Disable the input shield's collision shape when a choice is made\n\tif input_shield_collision_shape:\n\t\tinput_shield_collision_shape.disabled = true\n\t\t# --- DEBUG ---\n\t\tLogger.log(\"--- INPUT SHIELD DISABLED after choice made (New State: %s) ---\" % input_shield_collision_shape.disabled)\n\telse:\n\t\tLogger.log(\"ERROR: Cannot disable input shield, reference is null!\")\n\t\nfunc _on_end_turn_pressed():\n\t# --- MODIFICATION ---\n\t# According to the design principles, `interaction_controller.process_input`\n\t# is no longer managed by this function for the Deployment Screen flow.\n\t# It should remain true to keep 3D buttons active.\n\t# If specific temporary disabling were needed for other reasons (e.g., animations),\n\t# it would be handled locally or by the shield mechanism.\n\t\n\t# --- MODIFICATION ---\n\t# Disable the input shield's collision shape when the turn ends\n\tif input_shield_collision_shape:\n\t\tinput_shield_collision_shape.disabled = true\n\t\t# --- DEBUG ---\n\t\tLogger.log(\"--- INPUT SHIELD DISABLED at end of turn (New State: %s) ---\" % input_shield_collision_shape.disabled)\n\telse:\n\t\tLogger.log(\"ERROR: Cannot disable input shield, reference is null!\")\n\t\t\n\tif GameManager.is_player_action_valid():\n\t\tGameManager.process_player_attack()\n\telse:\n\t\tLogger.log(\"No action selected. Ending turn.\")\n\t\tGameManager.pass_turn()\n\n\nfunc _on_input_shield_clicked(_camera: Camera3D, event: InputEvent, _click_position: Vector3, _click_normal: Vector3, _shape_idx: int):\n\t# --- DEBUG ---\n\tLogger.log(\"--- _on_input_shield_clicked SIGNAL RECEIVED ---\")\n\t# Check if the event is a mouse button press\n\tif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:\n\t\t# --- DEBUG ---\n\t\tLogger.log(\"--- _on_input_shield_clicked MOUSE EVENT PROCESSED ---\")\n\t\tLogger.log(\"--- Input Shield Clicked ---\")\n\n\t\t# Hide the deployment screen\n\t\tif deployment_screen:\n\t\t\tdeployment_screen.hide_screen()\n\t\t\tLogger.log(\"--- DEPLOYMENT SCREEN HIDDEN ---\")\n\t\telse:\n\t\t\tLogger.log(\"ERROR: Deployment screen reference is null in _on_input_shield_clicked!\")\n\n\t\t# Disable the input shield's collision shape\n\t\tif input_shield_collision_shape:\n\t\t\tinput_shield_collision_shape.disabled = true\n\t\t\t# --- DEBUG ---\n\t\t\tLogger.log(\"--- INPUT SHIELD DISABLED after click (New State: %s) ---\" % input_shield_collision_shape.disabled)\n\t\telse:\n\t\t\tLogger.log(\"ERROR: Cannot disable input shield in _on_input_shield_clicked, reference is null!\")",
+			"content": "# (This is the full, final script that listens to the EventBus)\nextends Node2D\n\n@onready var console_anim_player = $SubViewportContainer/SubViewport/Console3D/console/Physical3DButtons/AnimationPlayer\n@onready var console: ConsoleController = $SubViewportContainer/SubViewport/Console3D\n@onready var interaction_controller: InteractionController = $SubViewportContainer/SubViewport/Console3D/Camera3D\n@onready var light_anim_player: AnimationPlayer = $SubViewportContainer/SubViewport/Console3D/LightAnimationPlayer\n@onready var overhead_light: SpotLight3D = $SubViewportContainer/SubViewport/Console3D/Overhead_Light\n@onready var ambient_light: OmniLight3D = $SubViewportContainer/SubViewport/Console3D/Ambient_Light\n@onready var left_fill_light: OmniLight3D = $SubViewportContainer/SubViewport/Console3D/LeftFill_Light\n@onready var right_fill_light: OmniLight3D = $SubViewportContainer/SubViewport/Console3D/RightFill_Light\n@onready var deployment_screen: Control = $SubViewportContainer/SubViewport/Console3D/console/MainScreen3D/console/MainScreen/SubViewport/DeploymentScreen\n# --- MODIFICATION ---\n# Added a reference to the Input Shield's CollisionShape3D.\n# Adjust the path if the actual node structure differs.\n@onready var input_shield_collision_shape: CollisionShape3D = $SubViewportContainer/SubViewport/Console3D/console/MainScreen3D/console/MainScreen/InputShield_StaticBody/InputShield_CollisionShape\n\nconst CardChooserScene = preload(\"res://scenes/ui/CardChooser.tscn\")\n\nvar selected_enemy_button: PhysicalButton3D = null\nvar enemy_buttons: Array = []\nvar all_buttons: Array = []\nvar enemy_button_map: Dictionary = {}\nvar end_turn_button: PhysicalButton3D = null\n\nvar ai_selected_button: PhysicalButton3D = null\n\n# --- MODIFICATION ---\n# Added a flag to control verbose shield state logging in _process\nvar _log_shield_state_verbose = false\n\nfunc _ready():\n\tawait get_tree().create_timer(0.1).timeout\n\tdeployment_screen = console.get_node(\"console/MainScreen3D/console/MainScreen/SubViewport/DeploymentScreen\")\n\t\n\tGameManager.game_state_changed.connect(update_all_ui)\n\tGameManager.turn_started.connect(on_turn_started)\n\t\n\tEventBus.deployment_choice_made.connect(_on_deployment_choice_made)\n\t\n\tconnect_3d_buttons()\n\t\n\tif console and console.game_log_label:\n\t\tLogger.log_label = console.game_log_label\n\t\tLogger.log(\"--- GAME LOG CONNECTION ESTABLISHED ---\")\n\t\n\t# --- MODIFICATION ---\n\t# Definitive check for Input Shield Collision Shape reference\n\tif input_shield_collision_shape:\n\t\tLogger.log(\"--- INPUT SHIELD COLLISION SHAPE SUCCESSFULLY ACQUIRED ---\")\n\t\tLogger.log(\"--- PATH: %s ---\" % input_shield_collision_shape.get_path())\n\t\t# Connect directly to the StaticBody3D parent, which should have the input_event signal\n\t\tvar shield_static_body = input_shield_collision_shape.get_parent()\n\t\tif shield_static_body:\n\t\t\tLogger.log(\"--- SHIELD STATIC BODY FOUND: %s ---\" % shield_static_body.name)\n\t\t\t# Attempt connection and check result\n\t\t\tvar connection_result = shield_static_body.input_event.connect(_on_input_shield_clicked)\n\t\t\tif connection_result == OK:\n\t\t\t\tLogger.log(\"--- INPUT SHIELD SIGNAL CONNECTED SUCCESSFULLY ---\")\n\t\t\telse:\n\t\t\t\tLogger.log(\"ERROR: Failed to connect input shield signal. Error code: %d\" % connection_result)\n\t\telse:\n\t\t\tLogger.log(\"ERROR: Shield Static Body NOT found!\")\n\t\t# Initially disable the shield's collision shape\n\tinput_shield_collision_shape.disabled = true\n\tLogger.log(\"--- INPUT SHIELD INITIALLY DISABLED (State: %s) ---\" % input_shield_collision_shape.disabled)\n\t\n\tsetup_game()\n\t_set_default_lighting()\n\n\n# --- MODIFICATION ---\n# Added _process to log shield state if _log_shield_state_verbose is true\nfunc _process(_delta):\n\tif _log_shield_state_verbose and input_shield_collision_shape:\n\t\tif not input_shield_collision_shape.disabled:\n\t\t\tLogger.log(\"--- SHIELD STATE (VERBOSE): ENABLED ---\")\n\nfunc _unhandled_input(event: InputEvent):\n\tif interaction_controller:\n\t\tinteraction_controller.check_for_click(event)\n\nfunc update_all_ui():\n\tvar ai_players = []\n\tfor p in GameManager.active_players:\n\t\tif p.is_ai:\n\t\t\tai_players.append(p)\n\t\n\tif console:\n\t\tconsole.update_avatar_display(ai_players)\n\t\tconsole.update_info_screens(GameManager.get_human_player_state(), ai_players)\n\t\t\n\t\tenemy_button_map.clear()\n\t\tvar player_map_visual = { 0: \"EnemyButtonTopRight\", 1: \"EnemyButtonBottomRight\", 2: \"EnemyButtonTopLeft\", 3: \"EnemyButtonBottomLeft\" }\n\t\tfor i in range(ai_players.size()):\n\t\t\tif player_map_visual.has(i):\n\t\t\t\tvar button_name = player_map_visual[i]\n\t\t\t\tenemy_button_map[button_name] = ai_players[i]\n\nfunc on_turn_started(player_state):\n\tif player_state.is_ai:\n\t\tif light_anim_player and not light_anim_player.is_playing():\n\t\t\tlight_anim_player.play(\"Alarm_AI_TurnLoop\")\n\t\t\n\t\t# Find the button corresponding to the AI's target and play the press animation\n\t\tvar ai_target = AIController.get_last_target()\n\t\tif ai_target:\n\t\t\tfor btn in enemy_buttons:\n\t\t\t\tif enemy_button_map.has(btn.target_mesh.name) and enemy_button_map[btn.target_mesh.name] == ai_target:\n\t\t\t\t\tai_selected_button = btn\n\t\t\t\t\tai_selected_button.play_animation()\n\t\t\t\t\tbreak\n\telse:\n\t\tif light_anim_player:\n\t\t\tlight_anim_player.play(\"Alarm_AI_TurnEnd\")\n\t\t\tawait light_anim_player.animation_finished\n\t\t\n\t\tif ai_selected_button:\n\t\t\tai_selected_button.play_animation(true) # Play release animation\n\t\t\tai_selected_button = null\n\t\t\t\n\t\tif selected_enemy_button:\n\t\t\tselected_enemy_button.play_animation(true) # Play release animation\n\t\t\tselected_enemy_button = null\n\t\t\t\n\t\tif end_turn_button:\n\t\t\tend_turn_button.play_animation(true) # Play release animation\n\t\t\t\n\t\tfor button in all_buttons:\n\t\t\tbutton.enable()\n\nfunc find_button_by_mesh_name(mesh_name: String) -> PhysicalButton3D:\n\tfor button in all_buttons:\n\t\tif button.target_mesh.name == mesh_name:\n\t\t\treturn button\n\treturn null\n\nfunc setup_game():\n\tvar all_factions = FactionDatabase.get_all_faction_ids()\n\tall_factions.shuffle()\n\tvar selected_factions = all_factions.slice(0, 4)\n\tGameManager.start_new_game(selected_factions)\n\tupdate_all_ui()\n\nfunc connect_3d_buttons():\n\tvar console_model_root = $SubViewportContainer/SubViewport/Console3D/console\n\tif console_model_root:\n\t\tfor node in console_model_root.find_children(\"*\", \"StaticBody3D\", true):\n\t\t\tif node is PhysicalButton3D:\n\t\t\t\tnode.button_pressed.connect(_on_3d_button_pressed)\n\t\t\t\tnode.set_animation_player(console_anim_player)\n\t\t\t\tall_buttons.append(node)\n\t\t\t\tif node.target_mesh.name.begins_with(\"EnemyButton\"):\n\t\t\t\t\tenemy_buttons.append(node)\n\t\t\t\telif node.target_mesh.name == \"EndTurnButton\":\n\t\t\t\t\tend_turn_button = node\n\nfunc _on_3d_button_pressed(mesh_name: String):\n\tLogger.log(\"--- 3D Button Pressed: %s ---\" % mesh_name)\n\tvar button_node: PhysicalButton3D = find_button_by_mesh_name(mesh_name)\n\tif not button_node:\n\t\tLogger.log(\"ERROR: PhysicalButton3D node not found for mesh: %s\" % mesh_name)\n\t\treturn\n\t\n\tvar is_enemy_button = mesh_name.begins_with(\"EnemyButton\")\n\t\n\tif is_enemy_button:\n\t\tif selected_enemy_button == button_node:\n\t\t\tbutton_node.play_animation(true)\n\t\t\tselected_enemy_button = null\n\t\t\tGameManager.player_selected_target(null)\n\t\t\tfor btn in enemy_buttons:\n\t\t\t\tbtn.enable()\n\t\t\treturn\n\t\telse:\n\t\t\tif selected_enemy_button:\n\t\t\t\tselected_enemy_button.play_animation(true)\n\t\t\tbutton_node.play_animation(false)\n\t\t\tselected_enemy_button = button_node\n\t\t\tfor btn in enemy_buttons:\n\t\t\t\tif btn != selected_enemy_button:\n\t\t\t\t\tbtn.disable()\n\t\t\t\n\t\t\tif enemy_button_map.has(mesh_name):\n\t\t\t\tvar target_player = enemy_button_map[mesh_name]\n\t\t\t\tGameManager.player_selected_target(target_player)\n\t\t\treturn\n\n\tbutton_node.play_animation()\n\t\n\tif not deployment_screen:\n\t\tLogger.log(\"ERROR: DeploymentScreen node reference is not set.\")\n\t\treturn\n\n\t# --- MODIFICATION ---\n\t# According to the design principles:\n\t# 1. 3D buttons should ALWAYS remain active/interactable.\n\t# 2. The DeploymentScreen should not block general 3D input.\n\t# Therefore, we DO NOT disable `interaction_controller.process_input` here.\n\t# The responsibility for closing the menu (and potentially managing specific states)\n\t# now lies with the DeploymentScreen itself or a dedicated \"click-off\" shield.\n\n\tif mesh_name == \"EndTurnButton\":\n\t\tdeployment_screen.hide_screen() # Close the menu if it's open\n\t\t_on_end_turn_pressed()\n\telif mesh_name == \"BuildButton\":\n\t\tdeployment_screen.show_choices(\"Invest in a Sector:\", GameManager.INVESTMENT_SECTORS, \"INVESTMENT\")\n\telif mesh_name == \"DeliveryButton\":\n\t\tshow_cards_on_deployment_screen(CardData.CardType.DELIVERY)\n\telif mesh_name == \"PayloadButton\":\n\t\tshow_cards_on_deployment_screen(CardData.CardType.PAYLOAD)\n\telif mesh_name == \"InfoWarButton\":\n\t\tshow_cards_on_deployment_screen(CardData.CardType.INFO_WAR)\n\telif mesh_name == \"UtilityButton\":\n\t\tshow_cards_on_deployment_screen(CardData.CardType.UTILITY)\n\telif mesh_name == \"DefenseButton\":\n\t\tshow_cards_on_deployment_screen(CardData.CardType.DEFENSE)\n\nfunc show_cards_on_deployment_screen(card_type: int):\n\tLogger.log(\"Attempting to show deployment screen for card type: %s\" % CardData.CardType.keys()[card_type])\n\tif not deployment_screen:\n\t\tLogger.log(\"ERROR: DeploymentScreen node reference is not set.\")\n\t\treturn\n\n\tvar title = CardData.CardType.keys()[card_type].capitalize()\n\tvar human_hand = GameManager.get_human_player_state().hand\n\tLogger.log(\"Player hand contains: %s\" % str(human_hand))\n\t\n\tvar card_ids_of_type = []\n\tfor card_id in human_hand:\n\t\tvar card_data = CardDatabase.get_card_data(card_id)\n\t\tif card_data and card_data.card_type == card_type:\n\t\t\tcard_ids_of_type.append(card_id)\n\n\tLogger.log(\"Found %d cards of type %s in hand.\" % [card_ids_of_type.size(), title])\n\n\tif card_ids_of_type.is_empty():\n\t\tLogger.log(\"Result: You have no cards of type: %s\" % title)\n\t\treturn\n\n\tvar card_objects = []\n\tfor id in card_ids_of_type:\n\t\tcard_objects.append(CardDatabase.get_card_data(id))\n\n\tLogger.log(\"Instructing DeploymentScreen to show %d choices.\" % card_objects.size())\n\tdeployment_screen.show_choices(\"Select a %s Card:\" % title, card_objects, \"CARD\")\n\nfunc _on_deployment_choice_made(choice_data):\n\tLogger.log(\"--- Deployment Choice Received by Main Controller ---\")\n\tif not deployment_screen:\n\t\tLogger.log(\"ERROR: DeploymentScreen node reference is not set in _on_deployment_choice_made.\")\n\t\treturn\n\t\n\tif choice_data is int:\n\t\tLogger.log(\"Choice is an INVESTMENT (ID: %d). Processing build action.\" % choice_data)\n\t\tGameManager.process_build_action(choice_data)\n\telif choice_data is CardData:\n\t\tLogger.log(\"Choice is a CARD ('%s'). Processing card selection.\" % choice_data.card_name)\n\t\tGameManager.player_selected_card(choice_data)\n\telse:\n\t\tLogger.log(\"ERROR: Received unknown choice data type: %s\" % typeof(choice_data))\n\t\n\t# Hide the deployment screen after a choice is made\n\tdeployment_screen.hide_screen()\n\t\n\t# --- MODIFICATION ---\n\t# According to the design principles, `interaction_controller.process_input`\n\t# is no longer managed by this function for the Deployment Screen flow.\n\t# It remains true to keep 3D buttons active.\n\t# If specific temporary disabling were needed for other reasons (e.g., animations),\n\t# it would be handled locally or by the shield mechanism.\n\t\n\t# --- MODIFICATION ---\n\t# Disable the input shield's collision shape when a choice is made\n\tif input_shield_collision_shape:\n\t\tinput_shield_collision_shape.disabled = true\n\t\t# --- DEBUG ---\n\t\tLogger.log(\"--- INPUT SHIELD DISABLED after choice made (New State: %s) ---\" % input_shield_collision_shape.disabled)\n\telse:\n\t\tLogger.log(\"ERROR: Cannot disable input shield, reference is null!\")\n\t\nfunc _on_end_turn_pressed():\n\t# --- MODIFICATION ---\n\t# According to the design principles, `interaction_controller.process_input`\n\t# is no longer managed by this function for the Deployment Screen flow.\n\t# It should remain true to keep 3D buttons active.\n\t# If specific temporary disabling were needed for other reasons (e.g., animations),\n\t# it would be handled locally or by the shield mechanism.\n\t\n\t# --- MODIFICATION ---\n\t# Disable the input shield's collision shape when the turn ends\n\tif input_shield_collision_shape:\n\t\tinput_shield_collision_shape.disabled = true\n\t\t# --- DEBUG ---\n\t\tLogger.log(\"--- INPUT SHIELD DISABLED at end of turn (New State: %s) ---\" % input_shield_collision_shape.disabled)\n\telse:\n\t\tLogger.log(\"ERROR: Cannot disable input shield, reference is null!\")\n\t\t\n\tif end_turn_button:\n\t\tend_turn_button.play_animation() # Play press animation\n\n\tfor button in all_buttons:\n\t\tbutton.disable()\n\t\n\tif light_anim_player:\n\t\tlight_anim_player.play(\"Alarm_AI_TurnStart\")\n\t\t\n\tif GameManager.is_player_action_valid():\n\t\tGameManager.process_player_attack()\n\telse:\n\t\tLogger.log(\"No action selected. Ending turn.\")\n\t\tGameManager.pass_turn()\n\n\tif selected_enemy_button:\n\t\tselected_enemy_button = null\n\n\nfunc _on_input_shield_clicked(_camera: Camera3D, event: InputEvent, _click_position: Vector3, _click_normal: Vector3, _shape_idx: int):\n\t# --- DEBUG ---\n\tLogger.log(\"--- _on_input_shield_clicked SIGNAL RECEIVED ---\")\n\t# Check if the event is a mouse button press\n\tif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:\n\t\t# --- DEBUG ---\n\t\tLogger.log(\"--- _on_input_shield_clicked MOUSE EVENT PROCESSED ---\")\n\t\tLogger.log(\"--- Input Shield Clicked ---\")\n\n\t\t# Hide the deployment screen\n\t\tif deployment_screen:\n\t\t\tdeployment_screen.hide_screen()\n\t\t\tLogger.log(\"--- DEPLOYMENT SCREEN HIDDEN ---\")\n\t\telse:\n\t\t\tLogger.log(\"ERROR: Deployment screen reference is null in _on_input_shield_clicked!\")\n\n\t\t# Disable the input shield's collision shape\n\t\tif input_shield_collision_shape:\n\t\t\tinput_shield_collision_shape.disabled = true\n\t\t\t# --- DEBUG ---\n\t\t\tLogger.log(\"--- INPUT SHIELD DISABLED after click (New State: %s) ---\" % input_shield_collision_shape.disabled)\n\t\telse:\n\t\t\tLogger.log(\"ERROR: Cannot disable input shield in _on_input_shield_clicked, reference is null!\")\n\nfunc _set_default_lighting():\n\tif overhead_light:\n\t\toverhead_light.light_energy = 5.0\n\tif ambient_light:\n\t\tambient_light.light_energy = 0.5\n\tif left_fill_light:\n\t\tleft_fill_light.light_color = Color(1, 1, 1, 1)\n\tif right_fill_light:\n\t\tright_fill_light.light_color = Color(1, 1, 1, 1)\n",
 			"exports": [],
 			"functions": [
 				"func _ready():",
 				"func _process(_delta):",
 				"func _unhandled_input(event: InputEvent):",
+				"func update_all_ui():",
+				"func on_turn_started(player_state):",
+				"func find_button_by_mesh_name(mesh_name: String) -> PhysicalButton3D:",
+				"func setup_game():",
 				"func connect_3d_buttons():",
 				"func _on_3d_button_pressed(mesh_name: String):",
 				"func show_cards_on_deployment_screen(card_type: int):",
 				"func _on_deployment_choice_made(choice_data):",
 				"func _on_end_turn_pressed():",
-				"func _on_input_shield_clicked(_camera: Camera3D, event: InputEvent, _click_position: Vector3, _click_normal: Vector3, _shape_idx: int):"
+				"func _on_input_shield_clicked(_camera: Camera3D, event: InputEvent, _click_position: Vector3, _click_normal: Vector3, _shape_idx: int):",
+				"func _set_default_lighting():"
 			],
 			"language": "gd",
 			"path": "res:///main_controller.gd",

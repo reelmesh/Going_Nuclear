@@ -1,10 +1,13 @@
 # (This is the full, final, and correct AIController script)
 class_name AIController
 
+static var last_target: PlayerState = null
+
 static func take_turn(ai_player: PlayerState, all_players: Array) -> void:
 	Logger.log("AIController is now in charge of %s." % ai_player.faction_data.faction_name)
 	
 	var target = choose_smarter_target(ai_player, all_players)
+	last_target = target
 	if not target:
 		Logger.log("%s can't find a valid target and ends their turn." % ai_player.faction_data.faction_name)
 		return
@@ -27,6 +30,9 @@ static func take_turn(ai_player: PlayerState, all_players: Array) -> void:
 		ai_player.hand.erase(payload_card_id)
 	else:
 		Logger.log("%s doesn't have the right cards to attack and ends their turn." % ai_player.faction_data.faction_name)
+
+static func get_last_target() -> PlayerState:
+	return last_target
 
 
 static func choose_smarter_target(ai_player: PlayerState, all_players: Array) -> PlayerState:
