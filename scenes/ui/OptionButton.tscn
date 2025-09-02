@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6gq4g5f3j7k1"]
+[gd_scene load_steps=4 format=3 uid="uid://c6gq4g5f3j7k1"]
 
-[ext_resource type="Script" path="res://scenes/ui/OptionButton.gd" id="1_abcde"]
-[ext_resource type="FontFile" uid="uid://dv53yqmw43ccs" path="res://art/fonts/AcPlus_IBM_VGA_8x14.ttf" id="2_abcde"]
+[ext_resource type="FontFile" uid="uid://dv53yqmw43ccs" path="res://art/fonts/AcPlus_IBM_VGA_8x14.ttf" id="1_abcde"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2"]
 content_margin_left = 10.0
@@ -37,9 +36,8 @@ size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(0.0405, 0.81, 0.335475, 1)
-theme_override_fonts/font = ExtResource("2_abcde")
+theme_override_fonts/font = ExtResource("1_abcde")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/hover = SubResource("StyleBoxFlat_2")
 theme_override_styles/normal = SubResource("StyleBoxFlat_1")
 text = "Option Text"
-script = ExtResource("1_abcde")

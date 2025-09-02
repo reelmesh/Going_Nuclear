@@ -37,6 +37,9 @@ func _ready():
 	
 	EventBus.deployment_choice_made.connect(_on_deployment_choice_made)
 	
+	interaction_controller.mouse_entered_button.connect(_on_button_mouse_entered)
+	interaction_controller.mouse_exited_button.connect(_on_button_mouse_exited)
+	
 	connect_3d_buttons()
 	
 	if console and console.game_log_label:
@@ -126,10 +129,10 @@ func on_turn_started(player_state):
 		for button in all_buttons:
 			button.enable()
 
-func _on_button_mouse_entered():
+func _on_button_mouse_entered(_button):
 	_set_cursor_hand(true)
 
-func _on_button_mouse_exited():
+func _on_button_mouse_exited(_button):
 	_set_cursor_hand(false)
 
 func find_button_by_mesh_name(mesh_name: String) -> PhysicalButton3D:
