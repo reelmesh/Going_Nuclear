@@ -75,6 +75,12 @@ func _process(_delta):
 		if not input_shield_collision_shape.disabled:
 			Logger.log("--- SHIELD STATE (VERBOSE): ENABLED ---")
 
+func _set_cursor_hand(is_hand: bool):
+	if is_hand:
+		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	else:
+		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+
 func _unhandled_input(event: InputEvent):
 	if interaction_controller:
 		interaction_controller.check_for_click(event)
@@ -120,6 +126,12 @@ func on_turn_started(player_state):
 		for button in all_buttons:
 			button.enable()
 
+func _on_button_mouse_entered():
+	_set_cursor_hand(true)
+
+func _on_button_mouse_exited():
+	_set_cursor_hand(false)
+
 func find_button_by_mesh_name(mesh_name: String) -> PhysicalButton3D:
 	for button in all_buttons:
 		if button.target_mesh.name == mesh_name:
@@ -138,6 +150,8 @@ func connect_3d_buttons():
 	if console_model_root:
 		for node in console_model_root.find_children("*", "StaticBody3D", true):
 			if node is PhysicalButton3D:
+				node.mouse_entered.connect(_on_button_mouse_entered)
+				node.mouse_exited.connect(_on_button_mouse_exited)
 				node.button_pressed.connect(_on_3d_button_pressed)
 				node.set_animation_player(console_anim_player)
 				all_buttons.append(node)

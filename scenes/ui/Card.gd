@@ -10,6 +10,16 @@ signal card_selected(card_node)
 @onready var type_label: Label = $MarginContainer/VBoxContainer/TypeLabel
 @onready var description_label: Label = $MarginContainer/VBoxContainer/DescriptionLabel
 
+func _ready():
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
+
+func _on_mouse_entered():
+	get_parent().get_parent().get_parent().get_parent()._set_cursor_hand(true)
+
+func _on_mouse_exited():
+	get_parent().get_parent().get_parent().get_parent()._set_cursor_hand(false)
+	
 var card_data: CardData
 
 func _gui_input(event: InputEvent):
