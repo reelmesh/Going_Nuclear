@@ -1,15 +1,14 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c3vb3an7mufm6"]
 
 [sub_resource type="Shader" id="Shader_f127i"]
-code = "// NOTE: Shader automatically converted from Godot Engine 4.4.1.stable's StandardMaterial3D.
-
-shader_type spatial;
+resource_local_to_scene = true
+code = "shader_type spatial;
 render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_burley, specular_schlick_ggx;
 
 uniform vec4 albedo : source_color;
 uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
-uniform ivec2 albedo_texture_size;
-uniform float point_size : hint_range(0.1, 128.0, 0.1);
+//uniform ivec2 albedo_texture_size;
+//uniform float point_size : hint_range(0.1, 128.0, 0.1);
 
 uniform float roughness : hint_range(0.0, 1.0);
 uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
@@ -22,18 +21,46 @@ uniform float metallic : hint_range(0.0, 1.0, 0.01);
 uniform sampler2D texture_emission : source_color, hint_default_black, filter_linear_mipmap, repeat_disable;
 uniform vec4 emission : source_color;
 uniform float emission_energy : hint_range(0.0, 100.0, 0.01);
+uniform bool emission_flip_h; // New uniform to control horizontal flip
 
 uniform vec3 uv1_scale;
 uniform vec3 uv1_offset;
-uniform vec3 uv2_scale;
-uniform vec3 uv2_offset;
+uniform vec3 uv1_rotation;
+//uniform vec3 uv2_scale;
+//uniform vec3 uv2_offset;
 
 void vertex() {
-	UV = UV * uv1_scale.yx + uv1_offset.yx;
+	vec2 original_uv = UV;
+
+	// 1. Center the UV coordinates around (0.5, 0.5) for proper rotation
+	vec2 centered_uv = original_uv - vec2(0.5);
+
+	// 2. Extract the rotation angle from uv1_rotation.z (in radians)
+	float angle = uv1_rotation.z;
+	float cos_angle = cos(angle);
+	float sin_angle = sin(angle);
+
+	// 3. Apply 2D rotation to the centered UV coordinates
+	vec2 rotated_uv;
+	rotated_uv.x = centered_uv.x * cos_angle - centered_uv.y * sin_angle;
+	rotated_uv.y = centered_uv.x * sin_angle + centered_uv.y * cos_angle;
+
+	// 4. Shift the UV coordinates back to their original range
+	rotated_uv += vec2(0.5);
+
+	// 5. Apply the existing UV1 scaling and offset to the *rotated* UV coordinates
+    // Note: The original shader uses a .yx swizzle for scale and offset components.
+	UV = rotated_uv * uv1_scale.yx + uv1_offset.yx;
 }
 
 void fragment() {
-	vec2 base_uv = UV;
+	vec2 base_uv = UV; // This UV already contains the uv1_scale, uv1_offset, and uv1_rotation transformations.
+
+	// Create a separate UV for emission texture to apply flip independently
+	vec2 emission_uv = base_uv;
+	if (emission_flip_h) {
+		emission_uv.x = 1.0 - emission_uv.x; // Invert the U coordinate for horizontal flip
+	}
 
 	vec4 albedo_tex = texture(texture_albedo, base_uv);
 	ALBEDO = albedo.rgb * albedo_tex.rgb;
@@ -47,14 +74,13 @@ void fragment() {
 	ROUGHNESS = roughness_tex * roughness;
 
 	// Emission: Enabled
-	vec3 emission_tex = texture(texture_emission, base_uv).rgb;
+	vec3 emission_tex = texture(texture_emission, emission_uv).rgb; // Use the modified emission_uv
 	// Emission Operator: Add
 	EMISSION = (emission.rgb + emission_tex) * emission_energy;
-}
-"
+}"
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3drjo"]
-viewport_path = NodePath("console/MainScreen/SubViewport")
+viewport_path = NodePath("console/MainScreen/SubViewportContainer/SubViewport")
 
 [resource]
 resource_local_to_scene = true
@@ -62,8 +88,6 @@ resource_name = "MainScreen"
 render_priority = 0
 shader = SubResource("Shader_f127i")
 shader_parameter/albedo = Color(0, 0, 0, 1)
-shader_parameter/albedo_texture_size = Vector2i(0, 0)
-shader_parameter/point_size = 1.0
 shader_parameter/roughness = 0.15
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
 shader_parameter/specular = 0.5
@@ -71,7 +95,7 @@ shader_parameter/metallic = 0.0
 shader_parameter/texture_emission = SubResource("ViewportTexture_3drjo")
 shader_parameter/emission = Color(0, 0, 0, 1)
 shader_parameter/emission_energy = 1.0
-shader_parameter/uv1_scale = Vector3(1.1, 1.1, 1.1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/emission_flip_h = true
+shader_parameter/uv1_scale = Vector3(1.58, 1.215, 0)
+shader_parameter/uv1_offset = Vector3(-0.06, -0.11, 0)
+shader_parameter/uv1_rotation = Vector3(0, 0, 1.57)

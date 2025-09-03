@@ -2,6 +2,11 @@
 class_name InteractionController
 extends Camera3D
 
+var subviewport: SubViewport
+
+func set_subviewport(vp: SubViewport):
+	subviewport = vp
+
 signal mouse_entered_button(button)
 signal mouse_exited_button(button)
 
@@ -30,8 +35,11 @@ func check_for_click(event: InputEvent):
 		
 		if not result.is_empty():
 			var hit_object = result.collider
-			if hit_object.has_method("on_click"):
+			if hit_object is PhysicalButton3D:
 				hit_object.on_click()
+			elif hit_object.name == "MainScreen":
+				if subviewport:
+					subviewport.push_input(event)
 
 func _physics_process(_delta):
 	var mouse_pos = get_viewport().get_mouse_position()

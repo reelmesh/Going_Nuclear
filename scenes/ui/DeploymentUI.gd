@@ -7,11 +7,18 @@ extends Control
 const OptionButtonScene = preload("res://scenes/ui/OptionButton.tscn")
 
 @onready var title_label = $ContentBox/CardChooserUI/TitleBar/TitleLabel
+@onready var background_click_handler = $ColorRect # Adjust path if needed
 
 func _ready():
 	hide()
-	# Make sure this control receives input events
 	mouse_filter = MOUSE_FILTER_STOP
+	background_click_handler.gui_input.connect(_on_background_clicked)
+
+func _on_background_clicked(event):
+	if event is InputEventMouseButton and event.pressed:
+		hide_screen()
+# Optionally, emit a signal via EventBus if other nodes need to know
+# EventBus.deployment_screen_closed.emit()
 
 func show_choices(title: String, choices: Array, choice_type: String):
 	title_label.text = title

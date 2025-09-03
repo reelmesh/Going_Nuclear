@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://csnkdx2uy54nd"]
+[gd_scene load_steps=9 format=4 uid="uid://csnkdx2uy54nd"]
 
 [ext_resource type="Script" uid="uid://cjpsbocv01qj0" path="res://scripts/3d/MainScreen3DController.gd" id="2_sq16v"]
 [ext_resource type="Material" uid="uid://c3vb3an7mufm6" path="res://art/3d/materials/MainScreen.tres" id="38_2h6vd"]
@@ -72,9 +72,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_s22nr")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_picoh"]
-size = Vector3(0.0977631, 0.693604, 0.0975647)
-
 [node name="MainScreen3D" type="Node3D"]
 
 [node name="console" type="Node3D" parent="."]
@@ -84,28 +81,34 @@ mesh = SubResource("ArrayMesh_f127i")
 skeleton = NodePath("")
 
 [node name="MainScreen" type="MeshInstance3D" parent="console"]
-transform = Transform3D(6.78057, 0, 0, 0, -0.0969523, 0, 0, 0, 4.20753, 0, 0.012929, -0.0777986)
+transform = Transform3D(6.78057, 0, -3.67834e-07, 0, -0.0969523, 0, 5.92776e-07, 0, 4.20753, 0, 0.012929, -0.0777986)
 mesh = SubResource("ArrayMesh_picoh")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("38_2h6vd")
 script = ExtResource("2_sq16v")
 
-[node name="SubViewport" type="SubViewport" parent="console/MainScreen"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="console/MainScreen"]
+custom_minimum_size = Vector2(1210, 750)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -605.0
+offset_top = -375.0
+offset_right = 605.0
+offset_bottom = 375.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="console/MainScreen/SubViewportContainer"]
 transparent_bg = true
-size = Vector2i(750, 1210)
+handle_input_locally = false
+size = Vector2i(1210, 750)
+render_target_update_mode = 4
 
-[node name="DeploymentScreen" parent="console/MainScreen/SubViewport" instance=ExtResource("39_ivjp4")]
-offset_left = 80.0
-offset_top = 160.0
-offset_right = 540.0
-offset_bottom = -300.0
-rotation = 1.5708
-scale = Vector2(1, -0.7)
-mouse_default_cursor_shape = 2
-
-[node name="InputShield_StaticBody" type="StaticBody3D" parent="console/MainScreen"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.001)
-
-[node name="InputShield_CollisionShape" type="CollisionShape3D" parent="console/MainScreen/InputShield_StaticBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04506e-05, -0.178965, -0.00029669)
-shape = SubResource("BoxShape3D_picoh")
+[node name="DeploymentScreen_Root" parent="console/MainScreen/SubViewportContainer/SubViewport" instance=ExtResource("39_ivjp4")]
+visible = false
+offset_right = 0.0
+offset_bottom = 0.0
